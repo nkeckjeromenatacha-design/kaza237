@@ -1,0 +1,719 @@
+/* ================================================================
+   KAZA237 — Styles de la page Annonces
+   Fichier : css/annonces.css
+   ================================================================
+   CE FICHIER CONTIENT :
+   1. Hero de la page annonces (avec image de fond + filtres)
+   2. Menu de catégories (onglets)
+   3. Grille des cartes de biens
+   4. Bouton "Voir plus"
+   5. Loader (animation de chargement)
+   6. Message "aucun résultat"
+   7. Responsive mobile
+   ================================================================
+   COMMENT MODIFIER LES COULEURS :
+   Les couleurs principales sont dans css/style.css → section :root
+   ================================================================ */
+
+
+/* ============================================================
+   1. HERO DE LA PAGE ANNONCES
+   Bannière en haut avec image de fond, overlay et filtres
+   ============================================================ */
+.hero-annonces {
+  position: relative;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  /* Couleur de fond si l'image ne charge pas */
+  background-color: var(--bleu-fonce);
+}
+
+/* Image de fond du hero */
+.hero-annonces-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+/* Overlay sombre pour que le texte soit lisible sur l'image */
+.hero-annonces-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(12, 45, 107, 0.88) 0%,
+    rgba(30, 79, 175, 0.75) 100%
+  );
+  z-index: 1;
+}
+
+/* Contenu centré (texte + filtres) au-dessus de l'overlay */
+.hero-annonces-contenu {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   TITRE DU HERO ANNONCES — MODIFIE LE TEXTE DANS index.html
+   ============================================================ */
+.hero-annonces-titre {
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--blanc);
+  margin-bottom: 0.8rem;
+  line-height: 1.2;
+}
+
+/* Le mot en orange dans le titre */
+.hero-annonces-titre span {
+  color: var(--orange);
+}
+
+/* Sous-titre du hero */
+.hero-annonces-sous-titre {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+/* ============================================================
+   BLOC FILTRES — Card blanche posée sur le hero
+   ============================================================ */
+.bloc-filtres {
+  background-color: var(--blanc);
+  border-radius: 16px;
+  padding: 1.8rem;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+
+/* Titre du bloc filtres */
+.filtres-titre {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--bleu);
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Grille des champs de filtre */
+.filtres-grille {
+  display: grid;
+  /* Sur desktop : 5 colonnes (4 champs + 1 bouton) */
+  grid-template-columns: 1fr 1fr 1fr 1fr auto;
+  gap: 14px;
+  align-items: end;
+}
+
+/* Chaque champ de filtre */
+.filtre-champ {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Label au-dessus du champ */
+.filtre-champ label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gris-doux);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Select et input */
+.filtre-champ select,
+.filtre-champ input {
+  height: 44px;
+  border: 1.5px solid var(--bordure);
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 14px;
+  color: var(--gris-texte);
+  background-color: #fafafa;
+  outline: none;
+  transition: var(--transition);
+  width: 100%;
+}
+
+.filtre-champ select:focus,
+.filtre-champ input:focus {
+  border-color: var(--bleu);
+  background-color: var(--blanc);
+}
+
+/* Conteneur des boutons Filtrer + Réinitialiser */
+.filtre-btn-wrap {
+  flex-direction: row !important;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+/* Bouton "Filtrer" */
+.btn-filtrer {
+  height: 44px;
+  padding: 0 20px;
+  background-color: var(--bleu);
+  color: var(--blanc);
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-filtrer:hover {
+  background-color: var(--bleu-fonce);
+  transform: translateY(-1px);
+}
+
+/* Bouton réinitialiser (icône seulement) */
+.btn-reset {
+  height: 44px;
+  width: 44px;
+  background-color: var(--gris-fond);
+  color: var(--gris-doux);
+  border: 1.5px solid var(--bordure);
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn-reset:hover {
+  background-color: #fee2e2;
+  border-color: #f87171;
+  color: #ef4444;
+}
+
+
+/* ============================================================
+   2. MENU DE CATÉGORIES (onglets horizontaux)
+   ============================================================ */
+.section-categories-menu {
+  background-color: var(--blanc);
+  border-bottom: 1px solid var(--bordure);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  position: sticky;
+  top: 72px; /* Colle juste sous la navbar */
+  z-index: 100;
+}
+
+.categories-menu-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  gap: 4px;
+  overflow-x: auto; /* Défilement horizontal sur mobile */
+  scrollbar-width: none; /* Cache la scrollbar sur Firefox */
+}
+
+/* Cache la scrollbar sur Chrome/Safari */
+.categories-menu-wrap::-webkit-scrollbar {
+  display: none;
+}
+
+/* Bouton de catégorie */
+.btn-categorie {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 14px 16px;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gris-doux);
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.btn-categorie:hover {
+  color: var(--bleu);
+  border-bottom-color: var(--bleu-clair);
+}
+
+/* Catégorie active (sélectionnée) */
+.btn-categorie.actif {
+  color: var(--bleu);
+  border-bottom-color: var(--orange);
+}
+
+.btn-categorie i {
+  font-size: 14px;
+}
+
+
+/* ============================================================
+   3. SECTION PRINCIPALE — LISTE DES BIENS
+   ============================================================ */
+.section-annonces {
+  padding: 3rem 0;
+  background-color: var(--gris-fond);
+}
+
+.annonces-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* En-tête : titre + compteur */
+.annonces-entete {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.8rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.annonces-titre {
+  font-size: 22px;
+  font-weight: 800;
+  color: #222;
+}
+
+.annonces-titre span {
+  color: var(--bleu);
+}
+
+/* Compteur de résultats (ex: "12 biens trouvés") */
+.annonces-compteur {
+  font-size: 13px;
+  color: var(--gris-doux);
+  background-color: var(--blanc);
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--bordure);
+  font-weight: 600;
+}
+
+/* ============================================================
+   GRILLE DES CARTES DE BIENS
+   Desktop : 3 colonnes
+   Tablette : 2 colonnes
+   Mobile   : 1 colonne
+   ============================================================ */
+.biens-grille {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* ============================================================
+   CARTE D'UN BIEN
+   ============================================================ */
+.carte-bien {
+  background-color: var(--blanc);
+  border-radius: var(--radius);
+  border: 1px solid var(--bordure);
+  overflow: hidden;
+  transition: var(--transition);
+  box-shadow: var(--ombre);
+  display: flex;
+  flex-direction: column;
+}
+
+.carte-bien:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--ombre-hover);
+}
+
+/* Zone image */
+.carte-image {
+  position: relative;
+  height: 210px;
+  overflow: hidden;
+  background-color: #e5e7eb; /* Fond gris si image absente */
+}
+
+.carte-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+/* Légère mise en avant de l'image au survol */
+.carte-bien:hover .carte-image img {
+  transform: scale(1.06);
+}
+
+/* Badge "DISPONIBLE" (featured = true dans Firebase) */
+.badge-disponible {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background-color: #16a34a; /* Vert */
+  color: var(--blanc);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Badge type de bien (ex: "Studio moderne") */
+.badge-type {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--bleu);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+/* Corps de la carte */
+.carte-corps {
+  padding: 16px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* Prend tout l'espace restant */
+}
+
+/* Type de bien (petit texte orange en haut) */
+.carte-type {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--orange);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 5px;
+}
+
+/* Titre du bien */
+.carte-titre {
+  font-size: 15px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+/* Prix */
+.carte-prix {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--bleu);
+  margin-bottom: 6px;
+  letter-spacing: -0.3px;
+}
+
+.carte-prix span {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--gris-doux);
+}
+
+/* Ville + quartier */
+.carte-lieu {
+  font-size: 13px;
+  color: var(--gris-doux);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  flex: 1; /* Pousse les boutons vers le bas */
+}
+
+.carte-lieu i {
+  color: var(--orange);
+  font-size: 12px;
+}
+
+/* ============================================================
+   BOUTONS D'ACTION DE LA CARTE
+   ============================================================ */
+.carte-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Bouton "Voir détails" */
+.btn-voir-details {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 10px 16px;
+  background-color: var(--bleu);
+  color: var(--blanc);
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.btn-voir-details:hover {
+  background-color: var(--bleu-fonce);
+  transform: translateY(-1px);
+}
+
+/* Bouton WhatsApp (icône seulement) */
+.btn-whatsapp-carte {
+  width: 40px;
+  height: 40px;
+  background-color: #25D366;
+  color: var(--blanc);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: var(--transition);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.btn-whatsapp-carte:hover {
+  background-color: #1ebe5b;
+  transform: translateY(-1px);
+}
+
+
+/* ============================================================
+   4. BOUTON "VOIR PLUS"
+   ============================================================ */
+.voir-plus-wrap {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.btn-voir-plus {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 36px;
+  background-color: var(--blanc);
+  color: var(--bleu);
+  border: 2px solid var(--bleu);
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-voir-plus:hover {
+  background-color: var(--bleu);
+  color: var(--blanc);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(30, 79, 175, 0.25);
+}
+
+
+/* ============================================================
+   5. LOADER (animation pendant le chargement Firebase)
+   ============================================================ */
+.loader-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  gap: 1rem;
+}
+
+/* Cercle qui tourne */
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--bleu-clair);
+  border-top-color: var(--bleu);
+  border-radius: 50%;
+  animation: tourner 0.8s linear infinite;
+}
+
+@keyframes tourner {
+  to { transform: rotate(360deg); }
+}
+
+.loader-texte {
+  font-size: 14px;
+  color: var(--gris-doux);
+  font-weight: 500;
+}
+
+
+/* ============================================================
+   6. MESSAGE "AUCUN RÉSULTAT"
+   ============================================================ */
+.aucun-resultat {
+  text-align: center;
+  padding: 5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.aucun-resultat i {
+  font-size: 56px;
+  color: var(--bordure);
+}
+
+.aucun-resultat p {
+  font-size: 16px;
+  color: var(--gris-doux);
+  font-weight: 500;
+}
+
+
+/* ============================================================
+   7. RESPONSIVE — TABLETTE (max 1024px)
+   ============================================================ */
+@media (max-width: 1024px) {
+
+  /* Grille : 2 colonnes sur tablette */
+  .biens-grille {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Filtres : 2 colonnes sur tablette */
+  .filtres-grille {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Bouton filtrer prend toute la largeur */
+  .filtre-btn-wrap {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
+}
+
+
+/* ============================================================
+   RESPONSIVE — MOBILE (max 768px)
+   ============================================================ */
+@media (max-width: 768px) {
+
+  /* Hero annonces moins haut sur mobile */
+  .hero-annonces {
+    min-height: auto;
+    align-items: flex-start;
+  }
+
+  .hero-annonces-contenu {
+    padding: 2rem 1rem 1.5rem;
+  }
+
+  /* Titre plus petit sur mobile */
+  .hero-annonces-titre {
+    font-size: 24px;
+  }
+
+  /* Filtres en colonne sur mobile */
+  .filtres-grille {
+    grid-template-columns: 1fr;
+  }
+
+  /* Bouton filtrer pleine largeur sur mobile */
+  .filtre-btn-wrap {
+    grid-column: 1 / -1;
+  }
+
+  .btn-filtrer {
+    width: 100%;
+    justify-content: center;
+    height: 48px;
+    font-size: 15px;
+  }
+
+  /* Menu catégories : pas sticky sur mobile (évite conflit avec nav) */
+  .section-categories-menu {
+    position: relative;
+    top: 0;
+  }
+
+  .categories-menu-wrap {
+    padding: 0 1rem;
+  }
+
+  /* Grille : 1 colonne sur mobile */
+  .biens-grille {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .annonces-wrap {
+    padding: 0 1rem;
+  }
+
+  .section-annonces {
+    padding: 2rem 0;
+  }
+
+  /* Entête section */
+  .annonces-entete {
+    margin-bottom: 1.2rem;
+  }
+
+  .annonces-titre {
+    font-size: 18px;
+  }
+}
+
+
+/* ============================================================
+   RESPONSIVE — PETIT MOBILE (max 480px)
+   ============================================================ */
+@media (max-width: 480px) {
+
+  .hero-annonces-titre {
+    font-size: 20px;
+  }
+
+  .hero-annonces-sous-titre {
+    font-size: 14px;
+  }
+
+  .bloc-filtres {
+    padding: 1.2rem;
+    border-radius: 12px;
+  }
+
+  /* Image de carte moins haute sur petit mobile */
+  .carte-image {
+    height: 180px;
+  }
+}

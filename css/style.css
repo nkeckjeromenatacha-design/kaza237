@@ -1,0 +1,1258 @@
+/* ================================================================
+   KAZA237 — Feuille de style principale
+   Fichier : css/style.css
+   "Ton chez-toi, sans stress."
+   ================================================================
+   COMMENT MODIFIER LES COULEURS :
+   Cherche la section ":root" tout en haut.
+   Exemple : changer --orange: #E87722; par une autre couleur
+   ================================================================ */
+
+/* ============================================================
+       VARIABLES DE COULEURS ET POLICES
+       Pour changer une couleur sur tout le site, modifie ici !
+       ============================================================ */
+    :root {
+      --bleu          : #1E4FAF;   /* Couleur bleue principale */
+      --bleu-fonce    : #0c2d6b;   /* Bleu très foncé (footer, stats) */
+      --bleu-clair    : #E6F1FB;   /* Bleu très clair (survol catégories) */
+      --orange        : #E87722;   /* Couleur orange (boutons, prix, accents) */
+      --orange-hover  : #c9621a;   /* Orange foncé au survol */
+      --blanc         : #ffffff;
+      --gris-fond     : #F5F6FA;   /* Fond de page gris très clair */
+      --gris-texte    : #444444;   /* Couleur du texte principal */
+      --gris-doux     : #888888;   /* Texte secondaire, labels */
+      --bordure       : #E5E7EB;   /* Couleur des bordures */
+      --radius        : 12px;      /* Arrondi des cartes et boutons */
+      --ombre         : 0 4px 20px rgba(0, 0, 0, 0.08);
+      --ombre-hover   : 0 8px 32px rgba(0, 0, 0, 0.15);
+      --transition    : all 0.25s ease;
+    }
+
+    /* ============================================================
+       RESET — Remise à zéro des styles par défaut du navigateur
+       ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth; /* Défilement fluide entre sections */
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background-color: var(--gris-fond);
+      color: var(--gris-texte);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* Liens — pas de soulignement par défaut */
+    a {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    /* Images — remplissent leur conteneur */
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ============================================================
+       BARRE DE NAVIGATION
+       ============================================================ */
+    nav {
+      background-color: var(--blanc);
+      border-bottom: 1px solid var(--bordure);
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+
+      /* Reste visible en haut même quand on défile */
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    /* --- Logo (côté gauche) --- */
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Image du logo — REMPLACE src="..." PAR LE CHEMIN DE TON LOGO */
+    .nav-logo img {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .nav-logo-texte {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .nav-logo-texte .marque {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+
+    /* "Kaza" en bleu, "237" en orange */
+    .nav-logo-texte .marque .bleu  { color: var(--bleu); }
+    .nav-logo-texte .marque .orange { color: var(--orange); }
+
+    .nav-logo-texte .slogan {
+      font-size: 10px;
+      color: var(--gris-doux);
+    }
+
+    /* --- Liens de navigation (centre) --- */
+    .nav-liens {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-liens a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gris-texte);
+      position: relative;
+      transition: var(--transition);
+    }
+
+    /* Trait orange qui apparaît sous le lien au survol */
+    .nav-liens a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--orange);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    .nav-liens a:hover               { color: var(--bleu); }
+    .nav-liens a:hover::after        { width: 100%; }
+    .nav-liens a.actif               { color: var(--bleu); }
+    .nav-liens a.actif::after        { width: 100%; }
+
+    /* --- Bouton "Nous Contacter" (côté droit) --- */
+    .btn-nav-contact {
+      background-color: var(--orange);
+      color: var(--blanc);
+      border: none;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      /* LIEN WHATSAPP — modifie le numéro si besoin */
+      /* Ce bouton est dans le HTML plus bas */
+    }
+
+    .btn-nav-contact:hover {
+      background-color: var(--orange-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(232, 119, 34, 0.35);
+    }
+
+    /* ============================================================
+       SECTION HERO (Bannière principale)
+       ============================================================ */
+    .hero {
+      background-color: var(--bleu); /* Fond bleu comme demandé dans le cahier */
+      background-image: linear-gradient(135deg, #0c2d6b 0%, #1E4FAF 55%, #3a72d0 100%);
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Motif de fond décoratif subtil */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 15% 50%, rgba(255,255,255,0.05) 0%, transparent 50%),
+        radial-gradient(circle at 85% 20%, rgba(232,119,34,0.1) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    /* Badge "Plateforme camerounaise" */
+    .hero-badge {
+      display: inline-block;
+      background: rgba(232, 119, 34, 0.18);
+      border: 1px solid rgba(232, 119, 34, 0.45);
+      color: #FAC775;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ============================================================
+       TITRE HERO — MODIFIE LE TEXTE ICI
+       ============================================================ */
+    .hero h1 {
+      font-size: 44px;
+      font-weight: 900;
+      color: var(--blanc);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Mot en orange dans le titre */
+    .hero h1 em {
+      color: var(--orange);
+      font-style: normal;
+    }
+
+    /* ============================================================
+       SOUS-TEXTES HERO — MODIFIE LES TEXTES ICI
+       ============================================================ */
+    .hero-sous-texte-1 {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 17px;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-sous-texte-2 {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 15px;
+      max-width: 540px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Bouton "Voir les biens" dans le hero */
+    .btn-hero {
+      display: inline-block;
+      background-color: var(--orange);
+      color: var(--blanc);
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+      position: relative;
+      z-index: 1;
+      margin-bottom: 3rem;
+    }
+
+    .btn-hero:hover {
+      background-color: var(--orange-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(232, 119, 34, 0.4);
+    }
+
+    /* ============================================================
+       BOÎTE DE RECHERCHE ET FILTRES
+       ============================================================ */
+    .boite-recherche {
+      background-color: var(--blanc);
+      border-radius: 16px;
+      padding: 1.8rem;
+      max-width: 780px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Grille des champs de recherche */
+    .recherche-grille {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr auto;
+      gap: 14px;
+      align-items: end;
+    }
+
+    /* Label au-dessus de chaque champ */
+    .champ-recherche label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gris-doux);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    /* Champs select et input */
+    .champ-recherche select,
+    .champ-recherche input {
+      width: 100%;
+      height: 46px;
+      border: 1.5px solid var(--bordure);
+      border-radius: 8px;
+      padding: 0 14px;
+      font-size: 14px;
+      color: var(--gris-texte);
+      background-color: #fafafa;
+      outline: none;
+      transition: var(--transition);
+      appearance: auto;
+    }
+
+    .champ-recherche select:focus,
+    .champ-recherche input:focus {
+      border-color: var(--bleu);
+      background-color: var(--blanc);
+    }
+
+    /* Bouton Rechercher */
+    .btn-rechercher {
+      height: 46px;
+      padding: 0 26px;
+      background-color: var(--bleu);
+      color: var(--blanc);
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-rechercher:hover {
+      background-color: var(--bleu-fonce);
+      transform: translateY(-1px);
+    }
+
+    /* ============================================================
+       SECTION "À LA UNE" — Slider automatique
+       ============================================================ */
+    .section-a-la-une {
+      background-color: var(--blanc);
+      padding: 2.5rem 2.5rem;
+      border-bottom: 1px solid var(--bordure);
+    }
+
+    /* Titre de section réutilisable */
+    .titre-section {
+      font-size: 22px;
+      font-weight: 800;
+      color: #222;
+      margin-bottom: 1.5rem;
+    }
+
+    .titre-section span {
+      color: var(--bleu);
+    }
+
+    /* Contenu de chaque slide "À la une" */
+    .slide-une {
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      height: 280px;
+      cursor: pointer;
+    }
+
+    /* ============================================================
+       IMAGE D'UN SLIDE — REMPLACE src="..." PAR TA VRAIE IMAGE
+       Exemple : src="assets/images/villa-douala.jpg"
+       ============================================================ */
+    .slide-une img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Dégradé sombre en bas pour lire le texte sur l'image */
+    .slide-une-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
+    }
+
+    /* Badge "NOUVEAU" en haut à gauche */
+    .slide-badge-nouveau {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background-color: var(--orange);
+      color: var(--blanc);
+      font-size: 10px;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      z-index: 2;
+    }
+
+    /* Badge type de bien (ex: "Appartement") en haut à droite */
+    .slide-badge-type {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(4px);
+      color: var(--blanc);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.3);
+      z-index: 2;
+    }
+
+    /* Infos en bas du slide */
+    .slide-une-infos {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 16px 18px;
+      z-index: 2;
+    }
+
+    .slide-une-titre {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--blanc);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .slide-une-prix {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--orange);
+      margin-bottom: 4px;
+    }
+
+    .slide-une-lieu {
+      font-size: 12px;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 10px;
+    }
+
+    /* Bouton "Découvrir" sur le slide */
+    .btn-decouvrir {
+      display: inline-block;
+      background-color: var(--blanc);
+      color: var(--bleu);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 20px;
+      transition: var(--transition);
+    }
+
+    .btn-decouvrir:hover {
+      background-color: var(--orange);
+      color: var(--blanc);
+    }
+
+    /* ============================================================
+       SECTION "BIENS RÉCENTS" — Slider
+       ============================================================ */
+    .section-recents {
+      padding: 3rem 2.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* En-tête de section avec "Voir tout" à droite */
+    .entete-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .lien-voir-tout {
+      font-size: 13px;
+      color: var(--bleu);
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .lien-voir-tout:hover { color: var(--orange); }
+
+    /* Carte d'un bien récent */
+    .carte-bien {
+      background-color: var(--blanc);
+      border-radius: var(--radius);
+      border: 1px solid var(--bordure);
+      overflow: hidden;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: var(--ombre);
+      height: 100%;
+    }
+
+    .carte-bien:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--ombre-hover);
+    }
+
+    /* Zone image de la carte */
+    .carte-image {
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+      background-color: #e0e0e0; /* Couleur si l'image ne charge pas */
+    }
+
+    /* ============================================================
+       IMAGE D'UNE CARTE — REMPLACE src="..." PAR TA VRAIE IMAGE
+       Exemple : src="assets/images/appartement1.jpg"
+       ============================================================ */
+    .carte-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .carte-bien:hover .carte-image img {
+      transform: scale(1.05); /* Légère mise en avant au survol */
+    }
+
+    /* Badge localisation sur l'image */
+    .carte-badge-lieu {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(255,255,255,0.92);
+      color: var(--bleu);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    /* Corps de la carte (textes) */
+    .carte-corps {
+      padding: 16px 18px;
+    }
+
+    /* Type de bien (ex: "APPARTEMENT") */
+    .carte-type {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 5px;
+    }
+
+    /* Titre du bien */
+    .carte-titre {
+      font-size: 15px;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    /* Prix */
+    .carte-prix {
+      font-size: 19px;
+      font-weight: 900;
+      color: var(--bleu);
+      margin-bottom: 6px;
+    }
+
+    .carte-prix span {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--gris-doux);
+    }
+
+    /* Ville */
+    .carte-ville {
+      font-size: 12px;
+      color: var(--gris-doux);
+      margin-bottom: 8px;
+    }
+
+    /* Petite description */
+    .carte-description {
+      font-size: 13px;
+      color: var(--gris-doux);
+      line-height: 1.5;
+      /* Limite à 2 lignes avec "..." */
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* ============================================================
+       SECTION STATISTIQUES
+       ============================================================ */
+    .section-stats {
+      background-color: var(--bleu-fonce);
+      padding: 3rem 2rem;
+    }
+
+    .stats-grille {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .stat-bloc {
+      padding: 1.5rem;
+    }
+
+    /* Icône stat */
+    .stat-icone {
+      font-size: 32px;
+      color: var(--orange);
+      margin-bottom: 0.8rem;
+    }
+
+    /* Chiffre principal */
+    .stat-chiffre {
+      font-size: 38px;
+      font-weight: 900;
+      color: var(--blanc);
+      letter-spacing: -1px;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-chiffre span {
+      color: var(--orange);
+    }
+
+    /* Label sous le chiffre */
+    .stat-label {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.65);
+      font-weight: 500;
+    }
+
+    /* ============================================================
+       SECTION "PARCOURIR PAR CATÉGORIE"
+       ============================================================ */
+    .section-categories {
+      padding: 3rem 2.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .categories-grille {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    /* Carte catégorie */
+    .carte-categorie {
+      background-color: var(--blanc);
+      border: 1.5px solid var(--bordure);
+      border-radius: var(--radius);
+      padding: 1.5rem 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: var(--ombre);
+    }
+
+    .carte-categorie:hover {
+      border-color: var(--bleu);
+      background-color: var(--bleu-clair);
+      transform: translateY(-4px);
+      box-shadow: var(--ombre-hover);
+    }
+
+    .categorie-icone {
+      font-size: 32px;
+      color: var(--bleu);
+      margin-bottom: 12px;
+    }
+
+    .categorie-nom {
+      font-size: 14px;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 4px;
+    }
+
+    /* ============================================================
+       NOMBRE D'ANNONCES PAR CATÉGORIE — modifie les chiffres ici
+       ============================================================ */
+    .categorie-nombre {
+      font-size: 12px;
+      color: var(--gris-doux);
+    }
+
+    /* ============================================================
+       SECTION "COMMENT ÇA MARCHE"
+       ============================================================ */
+    .section-comment {
+      background-color: var(--blanc);
+      padding: 3rem 2.5rem;
+      border-top: 1px solid var(--bordure);
+      border-bottom: 1px solid var(--bordure);
+    }
+
+    .comment-grille {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .comment-etape {
+      padding: 1.5rem;
+    }
+
+    /* Numéro de l'étape */
+    .etape-numero {
+      width: 56px;
+      height: 56px;
+      background-color: var(--bleu-clair);
+      color: var(--bleu);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 900;
+      margin: 0 auto 1rem;
+    }
+
+    .etape-icone {
+      font-size: 28px;
+      color: var(--bleu);
+      margin-bottom: 0.8rem;
+    }
+
+    .etape-titre {
+      font-size: 16px;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 0.5rem;
+    }
+
+    .etape-texte {
+      font-size: 13px;
+      color: var(--gris-doux);
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       SECTION SERVICES
+       ============================================================ */
+    .section-services {
+      padding: 3rem 2.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .services-grille {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .carte-service {
+      background-color: var(--blanc);
+      border: 1px solid var(--bordure);
+      border-radius: var(--radius);
+      padding: 1.8rem 1.2rem;
+      text-align: center;
+      transition: var(--transition);
+      box-shadow: var(--ombre);
+    }
+
+    .carte-service:hover {
+      border-color: var(--orange);
+      transform: translateY(-4px);
+      box-shadow: var(--ombre-hover);
+    }
+
+    .service-icone {
+      font-size: 36px;
+      color: var(--orange);
+      margin-bottom: 1rem;
+    }
+
+    .service-titre {
+      font-size: 15px;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 0.5rem;
+    }
+
+    .service-texte {
+      font-size: 13px;
+      color: var(--gris-doux);
+      line-height: 1.5;
+    }
+
+    /* ============================================================
+       SECTION CTA WHATSAPP
+       ============================================================ */
+    .section-whatsapp-cta {
+      background: linear-gradient(135deg, var(--bleu-fonce) 0%, var(--bleu) 100%);
+      padding: 4rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ============================================================
+       TITRE CTA — MODIFIE LE TEXTE ICI
+       ============================================================ */
+    .cta-titre {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--blanc);
+      margin-bottom: 0.8rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ============================================================
+       SOUS-TITRE CTA — MODIFIE LE TEXTE ICI
+       ============================================================ */
+    .cta-sous-titre {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.72);
+      margin-bottom: 2rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Bouton WhatsApp vert */
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background-color: #25D366; /* Couleur verte officielle de WhatsApp */
+      color: var(--blanc);
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+      position: relative;
+      z-index: 1;
+      text-decoration: none;
+    }
+
+    .btn-whatsapp:hover {
+      background-color: #1ebe5b;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    }
+
+    /* ============================================================
+       FOOTER (Pied de page)
+       ============================================================ */
+    footer {
+      background-color: #0c1f45; /* Bleu très foncé comme demandé */
+      color: rgba(255, 255, 255, 0.8);
+      padding: 3.5rem 2.5rem 1.5rem;
+    }
+
+    /* Grille du footer en 4 colonnes */
+    .footer-grille {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto 2.5rem;
+    }
+
+    /* --- Colonne 1 : Logo + description + réseaux sociaux --- */
+    .footer-logo {
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-logo .bleu   { color: var(--blanc); }
+    .footer-logo .orange { color: var(--orange); }
+
+    .footer-slogan {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 1rem;
+    }
+
+    .footer-description {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Icônes des réseaux sociaux */
+    .reseaux-sociaux {
+      display: flex;
+      gap: 10px;
+    }
+
+    /* ============================================================
+       RÉSEAUX SOCIAUX — MODIFIE LES LIENS href="..." ICI
+       ============================================================ */
+    .btn-reseau {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .btn-reseau:hover {
+      background-color: var(--orange);
+      border-color: var(--orange);
+      color: var(--blanc);
+      transform: translateY(-2px);
+    }
+
+    /* --- Colonnes 2, 3, 4 : Liens --- */
+    .footer-col h4 {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--blanc);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .footer-col ul li a {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.55);
+      transition: var(--transition);
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--orange);
+      padding-left: 5px;
+    }
+
+    /* Informations de contact dans le footer */
+    .footer-contact-ligne {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.55);
+      margin-bottom: 10px;
+    }
+
+    .footer-contact-ligne i {
+      color: var(--orange);
+      margin-top: 2px;
+      width: 14px;
+    }
+
+    /* Ligne de séparation */
+    .footer-separateur {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.08);
+      max-width: 1200px;
+      margin: 0 auto 1.5rem;
+    }
+
+    /* Bas du footer */
+    .footer-bas {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-copyright {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    /* Liens légaux */
+    .footer-liens-legaux {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-liens-legaux a {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.4);
+      transition: var(--transition);
+    }
+
+    .footer-liens-legaux a:hover { color: var(--orange); }
+
+    /* ============================================================
+       STYLES SWIPER (navigation des sliders)
+       ============================================================ */
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: var(--blanc) !important;
+      background: rgba(0,0,0,0.3);
+      width: 40px !important;
+      height: 40px !important;
+      border-radius: 50%;
+    }
+
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+      font-size: 16px !important;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: var(--orange) !important;
+    }
+
+    /* ============================================================
+       RESPONSIVE — TABLETTE (max 1024px)
+       ============================================================ */
+    @media (max-width: 1024px) {
+      .categories-grille { grid-template-columns: repeat(2, 1fr); }
+      .services-grille   { grid-template-columns: repeat(2, 1fr); }
+      .footer-grille     { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+
+    /* ============================================================
+       RESPONSIVE — MOBILE (max 768px)
+       ============================================================ */
+    @media (max-width: 768px) {
+      /* Nav : cacher les liens, garder le bouton */
+      nav { padding: 0 1.2rem; }
+      .nav-liens { display: none; }
+
+      /* Hero */
+      .hero { padding: 3rem 1.2rem 2.5rem; }
+      .hero h1 { font-size: 28px; }
+      .hero-sous-texte-1 { font-size: 15px; }
+
+      /* Recherche : 2 colonnes sur mobile */
+      .recherche-grille {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      /* Stats */
+      .stats-grille { grid-template-columns: 1fr; gap: 1rem; }
+
+      /* Catégories */
+      .categories-grille { grid-template-columns: repeat(2, 1fr); }
+
+      /* Comment ça marche */
+      .comment-grille { grid-template-columns: 1fr; }
+
+      /* Services */
+      .services-grille { grid-template-columns: 1fr; }
+
+      /* Footer */
+      .footer-grille { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bas    { flex-direction: column; text-align: center; }
+      .footer-liens-legaux { flex-wrap: wrap; justify-content: center; }
+
+      /* Sections */
+      .section-recents,
+      .section-categories,
+      .section-services { padding: 2rem 1.2rem; }
+    }
+
+    /* ============================================================
+       RESPONSIVE — PETIT MOBILE (max 480px)
+       ============================================================ */
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 24px; }
+      .recherche-grille { grid-template-columns: 1fr; }
+      .categories-grille { grid-template-columns: 1fr 1fr; }
+      .cta-titre { font-size: 22px; }
+    }
+
+/* ============================================================
+   BOUTON HAMBURGER (3 barres) — mobile uniquement
+   ============================================================ */
+.btn-hamburger {
+  display: none; /* Caché sur desktop */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1100;
+}
+
+/* Chaque barre du hamburger */
+.btn-hamburger span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--bleu);
+  border-radius: 3px;
+  transition: var(--transition);
+}
+
+/* Animation : barres → croix quand menu ouvert */
+.btn-hamburger.ouvert span:nth-child(1) {
+  transform: translateY(9.5px) rotate(45deg);
+}
+.btn-hamburger.ouvert span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.btn-hamburger.ouvert span:nth-child(3) {
+  transform: translateY(-9.5px) rotate(-45deg);
+}
+
+/* ============================================================
+   MENU MOBILE — panneau qui s'ouvre depuis le haut
+   ============================================================ */
+.menu-mobile {
+  display: none; /* Caché par défaut */
+  position: fixed;
+  top: 72px; /* Juste en dessous de la navbar */
+  left: 0;
+  right: 0;
+  background-color: var(--blanc);
+  border-bottom: 2px solid var(--bordure);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  z-index: 999;
+  padding: 1.5rem 1.5rem 2rem;
+  animation: slideDown 0.25s ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.menu-mobile.actif {
+  display: block;
+}
+
+/* Liens dans le menu mobile */
+.menu-mobile-liens {
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.menu-mobile-liens li {
+  border-bottom: 1px solid var(--bordure);
+}
+
+.menu-mobile-liens li:last-child {
+  border-bottom: none;
+}
+
+.menu-mobile-liens a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 4px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--gris-texte);
+  transition: var(--transition);
+}
+
+.menu-mobile-liens a i {
+  color: var(--bleu);
+  width: 18px;
+  text-align: center;
+}
+
+.menu-mobile-liens a:hover {
+  color: var(--bleu);
+  padding-left: 10px;
+}
+
+/* Bouton WhatsApp en bas du menu mobile */
+.btn-whatsapp-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #25D366;
+  color: var(--blanc);
+  padding: 13px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.btn-whatsapp-mobile:hover {
+  background-color: #1ebe5b;
+}
+
+/* Sur desktop : cacher le hamburger */
+.btn-desktop  { display: inline-flex; }
+.btn-hamburger { display: none; }
+
+/* ============================================================
+   RESPONSIVE — MOBILE (max 768px)
+   ============================================================ */
+@media (max-width: 768px) {
+  .nav-liens   { display: none; }   /* Liens desktop cachés */
+  .btn-desktop { display: none; }   /* Bouton contact desktop caché */
+  .btn-hamburger { display: flex; } /* Hamburger visible */
+  nav { padding: 0 1.2rem; }
+}

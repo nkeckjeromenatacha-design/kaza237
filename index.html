@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="fr">
+ 
+<!--
+  ================================================================
+  KAZA237 — Page d'accueil (index.html)
+  "Ton chez-toi, sans stress."
+  ================================================================
+  COMMENT MODIFIER CE FICHIER :
+  - Les textes sont entre balises ex: <h1>Mon texte ici</h1>
+  - Les liens sont dans href="..." ex: href="https://wa.me/237..."
+  - Les images sont dans src="..." ex: src="assets/images/photo.jpg"
+  - Chaque section est clairement indiquée par des commentaires
+  ================================================================
+-->
+ 
+<head>
+  <!-- Encodage et affichage mobile -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ 
+  <!-- ============================================================
+       TITRE DE L'ONGLET NAVIGATEUR — modifie ici si besoin
+       ============================================================ -->
+  <title>Kaza237 — Ton chez-toi, sans stress.</title>
+ 
+  <!-- Description pour Google (SEO) -->
+  <meta name="description" content="Kaza237 — Plateforme immobilière camerounaise. Trouvez appartements, maisons, terrains et bureaux à Douala et Yaoundé." />
+ 
+  <!-- ============================================================
+       ICÔNES — Font Awesome (icônes utilisées partout sur le site)
+       Ne pas supprimer cette ligne !
+       ============================================================ -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+ 
+  <!-- ============================================================
+       SWIPER.JS — Pour les sliders automatiques (À la une, Biens récents)
+       Ne pas supprimer cette ligne !
+       ============================================================ -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+ 
+  <!-- ============================================================
+       STYLES CSS DU SITE
+       ============================================================ -->
+    <!-- Fichier CSS du site -->
+  <link rel="stylesheet" href="css/style.css" />
+ 
+</head>
+ 
+<body>
+ 
+  <!-- ===========================================================
+       NAVIGATION
+       =========================================================== -->
+  <nav>
+ 
+    <!-- LOGO — REMPLACE src="assets/logo/logo.png" PAR TON VRAI LOGO -->
+    <a href="index.html" class="nav-logo">
+      <img src="assets/logo/logo.png" alt="Logo Kaza237"
+           onerror="this.style.display='none'" />
+      <div class="nav-logo-texte">
+        <div class="marque">
+          <span class="bleu">Kaza</span><span class="orange">237</span>
+        </div>
+        <div class="slogan">Ton chez-toi, sans stress.</div>
+      </div>
+    </a>
+ 
+    <!-- LIENS DE NAVIGATION — modifie les href="..." pour chaque page -->
+    <ul class="nav-liens">
+      <li><a href="index.html" class="actif">Accueil</a></li>
+      <li><a href="annonces.html">Annonces</a></li>
+      <li><a href="reservations.html">Réservations</a></li>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+ 
+    <!-- BOUTON "NOUS CONTACTER" — visible sur desktop uniquement -->
+    <!-- MODIFIE le numéro WhatsApp ici si besoin -->
+    <a href="https://wa.me/237656155803" target="_blank" class="btn-nav-contact btn-desktop">
+      <i class="fa-brands fa-whatsapp"></i> Nous Contacter
+    </a>
+ 
+    <!-- ============================================================
+         BOUTON HAMBURGER — visible sur mobile uniquement
+         Les 3 barres qui ouvrent le menu mobile
+         ============================================================ -->
+    <button class="btn-hamburger" id="btnHamburger" onclick="toggleMenu()"
+            aria-label="Ouvrir le menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+ 
+  </nav>
+ 
+  <!-- ===========================================================
+       MENU MOBILE — s'affiche quand on clique sur le hamburger
+       =========================================================== -->
+  <div class="menu-mobile" id="menuMobile">
+ 
+    <!-- Liens du menu mobile -->
+    <ul class="menu-mobile-liens">
+      <li><a href="index.html" onclick="toggleMenu()">
+        <i class="fa-solid fa-house"></i> Accueil
+      </a></li>
+      <li><a href="annonces.html" onclick="toggleMenu()">
+        <i class="fa-solid fa-building"></i> Annonces
+      </a></li>
+      <li><a href="reservations.html" onclick="toggleMenu()">
+        <i class="fa-solid fa-couch"></i> Réservations
+      </a></li>
+      <li><a href="apropos.html" onclick="toggleMenu()">
+        <i class="fa-solid fa-circle-info"></i> À propos
+      </a></li>
+      <li><a href="contact.html" onclick="toggleMenu()">
+        <i class="fa-solid fa-envelope"></i> Contact
+      </a></li>
+    </ul>
+ 
+    <!-- Bouton WhatsApp dans le menu mobile -->
+    <a href="https://wa.me/237656155803" target="_blank" class="btn-whatsapp-mobile">
+      <i class="fa-brands fa-whatsapp"></i> Nous Contacter sur WhatsApp
+    </a>
+ 
+  </div>
+  <!-- Fin Menu Mobile -->
+  <!-- Fin Navigation -->
+ 
+ 
+  <!-- ===========================================================
+       SECTION HERO (Bannière principale)
+       =========================================================== -->
+  <section class="hero">
+ 
+    <!-- Badge camerounais -->
+    <div class="hero-badge">
+      🇨🇲 Plateforme immobilière camerounaise
+    </div>
+ 
+    <!-- ============================================================
+         TITRE PRINCIPAL — MODIFIE LE TEXTE ICI
+         ============================================================ -->
+    <h1>
+      Ton chez-toi,<br>sans <em>stress !</em>
+    </h1>
+ 
+    <!-- ============================================================
+         SOUS-TEXTE 1 — MODIFIE LE TEXTE ICI
+         ============================================================ -->
+    <p class="hero-sous-texte-1">
+      Trouve facilement et rapidement un logement ou un bien en un clic.
+    </p>
+ 
+    <!-- ============================================================
+         SOUS-TEXTE 2 — MODIFIE LE TEXTE ICI
+         ============================================================ -->
+    <p class="hero-sous-texte-2">
+      Appartements, chambres modernes, bureaux — des centaines
+      d'annonces vérifiées dans tout le pays.
+    </p>
+ 
+    <!-- Bouton "Voir les biens" -->
+    <a href="annonces.html" class="btn-hero">
+      <i class="fa-solid fa-building"></i> Voir les biens
+    </a>
+ 
+    <!-- ============================================================
+         BOÎTE DE RECHERCHE ET FILTRES
+         ============================================================ -->
+    <div class="boite-recherche">
+      <div class="recherche-grille">
+ 
+        <!-- Filtre : Ville -->
+        <div class="champ-recherche">
+          <label for="filtre-ville">
+            <i class="fa-solid fa-location-dot"></i> Ville
+          </label>
+          <!-- MODIFIE LES OPTIONS DE VILLE ICI -->
+          <select id="filtre-ville">
+            <option value="">Toutes les villes</option>
+            <option value="douala">Douala</option>
+            <option value="yaounde">Yaoundé</option>
+          </select>
+        </div>
+ 
+        <!-- Filtre : Type de bien -->
+        <div class="champ-recherche">
+          <label for="filtre-type">
+            <i class="fa-solid fa-house"></i> Type de bien
+          </label>
+          <!-- MODIFIE LES OPTIONS DE TYPE ICI -->
+          <select id="filtre-type">
+            <option value="">Tous les types</option>
+            <option value="appartement">Appartement</option>
+            <option value="maison">Maison / Villa</option>
+            <option value="terrain">Terrain</option>
+            <option value="bureau">Bureau</option>
+            <option value="appartement-meuble">Appartement meublé</option>
+            <option value="studio-meuble">Studio meublé</option>
+            <option value="chambre-meuble">Chambre meublée</option>
+          </select>
+        </div>
+ 
+        <!-- Filtre : Budget maximum -->
+        <div class="champ-recherche">
+          <label for="filtre-budget">
+            <i class="fa-solid fa-coins"></i> Budget max (FCFA)
+          </label>
+          <input
+            type="number"
+            id="filtre-budget"
+            placeholder="Ex: 150 000"
+          />
+        </div>
+ 
+        <!-- Bouton Rechercher -->
+        <div>
+          <button class="btn-rechercher" onclick="rechercherBiens()">
+            <i class="fa-solid fa-magnifying-glass"></i> Rechercher
+          </button>
+        </div>
+ 
+      </div>
+    </div>
+    <!-- Fin boîte de recherche -->
+ 
+  </section>
+  <!-- Fin Section Hero -->
+ 
+ 
+  <!-- ===========================================================
+       SECTION "À LA UNE" — Slider automatique (biens featured)
+       Les biens affichés ici sont ceux avec featured = true dans Firebase
+       =========================================================== -->
+  <section class="section-a-la-une">
+    <div style="max-width: 1200px; margin: 0 auto;">
+ 
+      <h2 class="titre-section">
+        À la <span>une</span>
+      </h2>
+ 
+      <!-- Slider Swiper -->
+      <div class="swiper swiper-une">
+        <div class="swiper-wrapper">
+ 
+          <!-- =====================================================
+               SLIDE 1 — MODIFIE LES INFOS ICI
+               ===================================================== -->
+          <div class="swiper-slide">
+            <div class="slide-une">
+ 
+              <!-- IMAGE — REMPLACE src="..." PAR TA VRAIE IMAGE -->
+              <img src="assets/images/bien1.jpg" alt="Villa à Douala Bonapriso" />
+ 
+              <!-- Dégradé sombre -->
+              <div class="slide-une-overlay"></div>
+ 
+              <!-- Badge "NOUVEAU" -->
+              <div class="slide-badge-nouveau">✨ Nouveau</div>
+ 
+              <!-- Badge type de bien -->
+              <div class="slide-badge-type">Maison / Villa</div>
+ 
+              <!-- Infos en bas -->
+              <div class="slide-une-infos">
+                <!-- TITRE DU BIEN -->
+                <div class="slide-une-titre">Villa 4 chambres avec piscine</div>
+                <!-- PRIX — modifie ici -->
+                <div class="slide-une-prix">180 000 000 FCFA</div>
+                <!-- LOCALISATION -->
+                <div class="slide-une-lieu">
+                  <i class="fa-solid fa-location-dot"></i> Douala, Bonapriso
+                </div>
+                <!-- BOUTON DÉCOUVRIR — modifie href="..." -->
+                <a href="detail.html" class="btn-decouvrir">Découvrir →</a>
+              </div>
+ 
+            </div>
+          </div>
+          <!-- Fin Slide 1 -->
+ 
+          <!-- =====================================================
+               SLIDE 2 — MODIFIE LES INFOS ICI
+               ===================================================== -->
+          <div class="swiper-slide">
+            <div class="slide-une">
+              <img src="assets/images/bien2.jpg" alt="Appartement à Yaoundé Bastos" />
+              <div class="slide-une-overlay"></div>
+              <div class="slide-badge-nouveau">✨ Nouveau</div>
+              <div class="slide-badge-type">Appartement</div>
+              <div class="slide-une-infos">
+                <div class="slide-une-titre">Appartement 3 pièces standing</div>
+                <div class="slide-une-prix">85 000 000 FCFA</div>
+                <div class="slide-une-lieu">
+                  <i class="fa-solid fa-location-dot"></i> Yaoundé, Bastos
+                </div>
+                <a href="detail.html" class="btn-decouvrir">Découvrir →</a>
+              </div>
+            </div>
+          </div>
+          <!-- Fin Slide 2 -->
+ 
+          <!-- =====================================================
+               SLIDE 3 — MODIFIE LES INFOS ICI
+               ===================================================== -->
+          <div class="swiper-slide">
+            <div class="slide-une">
+              <img src="assets/images/bien3.jpg" alt="Studio meublé à Douala Akwa" />
+              <div class="slide-une-overlay"></div>
+              <div class="slide-badge-nouveau">✨ Nouveau</div>
+              <div class="slide-badge-type">Studio meublé</div>
+              <div class="slide-une-infos">
+                <div class="slide-une-titre">Studio moderne tout équipé</div>
+                <div class="slide-une-prix">120 000 FCFA / mois</div>
+                <div class="slide-une-lieu">
+                  <i class="fa-solid fa-location-dot"></i> Douala, Akwa
+                </div>
+                <a href="detail.html" class="btn-decouvrir">Découvrir →</a>
+              </div>
+            </div>
+          </div>
+          <!-- Fin Slide 3 -->
+ 
+          <!-- =====================================================
+               SLIDE 4 — MODIFIE LES INFOS ICI
+               ===================================================== -->
+          <div class="swiper-slide">
+            <div class="slide-une">
+              <img src="assets/images/bien4.jpg" alt="Terrain à Kribi" />
+              <div class="slide-une-overlay"></div>
+              <div class="slide-badge-nouveau">✨ Nouveau</div>
+              <div class="slide-badge-type">Terrain</div>
+              <div class="slide-une-infos">
+                <div class="slide-une-titre">Terrain vue mer, titre foncier</div>
+                <div class="slide-une-prix">45 000 000 FCFA</div>
+                <div class="slide-une-lieu">
+                  <i class="fa-solid fa-location-dot"></i> Kribi, Bord de mer
+                </div>
+                <a href="detail.html" class="btn-decouvrir">Découvrir →</a>
+              </div>
+            </div>
+          </div>
+          <!-- Fin Slide 4 -->
+ 
+        </div><!-- Fin swiper-wrapper -->
+ 
+        <!-- Boutons navigation slider -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <!-- Points de pagination -->
+        <div class="swiper-pagination"></div>
+ 
+      </div><!-- Fin Swiper -->
+ 
+    </div>
+  </section>
+  <!-- Fin Section À la une -->
+ 
+ 
+  <!-- ===========================================================
+       SECTION "BIENS RÉCENTS"
+       Les 6 biens les plus récents, triés par date
+       =========================================================== -->
+  <section class="section-recents">
+    <div class="entete-section">
+      <h2 class="titre-section">
+        Biens <span>récents</span>
+      </h2>
+      <a href="annonces.html" class="lien-voir-tout">
+        Voir tout <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+ 
+    <!-- Slider des biens récents -->
+    <div class="swiper swiper-recents">
+      <div class="swiper-wrapper">
+ 
+        <!-- =====================================================
+             CARTE BIEN 1 — MODIFIE LES INFOS ICI
+             ===================================================== -->
+        <div class="swiper-slide">
+          <div class="carte-bien">
+            <div class="carte-image">
+              <!-- IMAGE — REMPLACE src="..." PAR TA VRAIE IMAGE -->
+              <img src="assets/images/bien1.jpg" alt="Villa Bonapriso Douala" />
+              <div class="carte-badge-lieu">
+                <i class="fa-solid fa-location-dot"></i> Douala, Bonapriso
+              </div>
+            </div>
+            <div class="carte-corps">
+              <!-- TYPE DE BIEN -->
+              <div class="carte-type">Maison / Villa</div>
+              <!-- TITRE -->
+              <div class="carte-titre">Villa 4 chambres avec piscine</div>
+              <!-- PRIX — modifie ici -->
+              <div class="carte-prix">180 000 000 <span>FCFA</span></div>
+              <!-- VILLE -->
+              <div class="carte-ville">
+                <i class="fa-solid fa-city"></i> Douala
+              </div>
+              <!-- DESCRIPTION COURTE -->
+              <div class="carte-description">
+                Belle villa sécurisée avec piscine, jardin et parking. Idéale pour famille.
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Fin Carte 1 -->
+ 
+        <!-- =====================================================
+             CARTE BIEN 2 — MODIFIE LES INFOS ICI
+             ===================================================== -->
+        <div class="swiper-slide">
+          <div class="carte-bien">
+            <div class="carte-image">
+              <img src="assets/images/bien2.jpg" alt="Appartement Yaoundé Bastos" />
+              <div class="carte-badge-lieu">
+                <i class="fa-solid fa-location-dot"></i> Yaoundé, Bastos
+              </div>
+            </div>
+            <div class="carte-corps">
+              <div class="carte-type">Appartement</div>
+              <div class="carte-titre">Appartement 3 pièces standing</div>
+              <div class="carte-prix">85 000 000 <span>FCFA</span></div>
+              <div class="carte-ville">
+                <i class="fa-solid fa-city"></i> Yaoundé
+              </div>
+              <div class="carte-description">
+                Appartement moderne avec balcon, sécurité 24h et parking souterrain.
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Fin Carte 2 -->
+ 
+        <!-- =====================================================
+             CARTE BIEN 3 — MODIFIE LES INFOS ICI
+             ===================================================== -->
+        <div class="swiper-slide">
+          <div class="carte-bien">
+            <div class="carte-image">
+              <img src="assets/images/bien3.jpg" alt="Studio meublé Douala Akwa" />
+              <div class="carte-badge-lieu">
+                <i class="fa-solid fa-location-dot"></i> Douala, Akwa
+              </div>
+            </div>
+            <div class="carte-corps">
+              <div class="carte-type">Studio meublé</div>
+              <div class="carte-titre">Studio moderne tout équipé</div>
+              <div class="carte-prix">120 000 <span>FCFA / mois</span></div>
+              <div class="carte-ville">
+                <i class="fa-solid fa-city"></i> Douala
+              </div>
+              <div class="carte-description">
+                Studio entièrement meublé, climatisé, internet inclus. Disponible immédiatement.
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Fin Carte 3 -->
+ 
+        <!-- =====================================================
+             CARTE BIEN 4 — MODIFIE LES INFOS ICI
+             ===================================================== -->
+        <div class="swiper-slide">
+          <div class="carte-bien">
+            <div class="carte-image">
+              <img src="assets/images/bien4.jpg" alt="Terrain Kribi bord de mer" />
+              <div class="carte-badge-lieu">
+                <i class="fa-solid fa-location-dot"></i> Kribi
+              </div>
+            </div>
+            <div class="carte-corps">
+              <div class="carte-type">Terrain</div>
+              <div class="carte-titre">Terrain vue mer, titre foncier</div>
+              <div class="carte-prix">45 000 000 <span>FCFA</span></div>
+              <div class="carte-ville">
+                <i class="fa-solid fa-city"></i> Kribi
+              </div>
+              <div class="carte-description">
+                600 m² avec titre foncier en règle, bord de mer, idéal pour construction.
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Fin Carte 4 -->
+ 
+        <!-- =====================================================
+             CARTE BIEN 5 — MODIFIE LES INFOS ICI
+             ===================================================== -->
+        <div class="swiper-slide">
+          <div class="carte-bien">
+            <div class="carte-image">
+              <img src="assets/images/bien5.jpg" alt="Bureau Yaoundé Centre" />
+              <div class="carte-badge-lieu">
+                <i class="fa-solid fa-location-dot"></i> Yaoundé, Centre
+              </div>
+            </div>
+            <div class="carte-corps">
+              <div class="carte-type">Bureau</div>
+              <div class="carte-titre">Plateau de bureaux open space</div>
+              <div class="carte-prix">300 000 <span>FCFA / mois</span></div>
+              <div class="carte-ville">
+                <i class="fa-solid fa-city"></i> Yaoundé
+              </div>
+              <div class="carte-description">
+                80 m² en plein centre ville, parking inclus, fibre optique disponible.
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Fin Carte 5 -->
+ 
+        <!-- =====================================================
+             CARTE BIEN 6 — MODIFIE LES INFOS ICI
+             ===================================================== -->
+        <div class="swiper-slide">
+          <div class="carte-bien">
+            <div class="carte-image">
+              <img src="assets/images/bien6.jpg" alt="Villa Bafoussam" />
+              <div class="carte-badge-lieu">
+                <i class="fa-solid fa-location-dot"></i> Douala, Bonamoussadi
+              </div>
+            </div>
+            <div class="carte-corps">
+              <div class="carte-type">Appartement meublé</div>
+              <div class="carte-titre">Appartement moderne à Bonamoussadi</div>
+              <div class="carte-prix">150 000 <span>FCFA / mois</span></div>
+              <div class="carte-ville">
+                <i class="fa-solid fa-city"></i> Douala
+              </div>
+              <div class="carte-description">
+                Appartement sécurisé avec parking, gardiennage 24h et générateur.
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Fin Carte 6 -->
+ 
+      </div><!-- Fin swiper-wrapper -->
+ 
+      <!-- Navigation -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+ 
+    </div><!-- Fin Swiper Recents -->
+  </section>
+  <!-- Fin Section Biens Récents -->
+ 
+ 
+  <!-- ===========================================================
+       SECTION STATISTIQUES
+       =========================================================== -->
+  <section class="section-stats">
+    <div class="stats-grille">
+ 
+      <!-- ============================================================
+           STATISTIQUE 1 — MODIFIE LE CHIFFRE ET LE LABEL ICI
+           ============================================================ -->
+      <div class="stat-bloc">
+        <div class="stat-icone">
+          <i class="fa-solid fa-users"></i>
+        </div>
+        <div class="stat-chiffre">+1 200<span></span></div>
+        <div class="stat-label">Visiteurs</div>
+      </div>
+ 
+      <!-- ============================================================
+           STATISTIQUE 2 — MODIFIE LE CHIFFRE ET LE LABEL ICI
+           ============================================================ -->
+      <div class="stat-bloc">
+        <div class="stat-icone">
+          <i class="fa-solid fa-building"></i>
+        </div>
+        <div class="stat-chiffre">+85<span></span></div>
+        <div class="stat-label">Biens disponibles</div>
+      </div>
+ 
+      <!-- ============================================================
+           STATISTIQUE 3 — MODIFIE LE CHIFFRE ET LE LABEL ICI
+           ============================================================ -->
+      <div class="stat-bloc">
+        <div class="stat-icone">
+          <i class="fa-solid fa-handshake"></i>
+        </div>
+        <div class="stat-chiffre">+40<span></span></div>
+        <div class="stat-label">Clients satisfaits</div>
+      </div>
+ 
+    </div>
+  </section>
+  <!-- Fin Section Statistiques -->
+ 
+ 
+  <!-- ===========================================================
+       SECTION "PARCOURIR PAR CATÉGORIE"
+       =========================================================== -->
+  <section class="section-categories">
+    <h2 class="titre-section" style="margin-bottom: 1.5rem;">
+      Parcourir par <span>catégorie</span>
+    </h2>
+ 
+    <div class="categories-grille">
+ 
+      <!-- ============================================================
+           CATÉGORIE 1 — MODIFIE LE NOMBRE D'ANNONCES ICI
+           ============================================================ -->
+      <a href="annonces.html?type=appartement" class="carte-categorie">
+        <div class="categorie-icone">
+          <i class="fa-solid fa-building"></i>
+        </div>
+        <div class="categorie-nom">Appartements</div>
+        <!-- MODIFIE LE NOMBRE ICI -->
+        <div class="categorie-nombre">12 annonces</div>
+      </a>
+ 
+      <!-- CATÉGORIE 2 -->
+      <a href="annonces.html?type=maison" class="carte-categorie">
+        <div class="categorie-icone">
+          <i class="fa-solid fa-house"></i>
+        </div>
+        <div class="categorie-nom">Maisons / Villas</div>
+        <!-- MODIFIE LE NOMBRE ICI -->
+        <div class="categorie-nombre">8 annonces</div>
+      </a>
+ 
+      <!-- CATÉGORIE 3 -->
+      <a href="annonces.html?type=terrain" class="carte-categorie">
+        <div class="categorie-icone">
+          <i class="fa-solid fa-map"></i>
+        </div>
+        <div class="categorie-nom">Terrains à vendre</div>
+        <!-- MODIFIE LE NOMBRE ICI -->
+        <div class="categorie-nombre">5 annonces</div>
+      </a>
+ 
+      <!-- CATÉGORIE 4 -->
+      <a href="reservations.html" class="carte-categorie">
+        <div class="categorie-icone">
+          <i class="fa-solid fa-couch"></i>
+        </div>
+        <div class="categorie-nom">Studios meublés</div>
+        <!-- MODIFIE LE NOMBRE ICI -->
+        <div class="categorie-nombre">6 annonces</div>
+      </a>
+ 
+    </div>
+  </section>
+  <!-- Fin Section Catégories -->
+ 
+ 
+  <!-- ===========================================================
+       SECTION "COMMENT ÇA MARCHE"
+       =========================================================== -->
+  <section class="section-comment">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <h2 class="titre-section" style="text-align: center; margin-bottom: 2.5rem;">
+        Comment ça <span>marche ?</span>
+      </h2>
+      <div class="comment-grille">
+ 
+        <!-- ÉTAPE 1 -->
+        <div class="comment-etape">
+          <div class="etape-numero">1</div>
+          <div class="etape-icone">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+          <!-- MODIFIE LE TITRE ICI -->
+          <div class="etape-titre">Recherche</div>
+          <!-- MODIFIE LE TEXTE ICI -->
+          <div class="etape-texte">
+            Utilise les filtres pour trouver le bien qui correspond à tes critères : ville, type, budget.
+          </div>
+        </div>
+ 
+        <!-- ÉTAPE 2 -->
+        <div class="comment-etape">
+          <div class="etape-numero">2</div>
+          <div class="etape-icone">
+            <i class="fa-brands fa-whatsapp"></i>
+          </div>
+          <!-- MODIFIE LE TITRE ICI -->
+          <div class="etape-titre">WhatsApp</div>
+          <!-- MODIFIE LE TEXTE ICI -->
+          <div class="etape-texte">
+            Contacte-nous directement sur WhatsApp. Notre équipe te répond rapidement.
+          </div>
+        </div>
+ 
+        <!-- ÉTAPE 3 -->
+        <div class="comment-etape">
+          <div class="etape-numero">3</div>
+          <div class="etape-icone">
+            <i class="fa-solid fa-key"></i>
+          </div>
+          <!-- MODIFIE LE TITRE ICI -->
+          <div class="etape-titre">Visite</div>
+          <!-- MODIFIE LE TEXTE ICI -->
+          <div class="etape-texte">
+            On organise une visite du bien. Si tu es convaincu, on finalise ensemble, sans stress !
+          </div>
+        </div>
+ 
+      </div>
+    </div>
+  </section>
+  <!-- Fin Section Comment ça marche -->
+ 
+ 
+  <!-- ===========================================================
+       SECTION SERVICES
+       =========================================================== -->
+  <section class="section-services">
+    <h2 class="titre-section" style="margin-bottom: 1.5rem;">
+      Nos <span>services</span>
+    </h2>
+ 
+    <div class="services-grille">
+ 
+      <!-- SERVICE 1 -->
+      <div class="carte-service">
+        <div class="service-icone">
+          <i class="fa-solid fa-key"></i>
+        </div>
+        <!-- MODIFIE LE TITRE ICI -->
+        <div class="service-titre">Location</div>
+        <!-- MODIFIE LE TEXTE ICI -->
+        <div class="service-texte">
+          Trouve le logement idéal à louer à Douala et Yaoundé.
+        </div>
+      </div>
+ 
+      <!-- SERVICE 2 -->
+      <div class="carte-service">
+        <div class="service-icone">
+          <i class="fa-solid fa-tag"></i>
+        </div>
+        <div class="service-titre">Vente</div>
+        <div class="service-texte">
+          Des biens immobiliers à vendre soigneusement sélectionnés.
+        </div>
+      </div>
+ 
+      <!-- SERVICE 3 -->
+      <div class="carte-service">
+        <div class="service-icone">
+          <i class="fa-solid fa-clipboard-check"></i>
+        </div>
+        <div class="service-titre">Gestion</div>
+        <div class="service-texte">
+          On gère ton bien immobilier à ta place, en toute confiance.
+        </div>
+      </div>
+ 
+      <!-- SERVICE 4 -->
+      <div class="carte-service">
+        <div class="service-icone">
+          <i class="fa-solid fa-camera"></i>
+        </div>
+        <div class="service-titre">Shooting immobilier</div>
+        <div class="service-texte">
+          Des photos professionnelles pour valoriser ton bien.
+        </div>
+      </div>
+ 
+    </div>
+  </section>
+  <!-- Fin Section Services -->
+ 
+ 
+  <!-- ===========================================================
+       SECTION CTA WHATSAPP
+       =========================================================== -->
+  <section class="section-whatsapp-cta">
+ 
+    <!-- ============================================================
+         TITRE CTA — MODIFIE LE TEXTE ICI
+         ============================================================ -->
+    <h2 class="cta-titre">
+      Un bien à vendre ou à louer ?
+    </h2>
+ 
+    <!-- ============================================================
+         SOUS-TITRE CTA — MODIFIE LE TEXTE ICI
+         ============================================================ -->
+    <p class="cta-sous-titre">
+      Contactez notre équipe, nous nous chargerons du reste.
+    </p>
+ 
+    <!-- BOUTON WHATSAPP — MODIFIE LE NUMÉRO SI BESOIN -->
+    <a href="https://wa.me/237656155803" target="_blank" class="btn-whatsapp">
+      <i class="fa-brands fa-whatsapp"></i>
+      Nous contacter
+    </a>
+ 
+  </section>
+  <!-- Fin Section WhatsApp CTA -->
+ 
+ 
+  <!-- ===========================================================
+       FOOTER (Pied de page)
+       =========================================================== -->
+  <footer>
+    <div class="footer-grille">
+ 
+      <!-- COLONNE 1 : Logo + description + réseaux sociaux -->
+      <div class="footer-col">
+        <div class="footer-logo">
+          <span class="bleu">Kaza</span><span class="orange">237</span>
+        </div>
+        <div class="footer-slogan">Ton chez-toi, sans stress.</div>
+        <p class="footer-description">
+          La plateforme immobilière de référence au Cameroun.
+          Trouvez votre maison, appartement, terrain ou bureau
+          en toute simplicité et en toute confiance.
+        </p>
+ 
+        <!-- ============================================================
+             RÉSEAUX SOCIAUX — MODIFIE LES LIENS href="..." ICI
+             ============================================================ -->
+        <div class="reseaux-sociaux">
+ 
+          <!-- Facebook -->
+          <a href="https://facebook.com/kaza237" target="_blank"
+             class="btn-reseau" title="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+ 
+          <!-- Instagram -->
+          <a href="https://instagram.com/kaza237" target="_blank"
+             class="btn-reseau" title="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+ 
+          <!-- TikTok -->
+          <a href="https://tiktok.com/@kaza237" target="_blank"
+             class="btn-reseau" title="TikTok">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+ 
+        </div>
+      </div>
+ 
+      <!-- COLONNE 2 : Navigation -->
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="annonces.html">Toutes les annonces</a></li>
+          <li><a href="annonces.html?mode=achat">Acheter</a></li>
+          <li><a href="annonces.html?mode=location">Louer</a></li>
+          <li><a href="reservations.html">Studios meublés</a></li>
+          <li><a href="apropos.html">À propos de nous</a></li>
+        </ul>
+      </div>
+ 
+      <!-- COLONNE 3 : Informations légales -->
+      <div class="footer-col">
+        <h4>Informations</h4>
+        <ul>
+          <li><a href="contact.html">Nous contacter</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="confidentialite.html">Politique de confidentialité</a></li>
+          <li><a href="cookies.html">Politique de cookies</a></li>
+          <li><a href="cgu.html">Conditions générales (CGU)</a></li>
+        </ul>
+      </div>
+ 
+      <!-- COLONNE 4 : Contact -->
+      <div class="footer-col">
+        <h4>Contact</h4>
+ 
+        <!-- ============================================================
+             INFORMATIONS DE CONTACT — MODIFIE ICI
+             ============================================================ -->
+        <div class="footer-contact-ligne">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Douala, Cameroun</span>
+        </div>
+ 
+        <div class="footer-contact-ligne">
+          <i class="fa-solid fa-phone"></i>
+          <!-- MODIFIE LE NUMÉRO ICI -->
+          <span>+237 656 15 58 03</span>
+        </div>
+ 
+        <div class="footer-contact-ligne">
+          <i class="fa-solid fa-envelope"></i>
+          <!-- MODIFIE L'EMAIL ICI -->
+          <span>contact@kaza237.cm</span>
+        </div>
+ 
+        <div class="footer-contact-ligne">
+          <i class="fa-solid fa-clock"></i>
+          <span>Lun – Sam : 8h – 18h</span>
+        </div>
+ 
+      </div>
+ 
+    </div><!-- Fin footer-grille -->
+ 
+    <!-- Ligne de séparation -->
+    <div class="footer-separateur"></div>
+ 
+    <!-- Bas du footer -->
+    <div class="footer-bas">
+      <!-- COPYRIGHT — MODIFIE L'ANNÉE SI BESOIN -->
+      <div class="footer-copyright">
+        © 2025 Kaza237 · Tous droits réservés · Douala, Cameroun 🇨🇲
+      </div>
+ 
+      <!-- Liens légaux -->
+      <div class="footer-liens-legaux">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="confidentialite.html">Confidentialité</a>
+        <a href="cgu.html">CGU</a>
+        <a href="cookies.html">Cookies</a>
+      </div>
+    </div>
+ 
+  </footer>
+  <!-- Fin Footer -->
+ 
+ 
+  <!-- ===========================================================
+       SCRIPTS JAVASCRIPT
+       =========================================================== -->
+ 
+  <!-- Swiper.js — pour les sliders -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+ 
+    <!-- Fichier JavaScript du site -->
+  <script src="js/app.js"></script>
+ 
+</body>
+</html>

@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<!--
+  ================================================================
+  KAZA237 — Page Annonces (annonces/index.html)
+  "Ton chez-toi, sans stress."
+  ================================================================
+  COMMENT MODIFIER CE FICHIER :
+  - Les textes sont entre balises  ex: <h1>Mon texte ici</h1>
+  - Les liens sont dans href="..."  ex: href="https://wa.me/237..."
+  - Les images sont dans src="..."  ex: src="../assets/images/photo.jpg"
+  - Chaque section est clairement indiquée par des commentaires
+  - Les vraies données viendront de Firebase (voir js/annonces.js)
+  ================================================================
+-->
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ============================================================
+       TITRE DE L'ONGLET — modifie si besoin
+       ============================================================ -->
+  <title>Toutes les annonces — Kaza237</title>
+
+  <!-- Description SEO pour Google -->
+  <meta name="description"
+    content="Parcourez toutes les annonces immobilières de Kaza237 : appartements, maisons, studios meublés, terrains et bureaux à Douala et Yaoundé." />
+
+  <!-- ============================================================
+       FONT AWESOME — icônes du site. Ne pas supprimer !
+       ============================================================ -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- ============================================================
+       CSS DU SITE (commun à toutes les pages)
+       ============================================================ -->
+  <link rel="stylesheet" href="/css/style.css" />
+
+  <!-- ============================================================
+       CSS SPÉCIFIQUE À LA PAGE ANNONCES
+       ============================================================ -->
+  <link rel="stylesheet" href="/css/annonces.css" />
+
+</head>
+
+<body>
+
+  <!-- ===========================================================
+       NAVIGATION (identique à index.html)
+       =========================================================== -->
+  <nav>
+
+    <!-- Logo -->
+    <a href="../index.html" class="nav-logo">
+      <img src="../assets/logo/logo.png" alt="Logo Kaza237"
+           onerror="this.style.display='none'" />
+      <div class="nav-logo-texte">
+        <div class="marque">
+          <span class="bleu">Kaza</span><span class="orange">237</span>
+        </div>
+        <div class="slogan">Ton chez-toi, sans stress.</div>
+      </div>
+    </a>
+
+    <!-- Liens desktop -->
+    <ul class="nav-liens">
+      <li><a href="../index.html">Accueil</a></li>
+      <!-- "Annonces" est actif sur cette page -->
+      <li><a href="index.html" class="actif">Annonces</a></li>
+      <li><a href="../reservations.html">Réservations</a></li>
+      <li><a href="../apropos.html">À propos</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+
+    <!-- Bouton WhatsApp desktop -->
+    <a href="https://wa.me/237656155803" target="_blank"
+       class="btn-nav-contact btn-desktop">
+      <i class="fa-brands fa-whatsapp"></i> Nous Contacter
+    </a>
+
+    <!-- ============================================================
+         BOUTON HAMBURGER — visible sur mobile seulement
+         ============================================================ -->
+    <button class="btn-hamburger" id="btnHamburger"
+            onclick="toggleMenu()" aria-label="Ouvrir le menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </nav>
+
+  <!-- Menu mobile (s'ouvre quand on clique sur le hamburger) -->
+  <div class="menu-mobile" id="menuMobile">
+    <ul class="menu-mobile-liens">
+      <li><a href="../index.html" onclick="toggleMenu()">
+        <i class="fa-solid fa-house"></i> Accueil
+      </a></li>
+      <li><a href="index.html" onclick="toggleMenu()">
+        <i class="fa-solid fa-building"></i> Annonces
+      </a></li>
+      <li><a href="../reservations.html" onclick="toggleMenu()">
+        <i class="fa-solid fa-couch"></i> Réservations
+      </a></li>
+      <li><a href="../apropos.html" onclick="toggleMenu()">
+        <i class="fa-solid fa-circle-info"></i> À propos
+      </a></li>
+      <li><a href="../contact.html" onclick="toggleMenu()">
+        <i class="fa-solid fa-envelope"></i> Contact
+      </a></li>
+    </ul>
+    <a href="https://wa.me/237656155803" target="_blank"
+       class="btn-whatsapp-mobile">
+      <i class="fa-brands fa-whatsapp"></i> Nous Contacter sur WhatsApp
+    </a>
+  </div>
+  <!-- Fin Navigation -->
+
+
+  <!-- ===========================================================
+       SECTION HERO — Bannière de la page Annonces
+       =========================================================== -->
+  <section class="hero-annonces">
+
+    <!-- Image de fond — REMPLACE src par une vraie photo immobilière -->
+    <img src="../assets/images/hero-annonces.jpg"
+         alt="Biens immobiliers au Cameroun"
+         class="hero-annonces-bg"
+         onerror="this.style.display='none'" />
+
+    <!-- Overlay sombre pour lire le texte sur l'image -->
+    <div class="hero-annonces-overlay"></div>
+
+    <!-- Contenu centré du hero -->
+    <div class="hero-annonces-contenu">
+
+      <!-- ============================================================
+           TITRE HERO ANNONCES — MODIFIE LE TEXTE ICI
+           ============================================================ -->
+      <h1 class="hero-annonces-titre">
+        Tous nos <span>biens disponibles</span>
+      </h1>
+
+      <!-- ============================================================
+           SOUS-TITRE — MODIFIE LE TEXTE ICI
+           ============================================================ -->
+      <p class="hero-annonces-sous-titre">
+        Appartements, studios, maisons, terrains — trouve le bien
+        qui te correspond à Douala et Yaoundé.
+      </p>
+
+      <!-- ============================================================
+           BLOC FILTRES (card blanche sur le hero)
+           POSITION : en haut sur mobile, centré sur desktop
+           ============================================================ -->
+      <div class="bloc-filtres" id="blocFiltres">
+
+        <h2 class="filtres-titre">
+          <i class="fa-solid fa-sliders"></i> Filtrer les biens
+        </h2>
+
+        <!-- Grille des filtres -->
+        <div class="filtres-grille">
+
+          <!-- FILTRE 1 : Ville -->
+          <div class="filtre-champ">
+            <label for="filtre-ville">
+              <i class="fa-solid fa-location-dot"></i> Ville
+            </label>
+            <!-- MODIFIE LES OPTIONS DE VILLE ICI -->
+            <select id="filtre-ville" onchange="chargerQuartiers()">
+              <option value="">Toutes les villes</option>
+              <option value="douala">Douala</option>
+              <option value="yaounde">Yaoundé</option>
+            </select>
+          </div>
+
+          <!-- FILTRE 2 : Quartier (dépend de la ville choisie) -->
+          <div class="filtre-champ">
+            <label for="filtre-quartier">
+              <i class="fa-solid fa-map-pin"></i> Quartier
+            </label>
+            <select id="filtre-quartier">
+              <option value="">Tous les quartiers</option>
+              <!-- Les quartiers sont chargés dynamiquement selon la ville
+                   via la fonction chargerQuartiers() dans annonces.js -->
+            </select>
+          </div>
+
+          <!-- FILTRE 3 : Type de bien -->
+          <div class="filtre-champ">
+            <label for="filtre-type">
+              <i class="fa-solid fa-house"></i> Type de bien
+            </label>
+            <!-- MODIFIE LES OPTIONS DE TYPE ICI -->
+            <select id="filtre-type">
+              <option value="">Tous les types</option>
+              <option value="appartement">Appartement</option>
+              <option value="studio-moderne">Studio moderne</option>
+              <option value="chambre-moderne">Chambre moderne</option>
+              <option value="terrain">Terrain à vendre</option>
+              <option value="maison-villa">Maison / Villa</option>
+              <option value="bureau">Bureau</option>
+              <option value="commerce">Commerce</option>
+            </select>
+          </div>
+
+          <!-- FILTRE 4 : Prix maximum -->
+          <div class="filtre-champ">
+            <label for="filtre-prix">
+              <i class="fa-solid fa-coins"></i> Prix max (FCFA)
+            </label>
+            <input
+              type="number"
+              id="filtre-prix"
+              placeholder="Ex : 150 000"
+              min="0"
+            />
+          </div>
+
+          <!-- BOUTON FILTRER -->
+          <div class="filtre-champ filtre-btn-wrap">
+            <button class="btn-filtrer" onclick="filtrerBiens()">
+              <i class="fa-solid fa-magnifying-glass"></i> Filtrer
+            </button>
+
+            <!-- Bouton réinitialiser les filtres -->
+            <button class="btn-reset" onclick="reinitialiserFiltres()"
+                    title="Réinitialiser">
+              <i class="fa-solid fa-rotate-left"></i>
+            </button>
+          </div>
+
+        </div>
+        <!-- Fin filtres-grille -->
+
+      </div>
+      <!-- Fin bloc-filtres -->
+
+    </div>
+    <!-- Fin hero-annonces-contenu -->
+
+  </section>
+  <!-- Fin Section Hero Annonces -->
+
+
+  <!-- ===========================================================
+       MENU CATÉGORIES (onglets de navigation par type)
+       =========================================================== -->
+  <section class="section-categories-menu">
+    <div class="categories-menu-wrap">
+
+      <!-- Boutons de catégorie — cliquer filtre la liste -->
+      <!-- "Tous" est actif par défaut -->
+      <button class="btn-categorie actif" onclick="filtrerParCategorie(this, '')">
+        <i class="fa-solid fa-border-all"></i> Tous
+      </button>
+      <button class="btn-categorie" onclick="filtrerParCategorie(this, 'appartement')">
+        <i class="fa-solid fa-building"></i> Appartement
+      </button>
+      <button class="btn-categorie" onclick="filtrerParCategorie(this, 'studio-moderne')">
+        <i class="fa-solid fa-couch"></i> Studio moderne
+      </button>
+      <button class="btn-categorie" onclick="filtrerParCategorie(this, 'chambre-moderne')">
+        <i class="fa-solid fa-bed"></i> Chambre moderne
+      </button>
+      <button class="btn-categorie" onclick="filtrerParCategorie(this, 'terrain')">
+        <i class="fa-solid fa-map"></i> Terrain à vendre
+      </button>
+      <button class="btn-categorie" onclick="filtrerParCategorie(this, 'maison-villa')">
+        <i class="fa-solid fa-house"></i> Maison / Villa
+      </button>
+      <button class="btn-categorie" onclick="filtrerParCategorie(this, 'bureau')">
+        <i class="fa-solid fa-briefcase"></i> Bureau
+      </button>
+      <button class="btn-categorie" onclick="filtrerParCategorie(this, 'commerce')">
+        <i class="fa-solid fa-store"></i> Commerce
+      </button>
+
+    </div>
+  </section>
+  <!-- Fin Menu Catégories -->
+
+
+  <!-- ===========================================================
+       SECTION PRINCIPALE — LISTE DES BIENS
+       =========================================================== -->
+  <section class="section-annonces">
+    <div class="annonces-wrap">
+
+      <!-- En-tête : titre + compteur de résultats -->
+      <div class="annonces-entete">
+        <h2 class="annonces-titre">
+          Biens <span>disponibles</span>
+        </h2>
+        <!-- Le compteur est mis à jour par JavaScript -->
+        <div class="annonces-compteur" id="compteurResultats">
+          <!-- Ex : "12 biens trouvés" — affiché par annonces.js -->
+        </div>
+      </div>
+
+      <!-- ============================================================
+           LOADER — tourne pendant le chargement des biens depuis Firebase
+           Il disparaît automatiquement quand les données sont chargées
+           ============================================================ -->
+      <div class="loader-wrap" id="loaderWrap">
+        <div class="loader"></div>
+        <p class="loader-texte">Chargement des biens...</p>
+      </div>
+
+      <!-- ============================================================
+           GRILLE DES CARTES DE BIENS
+           Les cartes sont générées automatiquement par annonces.js
+           depuis Firebase. Les cartes ci-dessous sont des EXEMPLES
+           statiques pour toi voir le design — elles seront remplacées.
+           ============================================================ -->
+      <div class="biens-grille" id="biensList">
+
+        <!-- ===========================================================
+             CARTE EXEMPLE 1 — Structure d'une carte de bien
+             TOUT CE BLOC sera généré automatiquement par JavaScript
+             Tu n'as PAS à modifier ces cartes manuellement
+             =========================================================== -->
+        <div class="carte-bien">
+
+          <!-- Zone image -->
+          <div class="carte-image">
+
+            <!-- IMAGE — sera remplacée par la vraie photo depuis Firebase/Storage -->
+            <img src="../assets/images/bien1.jpg"
+                 alt="Villa Bonapriso Douala"
+                 onerror="this.src='../assets/images/placeholder.jpg'" />
+
+            <!-- Badge "DISPONIBLE" — affiché si featured = true dans Firebase -->
+            <div class="badge-disponible">
+              <i class="fa-solid fa-circle-check"></i> Disponible
+            </div>
+
+            <!-- Badge type de bien en haut à droite -->
+            <div class="badge-type">Maison / Villa</div>
+
+          </div>
+          <!-- Fin zone image -->
+
+          <!-- Corps de la carte (textes) -->
+          <div class="carte-corps">
+
+            <!-- Type de bien (répété en texte) -->
+            <div class="carte-type">Maison / Villa</div>
+
+            <!-- ============================================================
+                 TITRE DU BIEN — MODIFIE ICI (en attendant Firebase)
+                 ============================================================ -->
+            <h3 class="carte-titre">Villa 4 chambres avec piscine</h3>
+
+            <!-- ============================================================
+                 PRIX — MODIFIE ICI (en attendant Firebase)
+                 Format : 180 000 000 FCFA
+                 ============================================================ -->
+            <div class="carte-prix">
+              180 000 000 <span>FCFA</span>
+            </div>
+
+            <!-- Localisation : ville + quartier -->
+            <div class="carte-lieu">
+              <i class="fa-solid fa-location-dot"></i>
+              <!-- MODIFIE LA VILLE ET LE QUARTIER ICI -->
+              Douala, Bonapriso
+            </div>
+
+            <!-- ============================================================
+                 BOUTONS D'ACTION
+                 ============================================================ -->
+            <div class="carte-actions">
+
+              <!-- Bouton "Voir détails" — redirige vers detail.html?id=... -->
+              <!-- L'ID sera dynamique (depuis Firebase) -->
+              <a href="detail.html?id=1" class="btn-voir-details">
+                <i class="fa-solid fa-eye"></i> Voir détails
+              </a>
+
+              <!-- Bouton WhatsApp pour contacter directement -->
+              <!-- MODIFIE LE NUMÉRO SI BESOIN -->
+              <a href="https://wa.me/237656155803?text=Bonjour%20Kaza237%2C%20je%20suis%20intéressé(e)%20par%20la%20Villa%204%20chambres%20avec%20piscine%20à%20Douala%20Bonapriso."
+                 target="_blank" class="btn-whatsapp-carte">
+                <i class="fa-brands fa-whatsapp"></i>
+              </a>
+
+            </div>
+            <!-- Fin boutons -->
+
+          </div>
+          <!-- Fin carte-corps -->
+
+        </div>
+        <!-- Fin Carte Exemple 1 -->
+
+
+        <!-- CARTE EXEMPLE 2 -->
+        <div class="carte-bien">
+          <div class="carte-image">
+            <img src="../assets/images/bien2.jpg" alt="Appartement Yaoundé"
+                 onerror="this.src='../assets/images/placeholder.jpg'" />
+            <div class="badge-disponible">
+              <i class="fa-solid fa-circle-check"></i> Disponible
+            </div>
+            <div class="badge-type">Appartement</div>
+          </div>
+          <div class="carte-corps">
+            <div class="carte-type">Appartement</div>
+            <h3 class="carte-titre">Appartement 3 pièces standing</h3>
+            <div class="carte-prix">85 000 000 <span>FCFA</span></div>
+            <div class="carte-lieu">
+              <i class="fa-solid fa-location-dot"></i> Yaoundé, Bastos
+            </div>
+            <div class="carte-actions">
+              <a href="detail.html?id=2" class="btn-voir-details">
+                <i class="fa-solid fa-eye"></i> Voir détails
+              </a>
+              <a href="https://wa.me/237656155803?text=Bonjour%20Kaza237%2C%20je%20suis%20intéressé(e)%20par%20l'appartement%203%20pièces%20à%20Yaoundé%20Bastos."
+                 target="_blank" class="btn-whatsapp-carte">
+                <i class="fa-brands fa-whatsapp"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Fin Carte 2 -->
+
+
+        <!-- CARTE EXEMPLE 3 -->
+        <div class="carte-bien">
+          <div class="carte-image">
+            <img src="../assets/images/bien3.jpg" alt="Studio meublé Douala"
+                 onerror="this.src='../assets/images/placeholder.jpg'" />
+            <div class="badge-disponible">
+              <i class="fa-solid fa-circle-check"></i> Disponible
+            </div>
+            <div class="badge-type">Studio moderne</div>
+          </div>
+          <div class="carte-corps">
+            <div class="carte-type">Studio moderne</div>
+            <h3 class="carte-titre">Studio moderne tout équipé</h3>
+            <div class="carte-prix">120 000 <span>FCFA / mois</span></div>
+            <div class="carte-lieu">
+              <i class="fa-solid fa-location-dot"></i> Douala, Akwa
+            </div>
+            <div class="carte-actions">
+              <a href="detail.html?id=3" class="btn-voir-details">
+                <i class="fa-solid fa-eye"></i> Voir détails
+              </a>
+              <a href="https://wa.me/237656155803?text=Bonjour%20Kaza237%2C%20je%20suis%20intéressé(e)%20par%20le%20studio%20à%20Douala%20Akwa."
+                 target="_blank" class="btn-whatsapp-carte">
+                <i class="fa-brands fa-whatsapp"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Fin Carte 3 -->
+
+
+        <!-- CARTE EXEMPLE 4 -->
+        <div class="carte-bien">
+          <div class="carte-image">
+            <img src="../assets/images/bien4.jpg" alt="Terrain Kribi"
+                 onerror="this.src='../assets/images/placeholder.jpg'" />
+            <div class="badge-disponible">
+              <i class="fa-solid fa-circle-check"></i> Disponible
+            </div>
+            <div class="badge-type">Terrain</div>
+          </div>
+          <div class="carte-corps">
+            <div class="carte-type">Terrain à vendre</div>
+            <h3 class="carte-titre">Terrain vue mer, titre foncier</h3>
+            <div class="carte-prix">45 000 000 <span>FCFA</span></div>
+            <div class="carte-lieu">
+              <i class="fa-solid fa-location-dot"></i> Kribi, Bord de mer
+            </div>
+            <div class="carte-actions">
+              <a href="detail.html?id=4" class="btn-voir-details">
+                <i class="fa-solid fa-eye"></i> Voir détails
+              </a>
+              <a href="https://wa.me/237656155803?text=Bonjour%20Kaza237%2C%20je%20suis%20intéressé(e)%20par%20le%20terrain%20à%20Kribi."
+                 target="_blank" class="btn-whatsapp-carte">
+                <i class="fa-brands fa-whatsapp"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Fin Carte 4 -->
+
+
+        <!-- CARTE EXEMPLE 5 -->
+        <div class="carte-bien">
+          <div class="carte-image">
+            <img src="../assets/images/bien5.jpg" alt="Bureau Yaoundé"
+                 onerror="this.src='../assets/images/placeholder.jpg'" />
+            <div class="badge-type">Bureau</div>
+          </div>
+          <div class="carte-corps">
+            <div class="carte-type">Bureau</div>
+            <h3 class="carte-titre">Plateau open space avec parking</h3>
+            <div class="carte-prix">300 000 <span>FCFA / mois</span></div>
+            <div class="carte-lieu">
+              <i class="fa-solid fa-location-dot"></i> Yaoundé, Centre
+            </div>
+            <div class="carte-actions">
+              <a href="detail.html?id=5" class="btn-voir-details">
+                <i class="fa-solid fa-eye"></i> Voir détails
+              </a>
+              <a href="https://wa.me/237656155803?text=Bonjour%20Kaza237%2C%20je%20suis%20intéressé(e)%20par%20le%20bureau%20à%20Yaoundé%20Centre."
+                 target="_blank" class="btn-whatsapp-carte">
+                <i class="fa-brands fa-whatsapp"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Fin Carte 5 -->
+
+
+        <!-- CARTE EXEMPLE 6 -->
+        <div class="carte-bien">
+          <div class="carte-image">
+            <img src="../assets/images/bien6.jpg" alt="Appartement Bonamoussadi"
+                 onerror="this.src='../assets/images/placeholder.jpg'" />
+            <div class="badge-disponible">
+              <i class="fa-solid fa-circle-check"></i> Disponible
+            </div>
+            <div class="badge-type">Appartement meublé</div>
+          </div>
+          <div class="carte-corps">
+            <div class="carte-type">Appartement meublé</div>
+            <h3 class="carte-titre">Appartement moderne à Bonamoussadi</h3>
+            <div class="carte-prix">150 000 <span>FCFA / mois</span></div>
+            <div class="carte-lieu">
+              <i class="fa-solid fa-location-dot"></i> Douala, Bonamoussadi
+            </div>
+            <div class="carte-actions">
+              <a href="detail.html?id=6" class="btn-voir-details">
+                <i class="fa-solid fa-eye"></i> Voir détails
+              </a>
+              <a href="https://wa.me/237656155803?text=Bonjour%20Kaza237%2C%20je%20suis%20intéressé(e)%20par%20l'appartement%20à%20Bonamoussadi."
+                 target="_blank" class="btn-whatsapp-carte">
+                <i class="fa-brands fa-whatsapp"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Fin Carte 6 -->
+
+      </div>
+      <!-- Fin biens-grille -->
+
+
+      <!-- ============================================================
+           MESSAGE "AUCUN RÉSULTAT" — affiché si la recherche ne trouve rien
+           Caché par défaut, affiché par JavaScript si besoin
+           ============================================================ -->
+      <div class="aucun-resultat" id="aucunResultat" style="display: none;">
+        <i class="fa-solid fa-house-circle-xmark"></i>
+        <p>Aucun bien ne correspond à ta recherche.</p>
+        <button onclick="reinitialiserFiltres()" class="btn-filtrer">
+          <i class="fa-solid fa-rotate-left"></i> Réinitialiser les filtres
+        </button>
+      </div>
+
+
+      <!-- ============================================================
+           BOUTON "VOIR PLUS" — charge 6 biens supplémentaires depuis Firebase
+           Caché quand tous les biens sont affichés
+           ============================================================ -->
+      <div class="voir-plus-wrap" id="voirPlusWrap">
+        <button class="btn-voir-plus" id="btnVoirPlus" onclick="chargerPlusDeBiens()">
+          <i class="fa-solid fa-plus"></i> Voir plus de biens
+        </button>
+      </div>
+
+    </div>
+    <!-- Fin annonces-wrap -->
+
+  </section>
+  <!-- Fin Section Annonces -->
+
+
+  <!-- ===========================================================
+       FOOTER (identique à index.html)
+       =========================================================== -->
+  <footer>
+    <div class="footer-grille">
+
+      <!-- Colonne 1 : Logo + description + réseaux sociaux -->
+      <div class="footer-col">
+        <div class="footer-logo">
+          <span class="bleu">Kaza</span><span class="orange">237</span>
+        </div>
+        <div class="footer-slogan">Ton chez-toi, sans stress.</div>
+        <p class="footer-description">
+          La plateforme immobilière de référence au Cameroun.
+          Trouvez votre maison, appartement, terrain ou bureau
+          en toute simplicité et en toute confiance.
+        </p>
+        <!-- RÉSEAUX SOCIAUX — MODIFIE LES LIENS href ICI -->
+        <div class="reseaux-sociaux">
+          <a href="https://facebook.com/kaza237" target="_blank"
+             class="btn-reseau" title="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="https://instagram.com/kaza237" target="_blank"
+             class="btn-reseau" title="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://tiktok.com/@kaza237" target="_blank"
+             class="btn-reseau" title="TikTok">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Colonne 2 : Navigation -->
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="../index.html">Accueil</a></li>
+          <li><a href="index.html">Toutes les annonces</a></li>
+          <li><a href="index.html?mode=achat">Acheter</a></li>
+          <li><a href="index.html?mode=location">Louer</a></li>
+          <li><a href="../reservations.html">Studios meublés</a></li>
+          <li><a href="../apropos.html">À propos de nous</a></li>
+        </ul>
+      </div>
+
+      <!-- Colonne 3 : Informations légales -->
+      <div class="footer-col">
+        <h4>Informations</h4>
+        <ul>
+          <li><a href="../contact.html">Nous contacter</a></li>
+          <li><a href="../faq.html">FAQ</a></li>
+          <li><a href="../mentions-legales.html">Mentions légales</a></li>
+          <li><a href="../confidentialite.html">Politique de confidentialité</a></li>
+          <li><a href="../cookies.html">Politique de cookies</a></li>
+          <li><a href="../cgu.html">Conditions générales (CGU)</a></li>
+        </ul>
+      </div>
+
+      <!-- Colonne 4 : Contact -->
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <!-- MODIFIE LES INFOS DE CONTACT ICI -->
+        <div class="footer-contact-ligne">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Douala, Cameroun</span>
+        </div>
+        <div class="footer-contact-ligne">
+          <i class="fa-solid fa-phone"></i>
+          <span>+237 656 15 58 03</span>
+        </div>
+        <div class="footer-contact-ligne">
+          <i class="fa-solid fa-envelope"></i>
+          <span>contact@kaza237.cm</span>
+        </div>
+        <div class="footer-contact-ligne">
+          <i class="fa-solid fa-clock"></i>
+          <span>Lun – Sam : 8h – 18h</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Séparateur -->
+    <div class="footer-separateur"></div>
+
+    <!-- Bas du footer -->
+    <div class="footer-bas">
+      <div class="footer-copyright">
+        © 2025 Kaza237 · Tous droits réservés · Douala, Cameroun 🇨🇲
+      </div>
+      <div class="footer-liens-legaux">
+        <a href="../mentions-legales.html">Mentions légales</a>
+        <a href="../confidentialite.html">Confidentialité</a>
+        <a href="../cgu.html">CGU</a>
+        <a href="../cookies.html">Cookies</a>
+      </div>
+    </div>
+  </footer>
+  <!-- Fin Footer -->
+
+
+  <!-- ===========================================================
+       SCRIPTS JAVASCRIPT
+       =========================================================== -->
+
+  <!-- Script principal (hamburger menu) -->
+  <script src="../js/app.js"></script>
+
+  <!-- Script spécifique à la page annonces (filtres, Firebase, cartes) -->
+  <script src="../js/annonces.js"></script>
+
+</body>
+</html>
