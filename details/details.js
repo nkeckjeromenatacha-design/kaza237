@@ -14,7 +14,7 @@ import {
 
 /* ================================================================
    KAZA237 — JavaScript de la page Détail d'un bien
-   Fichier : js/detail.js
+   Fichier : js/details.js
    ================================================================
    CE FICHIER CONTIENT :
    1. Récupération de l'ID du bien depuis l'URL
@@ -215,7 +215,7 @@ const tousLesBiens = [
  
 /* ============================================================
    2. RÉCUPÉRER L'ID DU BIEN DANS L'URL
-   Ex : detail.html?id=1 → id = "1"
+   Ex : ../details/details.html?id=1 → id = "1"
    ============================================================ */
 function getIdDepuisURL() {
   const params = new URLSearchParams(window.location.search);
@@ -233,9 +233,13 @@ function getIdDepuisURL() {
     const docSnap = await getDoc(docRef);
 
     if (!docSnap.exists()) {
-      document.title = 'Bien introuvable — Kaza237';
-      return;
-    }
+  const bienLocal = tousLesBiens.find(b => b.id === id);
+  if (bienLocal) {
+    afficherDonnesBien(bienLocal);
+    chargerSimilaires(bienLocal.id, bienLocal.type);
+  }
+  return;
+}
 
     const bien = { id: docSnap.id, ...docSnap.data() };
 
@@ -260,126 +264,33 @@ function getIdDepuisURL() {
 }
 
 function afficherDonnesBien(bien) {
-  const id = bien.id;
- 
-  /* Chercher le bien dans la liste */
-  const bien = tousLesBiens.find(function(b) { return b.id === id; });
- 
-  /* Si le bien n'existe pas */
+
   if (!bien) {
     document.title = 'Bien introuvable — Kaza237';
     return;
   }
- 
-  /* Mettre à jour le titre de l'onglet */
+
   document.title = bien.titre + ' — Kaza237';
- 
-  /* Mettre à jour le fil d'ariane */
+
   document.getElementById('filArianeTitre').textContent = bien.titre;
- 
-  /* Mettre à jour le type */
   document.getElementById('detailType').textContent = bien.typeAffiche;
- 
-  /* Mettre à jour le titre */
   document.getElementById('detailTitre').textContent = bien.titre;
- 
-  /* Mettre à jour la localisation */
+
   document.getElementById('detailLieu').innerHTML =
     '<i class="fa-solid fa-location-dot"></i> ' +
     bien.villeAffiche + ', ' + bien.quartier;
- 
-  /* Mettre à jour le prix */
+
   document.getElementById('detailPrix').innerHTML =
     bien.prixAffiche + ' <span>' + bien.unite + '</span>';
- 
-  /* Mettre à jour le prix dans la card de contact */
+
   document.getElementById('contactPrix').innerHTML =
     bien.prixAffiche + ' <span>' + bien.unite + '</span>';
- 
-  /* Mettre à jour les statistiques */
-  document.getElementById('detailVues').innerHTML =
-    '<i class="fa-solid fa-eye"></i> ' + bien.vues + ' vues';
-  document.getElementById('detailLikes').innerHTML =
-    '<i class="fa-solid fa-heart"></i> ' + bien.likes + " j'aime";
-  document.getElementById('detailDate').innerHTML =
-    '<i class="fa-solid fa-calendar"></i> Publié le ' + bien.datePublication;
- 
-  /* Mettre à jour le statut */
-  const estDisponible = bien.statut === 'disponible';
-  const badgeStatut   = document.getElementById('detailStatut');
-  const contactStatut = document.getElementById('contactStatut');
- 
-  if (estDisponible) {
-    badgeStatut.className = 'badge-dispo disponible';
-    badgeStatut.innerHTML = '<i class="fa-solid fa-circle-check"></i> Disponible';
-    contactStatut.textContent = 'Disponible';
-    contactStatut.previousElementSibling.style.color = '#16a34a';
-  } else {
-    badgeStatut.className = 'badge-dispo occupe';
-    badgeStatut.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Déjà occupé';
-    contactStatut.textContent = 'Déjà occupé';
-    contactStatut.previousElementSibling.style.color = '#dc2626';
-  }
- 
-  /* Mettre à jour la description */
+
   document.getElementById('detailDescription').textContent = bien.description;
- 
-  /* Mettre à jour la ville et le quartier */
-  document.getElementById('detailVille').textContent    = bien.villeAffiche;
-  document.getElementById('detailQuartier').textContent = bien.quartier;
- 
-  /* Mettre à jour les caractéristiques */
-  const containerCaract = document.getElementById('detailCaracteristiques');
-  containerCaract.innerHTML = '';
-  bien.caracteristiques.forEach(function(caract) {
-    containerCaract.innerHTML += `
-      <div class="caracteristique">
-        <i class="fa-solid ${caract.icone}"></i>
-        <div>
-          <div class="caract-label">${caract.label}</div>
-          <div class="caract-valeur">${caract.valeur}</div>
-        </div>
-      </div>
-    `;
-  });
- 
-  /* Mettre à jour les équipements (si le bien en a) */
-  const sectionEquipements = document.getElementById('sectionEquipements');
-  const containerEquip     = document.getElementById('detailEquipements');
- 
-  if (bien.equipements && bien.equipements.length > 0) {
-    sectionEquipements.style.display = 'block';
-    containerEquip.innerHTML = '';
- 
-    const icones = {
-      'Wifi': 'fa-wifi', 'Climatisation': 'fa-wind',
-      'Télévision': 'fa-tv', 'Groupe électrogène': 'fa-plug',
-      'Eau courante': 'fa-droplet', 'Sécurité 24h': 'fa-shield-halved',
-      'Cuisine équipée': 'fa-utensils', 'Parking': 'fa-car',
-    };
- 
-    bien.equipements.forEach(function(eq) {
-      const icone = icones[eq] || 'fa-check';
-      containerEquip.innerHTML +=
-        `<span><i class="fa-solid ${icone}"></i> ${eq}</span>`;
-    });
-  } else {
-    sectionEquipements.style.display = 'none';
-  }
- 
-  /* Mettre à jour le lien WhatsApp direct */
-  const msgWA = encodeURIComponent(
-    'Bonjour Kaza237, je suis intéressé(e) par ' + bien.whatsapp + '.'
-  );
-  document.getElementById('btnWhatsappDirect').href =
-    'https://wa.me/237656155803?text=' + msgWA;
- 
-  /* Mettre à jour les photos du slider */
+
   mettreAJourSlider(bien.images);
- 
-  /* Charger les biens similaires */
-  chargerSimilaires(bien.id, bien.type);
 }
+ 
  
  
 /* ============================================================
@@ -428,7 +339,7 @@ function chargerSimilaires(idActuel, typeActuel) {
   /* Afficher max 3 biens similaires */
   similaires.slice(0, 3).forEach(function(bien) {
     container.innerHTML += `
-      <a href="detail.html?id=${bien.id}" class="carte-similaire">
+      <a href="../details/details.html?id=${bien.id}" class="carte-similaire">
         <div class="similaire-image">
           <img src="${bien.images[0]}" alt="${bien.titre}"
                onerror="this.src='assets/images/placeholder.jpg'" />
@@ -496,30 +407,6 @@ async function envoyerDemande(event) {
   );
 }
  
-  /* Récupérer les valeurs */
-  const prenom  = document.getElementById('contact-prenom').value;
-  const nom     = document.getElementById('contact-nom').value;
-  const tel     = document.getElementById('contact-tel').value;
-  const message = document.getElementById('contact-message').value;
- 
-  /* Récupérer le titre du bien */
-  const titreBien = document.getElementById('detailTitre').textContent;
-  const lieu      = document.getElementById('detailLieu').textContent.trim();
- 
-  /* Construire le message WhatsApp */
-  let msgWA = 'Bonjour Kaza237 !\n\n';
-  msgWA += "Je suis intéressé(e) par : " + titreBien + '\n';
-  msgWA += "Localisation : " + lieu + '\n\n';
-  msgWA += "👤 Nom : " + prenom + ' ' + nom + '\n';
-  msgWA += "📞 Téléphone : " + tel + '\n';
-  if (message) msgWA += "💬 Message : " + message + '\n';
- 
-  /* Rediriger vers WhatsApp */
-  window.open(
-    'https://wa.me/237656155803?text=' + encodeURIComponent(msgWA),
-    '_blank'
-  );
-
 /* ============================================================
    6. INITIALISATION DU SLIDER SWIPER
    ============================================================ */

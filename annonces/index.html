@@ -297,6 +297,19 @@
           <!-- Ex : "12 biens trouvés" — affiché par annonces.js -->
         </div>
       </div>
+      
+      <!-- Liste des biens -->
+<div class="biens-list" id="biensList"></div>
+
+<!-- Message aucun résultat -->
+<div id="aucunResultat" style="display:none;">
+  Aucun bien trouvé
+</div>
+
+<!-- Bouton voir plus -->
+<div id="voirPlusWrap" style="display:none;">
+  <button onclick="chargerPlusDeBiens()">Voir plus</button>
+</div>
 
       <!-- ============================================================
            LOADER — tourne pendant le chargement des biens depuis Firebase
@@ -374,7 +387,7 @@
 
               <!-- Bouton "Voir détails" — redirige vers detail.html?id=... -->
               <!-- L'ID sera dynamique (depuis Firebase) -->
-              <a href="detail.html?id=1" class="btn-voir-details">
+              <a href="../details/details.html?id=1" class="btn-voir-details">
                 <i class="fa-solid fa-eye"></i> Voir détails
               </a>
 
@@ -413,7 +426,7 @@
               <i class="fa-solid fa-location-dot"></i> Yaoundé, Bastos
             </div>
             <div class="carte-actions">
-              <a href="detail.html?id=2" class="btn-voir-details">
+              <a href="../details/details.html?id=2" class="btn-voir-details">
                 <i class="fa-solid fa-eye"></i> Voir détails
               </a>
               <a href="https://wa.me/237656155803?text=Bonjour%20Kaza237%2C%20je%20suis%20intéressé(e)%20par%20l'appartement%203%20pièces%20à%20Yaoundé%20Bastos."
@@ -444,7 +457,7 @@
               <i class="fa-solid fa-location-dot"></i> Douala, Akwa
             </div>
             <div class="carte-actions">
-              <a href="detail.html?id=3" class="btn-voir-details">
+              <a href="../details/details.html?id=3" class="btn-voir-details">
                 <i class="fa-solid fa-eye"></i> Voir détails
               </a>
               <a href="https://wa.me/237656155803?text=Bonjour%20Kaza237%2C%20je%20suis%20intéressé(e)%20par%20le%20studio%20à%20Douala%20Akwa."
@@ -475,7 +488,7 @@
               <i class="fa-solid fa-location-dot"></i> Kribi, Bord de mer
             </div>
             <div class="carte-actions">
-              <a href="detail.html?id=4" class="btn-voir-details">
+              <a href="../details/details.html?id=4" class="btn-voir-details">
                 <i class="fa-solid fa-eye"></i> Voir détails
               </a>
               <a href="https://wa.me/237656155803?text=Bonjour%20Kaza237%2C%20je%20suis%20intéressé(e)%20par%20le%20terrain%20à%20Kribi."
@@ -503,7 +516,7 @@
               <i class="fa-solid fa-location-dot"></i> Yaoundé, Centre
             </div>
             <div class="carte-actions">
-              <a href="detail.html?id=5" class="btn-voir-details">
+              <a href="../details/details.html?id=5" class="btn-voir-details">
                 <i class="fa-solid fa-eye"></i> Voir détails
               </a>
               <a href="https://wa.me/237656155803?text=Bonjour%20Kaza237%2C%20je%20suis%20intéressé(e)%20par%20le%20bureau%20à%20Yaoundé%20Centre."
@@ -534,7 +547,7 @@
               <i class="fa-solid fa-location-dot"></i> Douala, Bonamoussadi
             </div>
             <div class="carte-actions">
-              <a href="detail.html?id=6" class="btn-voir-details">
+              <a href="../details/details.html?id=6" class="btn-voir-details">
                 <i class="fa-solid fa-eye"></i> Voir détails
               </a>
               <a href="https://wa.me/237656155803?text=Bonjour%20Kaza237%2C%20je%20suis%20intéressé(e)%20par%20l'appartement%20à%20Bonamoussadi."
