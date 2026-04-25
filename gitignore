@@ -1,0 +1,9 @@
+# Fichier de configuration Firebase — ne pas partager
+js/firebase-config.js
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Fichiers VS Code
+.vscode/

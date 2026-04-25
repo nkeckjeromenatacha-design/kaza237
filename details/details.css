@@ -1,0 +1,692 @@
+/* ================================================================
+   KAZA237 — Styles de la page Détail d'un bien
+   Fichier : css/detail.css
+   ================================================================ */
+ 
+/* ============================================================
+   FIL D'ARIANE
+   ============================================================ */
+.fil-ariane {
+  background-color: var(--blanc);
+  border-bottom: 1px solid var(--bordure);
+  padding: 12px 2rem;
+}
+ 
+.fil-ariane-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--gris-doux);
+  flex-wrap: wrap;
+}
+ 
+.fil-ariane a {
+  color: var(--bleu);
+  font-weight: 500;
+  transition: var(--transition);
+}
+ 
+.fil-ariane a:hover { color: var(--orange); }
+ 
+.fil-ariane i.fa-chevron-right {
+  font-size: 10px;
+  color: var(--bordure);
+}
+ 
+.fil-ariane span {
+  color: var(--gris-texte);
+  font-weight: 600;
+}
+ 
+/* ============================================================
+   SECTION PRINCIPALE DÉTAIL
+   Layout : 2 colonnes (gauche grande, droite petite)
+   ============================================================ */
+.section-detail {
+  padding: 2rem 0 3rem;
+  background-color: var(--gris-fond);
+}
+ 
+.detail-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  /* Colonne gauche plus large, colonne droite fixe */
+  grid-template-columns: 1fr 360px;
+  gap: 2.5rem;
+  align-items: start;
+}
+ 
+/* ============================================================
+   SLIDER DE PHOTOS
+   ============================================================ */
+.swiper-detail {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--ombre);
+  margin-bottom: 2rem;
+}
+ 
+.detail-slide {
+  height: 420px;
+  overflow: hidden;
+}
+ 
+.detail-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+ 
+/* Boutons navigation slider */
+.swiper-detail .swiper-button-next,
+.swiper-detail .swiper-button-prev {
+  color: var(--blanc) !important;
+  background: rgba(0, 0, 0, 0.4);
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 50%;
+}
+ 
+.swiper-detail .swiper-button-next::after,
+.swiper-detail .swiper-button-prev::after {
+  font-size: 16px !important;
+}
+ 
+.swiper-detail .swiper-pagination-bullet-active {
+  background: var(--orange) !important;
+}
+ 
+/* ============================================================
+   INFOS DU BIEN
+   ============================================================ */
+.detail-infos {
+  background-color: var(--blanc);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--ombre);
+}
+ 
+/* En-tête : type + badges */
+.detail-entete {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+ 
+.detail-type {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--orange);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+ 
+/* Badges */
+.detail-badges { display: flex; gap: 8px; }
+ 
+.badge-dispo {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+ 
+.badge-dispo.disponible { background-color: #dcfce7; color: #16a34a; }
+.badge-dispo.occupe     { background-color: #fee2e2; color: #dc2626; }
+ 
+/* Titre principal */
+.detail-titre {
+  font-size: 26px;
+  font-weight: 900;
+  color: #222;
+  margin-bottom: 0.8rem;
+  line-height: 1.2;
+}
+ 
+/* Localisation */
+.detail-lieu {
+  font-size: 14px;
+  color: var(--gris-doux);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 1rem;
+}
+ 
+.detail-lieu i { color: var(--orange); }
+ 
+/* Prix */
+.detail-prix {
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--bleu);
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+}
+ 
+.detail-prix span {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--gris-doux);
+}
+ 
+/* Statistiques : vues + likes + date */
+.detail-stats {
+  display: flex;
+  gap: 20px;
+  font-size: 13px;
+  color: var(--gris-doux);
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+ 
+.detail-stats span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+ 
+.detail-stats i { color: var(--orange); }
+ 
+/* Séparateur */
+.detail-separateur {
+  height: 1px;
+  background-color: var(--bordure);
+  margin: 1.5rem 0;
+}
+ 
+/* ============================================================
+   SECTIONS D'INFOS (Description, Caractéristiques, etc.)
+   ============================================================ */
+.detail-section {
+  margin-bottom: 2rem;
+}
+ 
+.detail-section-titre {
+  font-size: 16px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+ 
+.detail-section-titre i { color: var(--bleu); }
+ 
+/* Description */
+.detail-description {
+  font-size: 14px;
+  color: var(--gris-texte);
+  line-height: 1.8;
+}
+ 
+/* ============================================================
+   GRILLE DES CARACTÉRISTIQUES
+   ============================================================ */
+.caracteristiques-grille {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+ 
+.caracteristique {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: var(--gris-fond);
+  border-radius: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--bordure);
+}
+ 
+.caracteristique > i {
+  font-size: 20px;
+  color: var(--bleu);
+  width: 24px;
+  text-align: center;
+  flex-shrink: 0;
+}
+ 
+.caract-label {
+  font-size: 11px;
+  color: var(--gris-doux);
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+ 
+.caract-valeur {
+  font-size: 14px;
+  font-weight: 700;
+  color: #222;
+}
+ 
+/* ============================================================
+   ÉQUIPEMENTS
+   ============================================================ */
+.equipements-liste {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+ 
+.equipements-liste span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--gris-texte);
+  background-color: var(--bleu-clair);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+ 
+.equipements-liste i { color: var(--bleu); }
+ 
+/* ============================================================
+   LOCALISATION
+   ============================================================ */
+.localisation-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+ 
+.localisation-ligne {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--gris-texte);
+}
+ 
+.localisation-ligne i { color: var(--orange); width: 16px; }
+ 
+/* ============================================================
+   COLONNE DROITE — CARD DE CONTACT
+   Position sticky : reste visible en défilant
+   ============================================================ */
+.detail-droite {
+  position: sticky;
+  top: 90px; /* Juste sous la navbar */
+}
+ 
+.contact-card {
+  background-color: var(--blanc);
+  border-radius: var(--radius);
+  padding: 1.8rem;
+  box-shadow: var(--ombre);
+  border: 1px solid var(--bordure);
+}
+ 
+/* Prix dans la card */
+.contact-card-prix {
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--bleu);
+  margin-bottom: 8px;
+  letter-spacing: -0.3px;
+}
+ 
+.contact-card-prix span {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--gris-doux);
+}
+ 
+/* Statut dans la card */
+.contact-card-statut {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #16a34a;
+  margin-bottom: 1rem;
+}
+ 
+.contact-separateur {
+  height: 1px;
+  background-color: var(--bordure);
+  margin: 1.2rem 0;
+}
+ 
+/* Titre formulaire */
+.contact-form-titre {
+  font-size: 15px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+ 
+/* ============================================================
+   FORMULAIRE DE CONTACT
+   ============================================================ */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+ 
+.contact-form-ligne {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+ 
+.contact-form-champ {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+ 
+.contact-form-champ label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gris-doux);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+ 
+.contact-form-champ input,
+.contact-form-champ textarea {
+  border: 1.5px solid var(--bordure);
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 13px;
+  color: var(--gris-texte);
+  background-color: #fafafa;
+  outline: none;
+  transition: var(--transition);
+  font-family: inherit;
+  width: 100%;
+}
+ 
+.contact-form-champ input:focus,
+.contact-form-champ textarea:focus {
+  border-color: var(--bleu);
+  background-color: var(--blanc);
+}
+ 
+.contact-form-champ textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+ 
+/* Bouton envoyer sur WhatsApp */
+.btn-envoyer-demande {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  background-color: #25D366;
+  color: var(--blanc);
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  width: 100%;
+}
+ 
+.btn-envoyer-demande:hover {
+  background-color: #1ebe5b;
+  transform: translateY(-1px);
+}
+ 
+/* Bouton WhatsApp direct */
+.btn-whatsapp-direct {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px;
+  background-color: var(--blanc);
+  color: #25D366;
+  border: 2px solid #25D366;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  width: 100%;
+}
+ 
+.btn-whatsapp-direct:hover {
+  background-color: #25D366;
+  color: var(--blanc);
+}
+ 
+/* Téléphone */
+.contact-telephone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--bleu);
+  margin-top: 1rem;
+}
+ 
+/* Note */
+.contact-note {
+  font-size: 11px;
+  color: var(--gris-doux);
+  text-align: center;
+  margin-top: 0.8rem;
+  line-height: 1.5;
+}
+ 
+/* ============================================================
+   SECTION BIENS SIMILAIRES
+   ============================================================ */
+.section-similaires {
+  padding: 3rem 0;
+  background-color: var(--blanc);
+  border-top: 1px solid var(--bordure);
+}
+ 
+.similaires-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+ 
+.similaires-titre {
+  font-size: 22px;
+  font-weight: 800;
+  color: #222;
+  margin-bottom: 1.5rem;
+}
+ 
+.similaires-titre span { color: var(--bleu); }
+ 
+/* Grille similaires : 3 colonnes */
+.similaires-grille {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+ 
+/* Cartes similaires — même style que page annonces */
+.carte-similaire {
+  background-color: var(--blanc);
+  border-radius: var(--radius);
+  border: 1px solid var(--bordure);
+  overflow: hidden;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--ombre);
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+}
+ 
+.carte-similaire:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--ombre-hover);
+}
+ 
+.similaire-image {
+  height: 180px;
+  overflow: hidden;
+  position: relative;
+  background-color: #e5e7eb;
+}
+ 
+.similaire-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+ 
+.carte-similaire:hover .similaire-image img {
+  transform: scale(1.06);
+}
+ 
+.similaire-badge-type {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255,255,255,0.92);
+  color: var(--bleu);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+ 
+.similaire-corps {
+  padding: 14px 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+ 
+.similaire-type {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--orange);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 4px;
+}
+ 
+.similaire-titre {
+  font-size: 14px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+ 
+.similaire-prix {
+  font-size: 17px;
+  font-weight: 900;
+  color: var(--bleu);
+  margin-bottom: 4px;
+}
+ 
+.similaire-prix span {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--gris-doux);
+}
+ 
+.similaire-lieu {
+  font-size: 12px;
+  color: var(--gris-doux);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+ 
+.similaire-lieu i { color: var(--orange); font-size: 11px; }
+ 
+/* ============================================================
+   LOADER
+   ============================================================ */
+.loader-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+ 
+.loader {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--bleu-clair);
+  border-top-color: var(--bleu);
+  border-radius: 50%;
+  animation: tourner 0.8s linear infinite;
+}
+ 
+@keyframes tourner { to { transform: rotate(360deg); } }
+ 
+/* ============================================================
+   RESPONSIVE — TABLETTE (max 1024px)
+   ============================================================ */
+@media (max-width: 1024px) {
+  .detail-wrap {
+    grid-template-columns: 1fr;
+  }
+ 
+  .detail-droite {
+    position: relative;
+    top: 0;
+  }
+ 
+  .caracteristiques-grille {
+    grid-template-columns: repeat(2, 1fr);
+  }
+ 
+  .similaires-grille {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+ 
+/* ============================================================
+   RESPONSIVE — MOBILE (max 768px)
+   ============================================================ */
+@media (max-width: 768px) {
+  .section-detail { padding: 1.5rem 0 2rem; }
+  .detail-wrap    { padding: 0 1rem; gap: 1.5rem; }
+ 
+  .detail-slide   { height: 260px; }
+  .detail-titre   { font-size: 20px; }
+  .detail-prix    { font-size: 24px; }
+ 
+  .caracteristiques-grille { grid-template-columns: 1fr 1fr; }
+ 
+  .similaires-wrap  { padding: 0 1rem; }
+  .similaires-grille { grid-template-columns: 1fr; }
+ 
+  .contact-form-ligne { grid-template-columns: 1fr; }
+  .fil-ariane { padding: 10px 1rem; }
+}
+ 
+@media (max-width: 480px) {
+  .caracteristiques-grille { grid-template-columns: 1fr; }
+  .detail-stats { flex-direction: column; gap: 8px; }
+}

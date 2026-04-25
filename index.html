@@ -43,7 +43,7 @@
        STYLES CSS DU SITE
        ============================================================ -->
     <!-- Fichier CSS du site -->
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="../css/style.css" />
  
 </head>
  
@@ -55,7 +55,7 @@
   <nav>
  
     <!-- LOGO — REMPLACE src="assets/logo/logo.png" PAR TON VRAI LOGO -->
-    <a href="index.html" class="nav-logo">
+    <a href="./index.html" class="nav-logo">
       <img src="assets/logo/logo.png" alt="Logo Kaza237"
            onerror="this.style.display='none'" />
       <div class="nav-logo-texte">
@@ -68,9 +68,9 @@
  
     <!-- LIENS DE NAVIGATION — modifie les href="..." pour chaque page -->
     <ul class="nav-liens">
-      <li><a href="index.html" class="actif">Accueil</a></li>
-      <li><a href="annonces.html">Annonces</a></li>
-      <li><a href="reservations.html">Réservations</a></li>
+      <li><a href="./index.html" class="actif">Accueil</a></li>
+      <li><a href="./annonces/index.html">Annonces</a></li>
+      <li><a href="./réservations/index.html">Réservations</a></li>
       <li><a href="apropos.html">À propos</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
@@ -161,7 +161,7 @@
     </p>
  
     <!-- Bouton "Voir les biens" -->
-    <a href="annonces.html" class="btn-hero">
+    <a href="./annonces/index.html" class="btn-hero">
       <i class="fa-solid fa-building"></i> Voir les biens
     </a>
  
@@ -216,7 +216,7 @@
  
         <!-- Bouton Rechercher -->
         <div>
-          <button class="btn-rechercher" onclick="rechercherBiens()">
+          <button class="btn-rechercher" onclick="window.location.href='./annonces/index.html'">
             <i class="fa-solid fa-magnifying-glass"></i> Rechercher
           </button>
         </div>
@@ -273,7 +273,7 @@
                   <i class="fa-solid fa-location-dot"></i> Douala, Bonapriso
                 </div>
                 <!-- BOUTON DÉCOUVRIR — modifie href="..." -->
-                <a href="detail.html" class="btn-decouvrir">Découvrir →</a>
+                <a href="./details/details.html" class="btn-decouvrir">Découvrir →</a>
               </div>
  
             </div>
@@ -295,7 +295,7 @@
                 <div class="slide-une-lieu">
                   <i class="fa-solid fa-location-dot"></i> Yaoundé, Bastos
                 </div>
-                <a href="detail.html" class="btn-decouvrir">Découvrir →</a>
+                <a href="./details/details.html" class="btn-decouvrir">Découvrir →</a>
               </div>
             </div>
           </div>
@@ -316,7 +316,7 @@
                 <div class="slide-une-lieu">
                   <i class="fa-solid fa-location-dot"></i> Douala, Akwa
                 </div>
-                <a href="detail.html" class="btn-decouvrir">Découvrir →</a>
+                <a href="./details/details.html" class="btn-decouvrir">Découvrir →</a>
               </div>
             </div>
           </div>
@@ -337,7 +337,7 @@
                 <div class="slide-une-lieu">
                   <i class="fa-solid fa-location-dot"></i> Kribi, Bord de mer
                 </div>
-                <a href="detail.html" class="btn-decouvrir">Découvrir →</a>
+                <a href="./details/details.html" class="btn-decouvrir">Découvrir →</a>
               </div>
             </div>
           </div>
@@ -367,7 +367,7 @@
       <h2 class="titre-section">
         Biens <span>récents</span>
       </h2>
-      <a href="annonces.html" class="lien-voir-tout">
+      <a href="./annonces/index.html" class="lien-voir-tout">
         Voir tout <i class="fa-solid fa-arrow-right"></i>
       </a>
     </div>
@@ -380,39 +380,33 @@
              CARTE BIEN 1 — MODIFIE LES INFOS ICI
              ===================================================== -->
         <div class="swiper-slide">
-          <div class="carte-bien">
-            <div class="carte-image">
-              <!-- IMAGE — REMPLACE src="..." PAR TA VRAIE IMAGE -->
-              <img src="assets/images/bien1.jpg" alt="Villa Bonapriso Douala" />
-              <div class="carte-badge-lieu">
-                <i class="fa-solid fa-location-dot"></i> Douala, Bonapriso
-              </div>
-            </div>
-            <div class="carte-corps">
-              <!-- TYPE DE BIEN -->
-              <div class="carte-type">Maison / Villa</div>
-              <!-- TITRE -->
-              <div class="carte-titre">Villa 4 chambres avec piscine</div>
-              <!-- PRIX — modifie ici -->
-              <div class="carte-prix">180 000 000 <span>FCFA</span></div>
-              <!-- VILLE -->
-              <div class="carte-ville">
-                <i class="fa-solid fa-city"></i> Douala
-              </div>
-              <!-- DESCRIPTION COURTE -->
-              <div class="carte-description">
-                Belle villa sécurisée avec piscine, jardin et parking. Idéale pour famille.
-              </div>
-            </div>
-          </div>
-        </div>
+  <a class="carte-bien" href="./details/details.html">
+    <div class="carte-image">
+      <img src="assets/images/bien1.jpg" alt="Villa Bonapriso Douala" />
+      <div class="carte-badge-lieu">
+        <i class="fa-solid fa-location-dot"></i> Douala, Bonapriso
+      </div>
+    </div>
+    <div class="carte-corps">
+      <div class="carte-type">Maison / Villa</div>
+      <div class="carte-titre">Villa 4 chambres avec piscine</div>
+      <div class="carte-prix">180 000 000 <span>FCFA</span></div>
+      <div class="carte-ville">
+        <i class="fa-solid fa-city"></i> Douala
+      </div>
+      <div class="carte-description">
+        Belle villa sécurisée avec piscine, jardin et parking. Idéale pour famille.
+      </div>
+    </div>
+  </a>
+</div>
         <!-- Fin Carte 1 -->
  
         <!-- =====================================================
              CARTE BIEN 2 — MODIFIE LES INFOS ICI
              ===================================================== -->
         <div class="swiper-slide">
-          <div class="carte-bien">
+          <a class="carte-bien" href="./details/details.html?id=2">
             <div class="carte-image">
               <img src="assets/images/bien2.jpg" alt="Appartement Yaoundé Bastos" />
               <div class="carte-badge-lieu">
@@ -430,7 +424,7 @@
                 Appartement moderne avec balcon, sécurité 24h et parking souterrain.
               </div>
             </div>
-          </div>
+          </a>
         </div>
         <!-- Fin Carte 2 -->
  
@@ -438,7 +432,7 @@
              CARTE BIEN 3 — MODIFIE LES INFOS ICI
              ===================================================== -->
         <div class="swiper-slide">
-          <div class="carte-bien">
+          <a class="carte-bien" href="./details/details.html?id=3">
             <div class="carte-image">
               <img src="assets/images/bien3.jpg" alt="Studio meublé Douala Akwa" />
               <div class="carte-badge-lieu">
@@ -456,7 +450,7 @@
                 Studio entièrement meublé, climatisé, internet inclus. Disponible immédiatement.
               </div>
             </div>
-          </div>
+          </a>
         </div>
         <!-- Fin Carte 3 -->
  
@@ -464,7 +458,7 @@
              CARTE BIEN 4 — MODIFIE LES INFOS ICI
              ===================================================== -->
         <div class="swiper-slide">
-          <div class="carte-bien">
+          <a class="carte-bien" href="./details/details.html?id=4">
             <div class="carte-image">
               <img src="assets/images/bien4.jpg" alt="Terrain Kribi bord de mer" />
               <div class="carte-badge-lieu">
@@ -482,7 +476,7 @@
                 600 m² avec titre foncier en règle, bord de mer, idéal pour construction.
               </div>
             </div>
-          </div>
+          </a>
         </div>
         <!-- Fin Carte 4 -->
  
@@ -490,7 +484,7 @@
              CARTE BIEN 5 — MODIFIE LES INFOS ICI
              ===================================================== -->
         <div class="swiper-slide">
-          <div class="carte-bien">
+          <a class="carte-bien" href="./details/details.html?id=5">
             <div class="carte-image">
               <img src="assets/images/bien5.jpg" alt="Bureau Yaoundé Centre" />
               <div class="carte-badge-lieu">
@@ -508,7 +502,7 @@
                 80 m² en plein centre ville, parking inclus, fibre optique disponible.
               </div>
             </div>
-          </div>
+          </a>
         </div>
         <!-- Fin Carte 5 -->
  
@@ -516,7 +510,7 @@
              CARTE BIEN 6 — MODIFIE LES INFOS ICI
              ===================================================== -->
         <div class="swiper-slide">
-          <div class="carte-bien">
+          <a class="carte-bien" href="./details/details.html?id=6">
             <div class="carte-image">
               <img src="assets/images/bien6.jpg" alt="Villa Bafoussam" />
               <div class="carte-badge-lieu">
@@ -534,7 +528,7 @@
                 Appartement sécurisé avec parking, gardiennage 24h et générateur.
               </div>
             </div>
-          </div>
+          </a>
         </div>
         <!-- Fin Carte 6 -->
  
@@ -607,7 +601,7 @@
       <!-- ============================================================
            CATÉGORIE 1 — MODIFIE LE NOMBRE D'ANNONCES ICI
            ============================================================ -->
-      <a href="annonces.html?type=appartement" class="carte-categorie">
+      <a href="./annonces/index.html?type=appartement" class="type-card">
         <div class="categorie-icone">
           <i class="fa-solid fa-building"></i>
         </div>
@@ -617,7 +611,7 @@
       </a>
  
       <!-- CATÉGORIE 2 -->
-      <a href="annonces.html?type=maison" class="carte-categorie">
+      <a href="./annonces/index.html?type=maison" class="type-card">
         <div class="categorie-icone">
           <i class="fa-solid fa-house"></i>
         </div>
@@ -627,7 +621,7 @@
       </a>
  
       <!-- CATÉGORIE 3 -->
-      <a href="annonces.html?type=terrain" class="carte-categorie">
+      <a href="./annonces/index.html?type=terrain" class="type-card">
         <div class="categorie-icone">
           <i class="fa-solid fa-map"></i>
         </div>
@@ -637,7 +631,7 @@
       </a>
  
       <!-- CATÉGORIE 4 -->
-      <a href="reservations.html" class="carte-categorie">
+      <a href="./reservations/index.html" class="type-card">
         <div class="categorie-icone">
           <i class="fa-solid fa-couch"></i>
         </div>
@@ -933,7 +927,7 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
  
     <!-- Fichier JavaScript du site -->
-  <script src="js/app.js"></script>
+  <script type="module" src="js/app.js"></script>
  
 </body>
 </html>

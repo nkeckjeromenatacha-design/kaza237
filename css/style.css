@@ -115,7 +115,7 @@
     .nav-logo-texte .marque .orange { color: var(--orange); }
 
     .nav-logo-texte .slogan {
-      font-size: 10px;
+      font-size: 15px;
       color: var(--gris-doux);
     }
 
@@ -123,7 +123,7 @@
     .nav-liens {
       display: flex;
       align-items: center;
-      gap: 30px;
+      gap: 45px;
       list-style: none;
     }
 
@@ -168,11 +168,27 @@
       /* Ce bouton est dans le HTML plus bas */
     }
 
-    .btn-nav-contact:hover {
-      background-color: var(--orange-hover);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(232, 119, 34, 0.35);
-    }
+    .btn-nav-contact {
+  display: inline-flex;        /* 🔥 clé principale */
+  align-items: center;         /* centre verticalement */
+  gap: 8px;                    /* espace entre icône et texte */
+
+  background-color: var(--orange);
+  color: var(--blanc);
+  border: none;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+    .btn-nav-contact i {
+  font-size: 18px; /* icône plus grande */
+  display: flex;
+  align-items: center;
+}
 
     /* ============================================================
        SECTION HERO (Bannière principale)
@@ -479,6 +495,14 @@
       color: var(--blanc);
     }
 
+    /* Carte cliquable — enlève le soulignement */
+a.carte-bien {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+}
+
     /* ============================================================
        SECTION "BIENS RÉCENTS" — Slider
        ============================================================ */
@@ -710,6 +734,50 @@
       color: #222;
       margin-bottom: 4px;
     }
+
+    /* Catégorie cliquable */
+a.type-card {
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* Effet sombre au survol */
+a.type-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 79, 175, 0.08) 0%,
+    rgba(232, 119, 34, 0.08) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: var(--radius);
+}
+
+a.type-card:hover::before {
+  opacity: 1;
+}
+
+/* Icône change de couleur au survol */
+a.type-card:hover .type-icon i {
+  color: var(--orange);
+  transform: scale(1.2);
+  transition: all 0.3s ease;
+}
+
+/* Texte change de couleur au survol */
+a.type-card:hover .type-name {
+  color: var(--bleu);
+}
+
+a.type-card:hover .type-count {
+  color: var(--orange);
+}
 
     /* ============================================================
        NOMBRE D'ANNONCES PAR CATÉGORIE — modifie les chiffres ici

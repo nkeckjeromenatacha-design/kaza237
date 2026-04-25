@@ -1,3 +1,16 @@
+/* ============================================================
+   IMPORT FIREBASE
+   ============================================================ */
+import { db }          from './firebase-config.js';
+import { 
+  collection, 
+  getDocs, 
+  query, 
+  orderBy, 
+  where,
+  limit 
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
 /* ================================================================
    KAZA237 — JavaScript de la page Annonces
    Fichier : js/annonces.js
@@ -404,20 +417,70 @@ function chargerPlusDeBiens() {
 /* ============================================================
    INITIALISATION AU CHARGEMENT DE LA PAGE
    ============================================================ */
+   async function chargerBiensFirebase() {
+  const loader = document.getElementById('loaderWrap');
+  if (loader) loader.style.display = 'flex';
+
+  try {
+    /* Lire le paramètre type dans l'URL */
+    const params = new URLSearchParams(window.location.search);
+    const typeParam = params.get('type');
+
+    let q;
+
+    if (typeParam) {
+      /* Filtrer par type si paramètre dans l'URL */
+      q = query(
+        collection(db, 'properties'),
+        where('type', '==', typeParam),
+        orderBy('createdAt', 'desc')
+      );
+
+      /* Mettre à jour le select type */
+      document.getElementById('filtre-type').value = typeParam;
+
+      /* Mettre à jour l'onglet actif */
+      document.querySelectorAll('.btn-categorie').forEach(function(btn) {
+        btn.classList.remove('actif');
+      });
+
+      /* Trouver le bouton correspondant et l'activer */
+      document.querySelectorAll('.btn-categorie').forEach(function(btn) {
+        if (btn.getAttribute('onclick').includes(typeParam)) {
+          btn.classList.add('actif');
+        }
+      });
+
+    } else {
+      /* Charger tous les biens */
+      q = query(
+        collection(db, 'properties'),
+        orderBy('createdAt', 'desc')
+      );
+    }
+
+    const snapshot = await getDocs(q);
+    biensFiltres = [];
+
+    snapshot.forEach(function(doc) {
+      biensFiltres.push({ id: doc.id, ...doc.data() });
+    });
+
+    afficherBiens(biensFiltres, biensAffichesCount);
+
+  } catch (error) {
+    console.error('Erreur Firebase :', error);
+    afficherBiens(biensDemoData, biensAffichesCount);
+
+  } finally {
+    if (loader) loader.style.display = 'none';
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
 
   /* Masquer le loader */
   const loader = document.getElementById('loaderWrap');
-
-  /* Vider les cartes statiques (exemples HTML) et afficher les données JS */
-  setTimeout(function() {
-    /* Simuler un chargement de 600ms (sera remplacé par Firebase) */
-    if (loader) loader.style.display = 'none';
-
-    /* Afficher les biens */
-    afficherBiens(biensFiltres, biensAffichesCount);
-
-  }, 600);
 
   /* Lire les paramètres d'URL (ex: annonces.html?type=appartement) */
   const params = new URLSearchParams(window.location.search);
