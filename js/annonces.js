@@ -4,7 +4,7 @@
    ================================================================ */
 
 /* ============================================================
-   IMPORTS — doivent être TOUT EN HAUT du fichier
+   IMPORTS
    ============================================================ */
 import { toggleMenu } from './app.js';
 import { db } from './firebase-config.js';
@@ -21,12 +21,10 @@ import {
    1. QUARTIERS PAR VILLE
    ============================================================ */
 const quartierParVille = {
-
   douala: [
     'Akwa', 'Bonanjo', 'Bonapriso', 'Bonamoussadi',
     'Kotto', 'Makepe', 'Ndokoti', 'Bali', 'Deïdo', 'Logbessou',
   ],
-
   yaounde: [
     'Bastos', 'Centre-ville', 'Melen', 'Essos',
     'Biyem-Assi', 'Emana', 'Nlongkak', 'Omnisports', 'Tsinga', 'Nkolbisson',
@@ -53,7 +51,6 @@ function chargerQuartiers() {
 
 /* ============================================================
    2. DONNÉES DE TEST
-   ⚠️ Tous les champs utilisent "titre" et "ville" (pas title/city)
    ============================================================ */
 const biensDemoData = [
   {
@@ -67,7 +64,6 @@ const biensDemoData = [
     quartier: 'Bonapriso',
     featured: true,
     image: '../assets/images/bien1.jpg',
-    description: 'Belle villa sécurisée avec piscine, jardin et parking.',
     whatsapp: 'Je suis intéressé(e) par la Villa 4 chambres avec piscine à Douala Bonapriso.',
   },
   {
@@ -81,7 +77,6 @@ const biensDemoData = [
     quartier: 'Bastos',
     featured: true,
     image: '../assets/images/bien2.jpg',
-    description: 'Appartement moderne avec balcon, sécurité 24h et parking souterrain.',
     whatsapp: "Je suis intéressé(e) par l'Appartement 3 pièces à Yaoundé Bastos.",
   },
   {
@@ -95,7 +90,6 @@ const biensDemoData = [
     quartier: 'Akwa',
     featured: true,
     image: '../assets/images/bien3.jpg',
-    description: 'Studio entièrement meublé, climatisé, internet inclus.',
     whatsapp: 'Je suis intéressé(e) par le Studio moderne à Douala Akwa.',
   },
   {
@@ -109,7 +103,6 @@ const biensDemoData = [
     quartier: 'Bord de mer',
     featured: false,
     image: '../assets/images/bien4.jpg',
-    description: '600 m² avec titre foncier en règle, bord de mer.',
     whatsapp: 'Je suis intéressé(e) par le Terrain vue mer à Kribi.',
   },
   {
@@ -123,7 +116,6 @@ const biensDemoData = [
     quartier: 'Centre-ville',
     featured: false,
     image: '../assets/images/bien5.jpg',
-    description: '80 m² en plein centre ville, parking inclus.',
     whatsapp: 'Je suis intéressé(e) par le Bureau open space à Yaoundé Centre.',
   },
   {
@@ -137,7 +129,6 @@ const biensDemoData = [
     quartier: 'Bonamoussadi',
     featured: true,
     image: '../assets/images/bien6.jpg',
-    description: 'Appartement sécurisé avec parking, gardiennage 24h.',
     whatsapp: "Je suis intéressé(e) par l'Appartement à Douala Bonamoussadi.",
   },
 ];
@@ -248,9 +239,6 @@ function capitaliser(texte) {
    4. CHARGER DEPUIS FIREBASE
    ============================================================ */
 async function chargerBiensFirebase() {
-  const loader = document.getElementById('loaderWrap');
-  if (loader) loader.style.display = 'flex';
-
   try {
     const params    = new URLSearchParams(window.location.search);
     const typeParam = params.get('type');
@@ -296,10 +284,8 @@ async function chargerBiensFirebase() {
 
   } catch (error) {
     console.error('Erreur Firebase :', error);
+    /* En cas d'erreur → données de démo */
     afficherBiens(biensDemoData, biensAffichesCount);
-
-  } finally {
-    if (loader) loader.style.display = 'none';
   }
 }
 
@@ -312,9 +298,6 @@ async function filtrerBiens() {
   const quartier = document.getElementById('filtre-quartier').value;
   const type     = document.getElementById('filtre-type').value;
   const prixMax  = parseInt(document.getElementById('filtre-prix').value) || null;
-
-  const loader = document.getElementById('loaderWrap');
-  if (loader) loader.style.display = 'flex';
 
   try {
     let conditions = [];
@@ -333,7 +316,9 @@ async function filtrerBiens() {
     });
 
     if (prixMax) {
-      biensFiltres = biensFiltres.filter(function(b) { return b.prix <= prixMax; });
+      biensFiltres = biensFiltres.filter(function(b) {
+        return b.prix <= prixMax;
+      });
     }
 
     if (quartier) {
@@ -348,8 +333,6 @@ async function filtrerBiens() {
 
   } catch (error) {
     console.error('Erreur filtre :', error);
-  } finally {
-    if (loader) loader.style.display = 'none';
   }
 
   document.querySelector('.section-annonces').scrollIntoView({ behavior: 'smooth' });
@@ -365,9 +348,6 @@ async function filtrerParCategorie(bouton, type) {
   });
   bouton.classList.add('actif');
   document.getElementById('filtre-type').value = type;
-
-  const loader = document.getElementById('loaderWrap');
-  if (loader) loader.style.display = 'flex';
 
   try {
     const q = type === ''
@@ -386,8 +366,6 @@ async function filtrerParCategorie(bouton, type) {
 
   } catch (error) {
     console.error('Erreur catégorie :', error);
-  } finally {
-    if (loader) loader.style.display = 'none';
   }
 }
 
@@ -435,6 +413,7 @@ document.addEventListener('DOMContentLoaded', function() {
     chargerQuartiers();
   }
 
+  /* Charger les biens immédiatement */
   chargerBiensFirebase();
 });
 
