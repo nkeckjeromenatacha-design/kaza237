@@ -112,6 +112,9 @@ function toggleMenu() {
 /* Rendre toggleMenu accessible depuis le HTML */
 window.toggleMenu = toggleMenu;
 
+/* Exporter toggleMenu */
+export { toggleMenu };
+
 // Fermer le menu si on clique en dehors
 document.addEventListener('click', function(event) {
   const btnHamburger = document.getElementById('btnHamburger');

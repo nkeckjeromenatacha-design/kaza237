@@ -506,6 +506,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /* Rendre toggleMenu accessible depuis le HTML */
 window.toggleMenu = toggleMenu;
+import { toggleMenu } from './app.js';
 
 /* ============================================================
    FIREBASE — À ACTIVER QUAND FIREBASE EST PRÊT
