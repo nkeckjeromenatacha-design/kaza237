@@ -1,8 +1,9 @@
 /* ================================================================
    KAZA237 — JavaScript de la page Annonces
    Fichier : js/annonces.js
+   VERSION CORRIGÉE avec meilleure gestion des catégories
    ================================================================ */
-
+ 
 /* ============================================================
    IMPORTS
    ============================================================ */
@@ -15,8 +16,8 @@ import {
   orderBy,
   where
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
-
-
+ 
+ 
 /* ============================================================
    1. QUARTIERS PAR VILLE
    ============================================================ */
@@ -30,14 +31,14 @@ const quartierParVille = {
     'Biyem-Assi', 'Emana', 'Nlongkak', 'Omnisports', 'Tsinga', 'Nkolbisson',
   ],
 };
-
+ 
 function chargerQuartiers() {
   const selectVille    = document.getElementById('filtre-ville');
   const selectQuartier = document.getElementById('filtre-quartier');
   const villeChoisie   = selectVille.value;
-
+ 
   selectQuartier.innerHTML = '<option value="">Tous les quartiers</option>';
-
+ 
   if (villeChoisie && quartierParVille[villeChoisie]) {
     quartierParVille[villeChoisie].forEach(function(quartier) {
       const option = document.createElement('option');
@@ -47,8 +48,8 @@ function chargerQuartiers() {
     });
   }
 }
-
-
+ 
+ 
 /* ============================================================
    2. DONNÉES DE TEST
    ============================================================ */
@@ -132,12 +133,12 @@ const biensDemoData = [
     whatsapp: "Je suis intéressé(e) par l'Appartement à Douala Bonamoussadi.",
   },
 ];
-
+ 
 const BIENS_PAR_PAGE   = 6;
 let biensAffichesCount = BIENS_PAR_PAGE;
 let biensFiltres       = [...biensDemoData];
-
-
+ 
+ 
 /* ============================================================
    3. AFFICHER LES CARTES
    ============================================================ */
@@ -146,31 +147,31 @@ function afficherBiens(biens, nombreAafficher) {
   const compteur      = document.getElementById('compteurResultats');
   const aucunResultat = document.getElementById('aucunResultat');
   const voirPlusWrap  = document.getElementById('voirPlusWrap');
-
+ 
   container.innerHTML = '';
-
+ 
   if (biens.length === 0) {
     aucunResultat.style.display = 'flex';
     voirPlusWrap.style.display  = 'none';
     compteur.textContent        = '0 bien trouvé';
     return;
   }
-
+ 
   aucunResultat.style.display = 'none';
-
+ 
   const total = biens.length;
   compteur.textContent = total + ' bien' + (total > 1 ? 's' : '') + ' trouvé' + (total > 1 ? 's' : '');
-
+ 
   biens.slice(0, nombreAafficher).forEach(function(bien) {
-
+ 
     const badgeDisponible = bien.featured
       ? `<div class="badge-disponible">
            <i class="fa-solid fa-circle-check"></i> Disponible
          </div>`
       : '';
-
+ 
     const msgWA = encodeURIComponent('Bonjour Kaza237, ' + bien.whatsapp);
-
+ 
     const carteHTML = `
       <div class="carte-bien">
         <div class="carte-image">
@@ -202,14 +203,14 @@ function afficherBiens(biens, nombreAafficher) {
         </div>
       </div>
     `;
-
+ 
     container.innerHTML += carteHTML;
   });
-
+ 
   voirPlusWrap.style.display = nombreAafficher >= total ? 'none' : 'block';
 }
-
-
+ 
+ 
 /* ============================================================
    UTILITAIRES
    ============================================================ */
@@ -228,13 +229,13 @@ function formaterType(type) {
   };
   return types[type] || type;
 }
-
+ 
 function capitaliser(texte) {
   if (!texte) return '';
   return texte.charAt(0).toUpperCase() + texte.slice(1);
 }
-
-
+ 
+ 
 /* ============================================================
    4. CHARGER DEPUIS FIREBASE
    ============================================================ */
@@ -242,16 +243,16 @@ async function chargerBiensFirebase() {
   try {
     const params    = new URLSearchParams(window.location.search);
     const typeParam = params.get('type');
-
+ 
     let q;
-
+ 
     if (typeParam) {
       q = query(
         collection(db, 'properties'),
         where('type', '==', typeParam),
         orderBy('createdAt', 'desc')
       );
-
+ 
       document.getElementById('filtre-type').value = typeParam;
       document.querySelectorAll('.btn-categorie').forEach(function(btn) {
         btn.classList.remove('actif');
@@ -260,170 +261,219 @@ async function chargerBiensFirebase() {
           btn.classList.add('actif');
         }
       });
-
+ 
     } else {
       q = query(
         collection(db, 'properties'),
         orderBy('createdAt', 'desc')
       );
     }
-
+ 
     const snapshot = await getDocs(q);
     biensFiltres   = [];
-
+ 
     snapshot.forEach(function(doc) {
       biensFiltres.push({ id: doc.id, ...doc.data() });
     });
-
+ 
     /* Si Firebase vide → données de démo */
     if (biensFiltres.length === 0) {
       afficherBiens(biensDemoData, biensAffichesCount);
     } else {
       afficherBiens(biensFiltres, biensAffichesCount);
     }
-
+ 
   } catch (error) {
     console.error('Erreur Firebase :', error);
     /* En cas d'erreur → données de démo */
     afficherBiens(biensDemoData, biensAffichesCount);
   }
 }
-
-
+ 
+ 
 /* ============================================================
-   5. FILTRER LES BIENS
+   5. FILTRER LES BIENS (filtre avancé)
    ============================================================ */
 async function filtrerBiens() {
   const ville    = document.getElementById('filtre-ville').value;
   const quartier = document.getElementById('filtre-quartier').value;
   const type     = document.getElementById('filtre-type').value;
   const prixMax  = parseInt(document.getElementById('filtre-prix').value) || null;
-
+ 
   try {
     let conditions = [];
     if (type)  conditions.push(where('type',  '==', type));
     if (ville) conditions.push(where('ville', '==', ville));
-
+ 
     const q = conditions.length > 0
       ? query(collection(db, 'properties'), ...conditions, orderBy('createdAt', 'desc'))
       : query(collection(db, 'properties'), orderBy('createdAt', 'desc'));
-
+ 
     const snapshot = await getDocs(q);
     biensFiltres   = [];
-
+ 
     snapshot.forEach(function(doc) {
       biensFiltres.push({ id: doc.id, ...doc.data() });
     });
-
+ 
     if (prixMax) {
       biensFiltres = biensFiltres.filter(function(b) {
         return b.prix <= prixMax;
       });
     }
-
+ 
     if (quartier) {
       biensFiltres = biensFiltres.filter(function(b) {
         return b.quartier &&
                b.quartier.toLowerCase().replace(/\s+/g, '-') === quartier;
       });
     }
-
+ 
     biensAffichesCount = BIENS_PAR_PAGE;
     afficherBiens(biensFiltres, biensAffichesCount);
-
+ 
   } catch (error) {
     console.error('Erreur filtre :', error);
   }
-
+ 
   document.querySelector('.section-annonces').scrollIntoView({ behavior: 'smooth' });
 }
-
-
+ 
+ 
 /* ============================================================
-   FILTRER PAR CATÉGORIE
+   6. FILTRER PAR CATÉGORIE (NOUVEAU COMPORTEMENT)
    ============================================================ */
 async function filtrerParCategorie(bouton, type) {
+  // Mettre à jour le bouton actif
   document.querySelectorAll('.btn-categorie').forEach(function(btn) {
     btn.classList.remove('actif');
   });
   bouton.classList.add('actif');
+ 
+  // Synchroniser avec le formulaire de filtrage avancé
   document.getElementById('filtre-type').value = type;
-
+  // Réinitialiser les autres filtres avancés
+  document.getElementById('filtre-ville').value = '';
+  document.getElementById('filtre-quartier').value = '';
+  document.getElementById('filtre-prix').value = '';
+  chargerQuartiers();
+ 
   try {
     const q = type === ''
       ? query(collection(db, 'properties'), orderBy('createdAt', 'desc'))
       : query(collection(db, 'properties'), where('type', '==', type), orderBy('createdAt', 'desc'));
-
+ 
     const snapshot = await getDocs(q);
     biensFiltres   = [];
-
+ 
     snapshot.forEach(function(doc) {
       biensFiltres.push({ id: doc.id, ...doc.data() });
     });
-
+ 
     biensAffichesCount = BIENS_PAR_PAGE;
     afficherBiens(biensFiltres, biensAffichesCount);
-
+ 
   } catch (error) {
     console.error('Erreur catégorie :', error);
+    // En cas d'erreur, utiliser les données de démo
+    if (type === '') {
+      biensFiltres = [...biensDemoData];
+    } else {
+      biensFiltres = biensDemoData.filter(b => b.type === type);
+    }
+    biensAffichesCount = BIENS_PAR_PAGE;
+    afficherBiens(biensFiltres, biensAffichesCount);
+  }
+ 
+  // Scroller vers les résultats
+  document.querySelector('.section-annonces').scrollIntoView({ behavior: 'smooth' });
+}
+ 
+ 
+/* ============================================================
+   7. SYNCHRONISER LES CATÉGORIES AVEC LE FORMULAIRE
+   (Appelée quand on change le type dans le formulaire avancé)
+   ============================================================ */
+function synchroniserCategories() {
+  const type = document.getElementById('filtre-type').value;
+  
+  // Trouver et cliquer sur le bouton de catégorie correspondant
+  let boutonTrouve = false;
+  document.querySelectorAll('.btn-categorie').forEach(function(btn) {
+    const onclickValue = btn.getAttribute('onclick');
+    if (type === '' && onclickValue.includes("filtrerParCategorie(this, '')")) {
+      btn.click();
+      boutonTrouve = true;
+    } else if (type !== '' && onclickValue.includes(`'${type}'`)) {
+      btn.click();
+      boutonTrouve = true;
+    }
+  });
+ 
+  // Si aucun bouton ne correspond, mettre à jour manuellement l'affichage
+  if (!boutonTrouve && type !== '') {
+    document.querySelectorAll('.btn-categorie').forEach(function(btn) {
+      btn.classList.remove('actif');
+    });
   }
 }
-
-
+ 
+ 
 /* ============================================================
-   RÉINITIALISER
+   8. RÉINITIALISER
    ============================================================ */
 function reinitialiserFiltres() {
   document.getElementById('filtre-ville').value    = '';
   document.getElementById('filtre-quartier').value = '';
   document.getElementById('filtre-type').value     = '';
   document.getElementById('filtre-prix').value     = '';
-
+ 
   chargerQuartiers();
-
+ 
   document.querySelectorAll('.btn-categorie').forEach(function(btn) {
     btn.classList.remove('actif');
   });
   document.querySelector('.btn-categorie').classList.add('actif');
-
+ 
   biensFiltres       = [...biensDemoData];
   biensAffichesCount = BIENS_PAR_PAGE;
   afficherBiens(biensFiltres, biensAffichesCount);
 }
-
-
+ 
+ 
 /* ============================================================
-   VOIR PLUS
+   9. VOIR PLUS
    ============================================================ */
 function chargerPlusDeBiens() {
   biensAffichesCount += BIENS_PAR_PAGE;
   afficherBiens(biensFiltres, biensAffichesCount);
 }
-
-
+ 
+ 
 /* ============================================================
-   INITIALISATION
+   10. INITIALISATION
    ============================================================ */
 document.addEventListener('DOMContentLoaded', function() {
   const params     = new URLSearchParams(window.location.search);
   const villeParam = params.get('ville');
-
+ 
   if (villeParam) {
     document.getElementById('filtre-ville').value = villeParam;
     chargerQuartiers();
   }
-
+ 
   /* Charger les biens immédiatement */
   chargerBiensFirebase();
 });
-
-
+ 
+ 
 /* ============================================================
-   RENDRE LES FONCTIONS ACCESSIBLES DEPUIS LE HTML
+   11. RENDRE LES FONCTIONS ACCESSIBLES DEPUIS LE HTML
    ============================================================ */
-window.toggleMenu           = toggleMenu;
-window.chargerQuartiers     = chargerQuartiers;
-window.filtrerBiens         = filtrerBiens;
-window.filtrerParCategorie  = filtrerParCategorie;
-window.reinitialiserFiltres = reinitialiserFiltres;
-window.chargerPlusDeBiens   = chargerPlusDeBiens;
+window.toggleMenu              = toggleMenu;
+window.chargerQuartiers        = chargerQuartiers;
+window.filtrerBiens            = filtrerBiens;
+window.filtrerParCategorie     = filtrerParCategorie;
+window.synchroniserCategories  = synchroniserCategories;
+window.reinitialiserFiltres    = reinitialiserFiltres;
+window.chargerPlusDeBiens      = chargerPlusDeBiens;

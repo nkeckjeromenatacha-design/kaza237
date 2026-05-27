@@ -6,12 +6,10 @@
   KAZA237 — Page Annonces (annonces/index.html)
   "Ton chez-toi, sans stress."
   ================================================================
-  COMMENT MODIFIER CE FICHIER :
-  - Les textes sont entre balises  ex: <h1>Mon texte ici</h1>
-  - Les liens sont dans href="..."  ex: href="https://wa.me/237..."
-  - Les images sont dans src="..."  ex: src="../assets/images/photo.jpg"
-  - Chaque section est clairement indiquée par des commentaires
-  - Les vraies données viendront de Firebase (voir js/annonces.js)
+  VERSION CORRIGÉE — Problèmes résolus :
+  - ✅ Suppression de la duplication de l'ID "biensList"
+  - ✅ Synchronisation catégories ↔ filtres avancés
+  - ✅ Même comportement mobile et desktop
   ================================================================
 -->
 
@@ -192,7 +190,7 @@
               <i class="fa-solid fa-house"></i> Type de bien
             </label>
             <!-- MODIFIE LES OPTIONS DE TYPE ICI -->
-            <select id="filtre-type">
+            <select id="filtre-type" onchange="synchroniserCategories()">
               <option value="">Tous les types</option>
               <option value="appartement">Appartement</option>
               <option value="studio-moderne">Studio moderne</option>
@@ -298,261 +296,14 @@
         </div>
       </div>
 
-      <!-- Liste des biens -->
-<div class="biens-list" id="biensList"></div>
-
-<!-- Message aucun résultat -->
-<div id="aucunResultat" style="display:none;">
-  Aucun bien trouvé
-</div>
-
-<!-- Bouton voir plus -->
-<div id="voirPlusWrap" style="display:none;">
-  <button onclick="chargerPlusDeBiens()">Voir plus</button>
-</div>
-
       <!-- ============================================================
            GRILLE DES CARTES DE BIENS
            Les cartes sont générées automatiquement par annonces.js
-           depuis Firebase. Les cartes ci-dessous sont des EXEMPLES
-           statiques pour toi voir le design — elles seront remplacées.
+           depuis Firebase. Cette div sera remplie par le JavaScript.
            ============================================================ -->
       <div class="biens-grille" id="biensList">
-
-        <!-- ===========================================================
-             CARTE EXEMPLE 1 — Structure d'une carte de bien
-             TOUT CE BLOC sera généré automatiquement par JavaScript
-             Tu n'as PAS à modifier ces cartes manuellement
-             =========================================================== -->
-        <div class="carte-bien">
-
-          <!-- Zone image -->
-          <div class="carte-image">
-
-            <!-- IMAGE — sera remplacée par la vraie photo depuis Firebase/Storage -->
-            <img src="../assets/images/bien1.jpg"
-                 alt="Villa Bonapriso Douala"
-                 onerror="this.src='../assets/images/placeholder.jpg'" />
-
-            <!-- Badge "DISPONIBLE" — affiché si featured = true dans Firebase -->
-            <div class="badge-disponible">
-              <i class="fa-solid fa-circle-check"></i> Disponible
-            </div>
-
-            <!-- Badge type de bien en haut à droite -->
-            <div class="badge-type">Maison / Villa</div>
-
-          </div>
-          <!-- Fin zone image -->
-
-          <!-- Corps de la carte (textes) -->
-          <div class="carte-corps">
-
-            <!-- Type de bien (répété en texte) -->
-            <div class="carte-type">Maison / Villa</div>
-
-            <!-- ============================================================
-                 TITRE DU BIEN — MODIFIE ICI (en attendant Firebase)
-                 ============================================================ -->
-            <h3 class="carte-titre">Villa 4 chambres avec piscine</h3>
-
-            <!-- ============================================================
-                 PRIX — MODIFIE ICI (en attendant Firebase)
-                 Format : 180 000 000 FCFA
-                 ============================================================ -->
-            <div class="carte-prix">
-              180 000 000 <span>FCFA</span>
-            </div>
-
-            <!-- Localisation : ville + quartier -->
-            <div class="carte-lieu">
-              <i class="fa-solid fa-location-dot"></i>
-              <!-- MODIFIE LA VILLE ET LE QUARTIER ICI -->
-              Douala, Bonapriso
-            </div>
-
-            <!-- ============================================================
-                 BOUTONS D'ACTION
-                 ============================================================ -->
-            <div class="carte-actions">
-
-              <!-- Bouton "Voir détails" — redirige vers detail.html?id=... -->
-              <!-- L'ID sera dynamique (depuis Firebase) -->
-              <a href="../details/details.html?id=1" class="btn-voir-details">
-                <i class="fa-solid fa-eye"></i> Voir détails
-              </a>
-
-              <!-- Bouton WhatsApp pour contacter directement -->
-              <!-- MODIFIE LE NUMÉRO SI BESOIN -->
-              <a href="https://wa.me/237656155803?text=Bonjour%20Kaza237%2C%20je%20suis%20intéressé(e)%20par%20la%20Villa%204%20chambres%20avec%20piscine%20à%20Douala%20Bonapriso."
-                 target="_blank" class="btn-whatsapp-carte">
-                <i class="fa-brands fa-whatsapp"></i>
-              </a>
-
-            </div>
-            <!-- Fin boutons -->
-
-          </div>
-          <!-- Fin carte-corps -->
-
-        </div>
-        <!-- Fin Carte Exemple 1 -->
-
-
-        <!-- CARTE EXEMPLE 2 -->
-        <div class="carte-bien">
-          <div class="carte-image">
-            <img src="../assets/images/bien2.jpg" alt="Appartement Yaoundé"
-                 onerror="this.src='../assets/images/placeholder.jpg'" />
-            <div class="badge-disponible">
-              <i class="fa-solid fa-circle-check"></i> Disponible
-            </div>
-            <div class="badge-type">Appartement</div>
-          </div>
-          <div class="carte-corps">
-            <div class="carte-type">Appartement</div>
-            <h3 class="carte-titre">Appartement 3 pièces standing</h3>
-            <div class="carte-prix">85 000 000 <span>FCFA</span></div>
-            <div class="carte-lieu">
-              <i class="fa-solid fa-location-dot"></i> Yaoundé, Bastos
-            </div>
-            <div class="carte-actions">
-              <a href="../details/details.html?id=2" class="btn-voir-details">
-                <i class="fa-solid fa-eye"></i> Voir détails
-              </a>
-              <a href="https://wa.me/237656155803?text=Bonjour%20Kaza237%2C%20je%20suis%20intéressé(e)%20par%20l'appartement%203%20pièces%20à%20Yaoundé%20Bastos."
-                 target="_blank" class="btn-whatsapp-carte">
-                <i class="fa-brands fa-whatsapp"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        <!-- Fin Carte 2 -->
-
-
-        <!-- CARTE EXEMPLE 3 -->
-        <div class="carte-bien">
-          <div class="carte-image">
-            <img src="../assets/images/bien3.jpg" alt="Studio meublé Douala"
-                 onerror="this.src='../assets/images/placeholder.jpg'" />
-            <div class="badge-disponible">
-              <i class="fa-solid fa-circle-check"></i> Disponible
-            </div>
-            <div class="badge-type">Studio moderne</div>
-          </div>
-          <div class="carte-corps">
-            <div class="carte-type">Studio moderne</div>
-            <h3 class="carte-titre">Studio moderne tout équipé</h3>
-            <div class="carte-prix">120 000 <span>FCFA / mois</span></div>
-            <div class="carte-lieu">
-              <i class="fa-solid fa-location-dot"></i> Douala, Akwa
-            </div>
-            <div class="carte-actions">
-              <a href="../details/details.html?id=3" class="btn-voir-details">
-                <i class="fa-solid fa-eye"></i> Voir détails
-              </a>
-              <a href="https://wa.me/237656155803?text=Bonjour%20Kaza237%2C%20je%20suis%20intéressé(e)%20par%20le%20studio%20à%20Douala%20Akwa."
-                 target="_blank" class="btn-whatsapp-carte">
-                <i class="fa-brands fa-whatsapp"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        <!-- Fin Carte 3 -->
-
-
-        <!-- CARTE EXEMPLE 4 -->
-        <div class="carte-bien">
-          <div class="carte-image">
-            <img src="../assets/images/bien4.jpg" alt="Terrain Kribi"
-                 onerror="this.src='../assets/images/placeholder.jpg'" />
-            <div class="badge-disponible">
-              <i class="fa-solid fa-circle-check"></i> Disponible
-            </div>
-            <div class="badge-type">Terrain</div>
-          </div>
-          <div class="carte-corps">
-            <div class="carte-type">Terrain à vendre</div>
-            <h3 class="carte-titre">Terrain vue mer, titre foncier</h3>
-            <div class="carte-prix">45 000 000 <span>FCFA</span></div>
-            <div class="carte-lieu">
-              <i class="fa-solid fa-location-dot"></i> Kribi, Bord de mer
-            </div>
-            <div class="carte-actions">
-              <a href="../details/details.html?id=4" class="btn-voir-details">
-                <i class="fa-solid fa-eye"></i> Voir détails
-              </a>
-              <a href="https://wa.me/237656155803?text=Bonjour%20Kaza237%2C%20je%20suis%20intéressé(e)%20par%20le%20terrain%20à%20Kribi."
-                 target="_blank" class="btn-whatsapp-carte">
-                <i class="fa-brands fa-whatsapp"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        <!-- Fin Carte 4 -->
-
-
-        <!-- CARTE EXEMPLE 5 -->
-        <div class="carte-bien">
-          <div class="carte-image">
-            <img src="../assets/images/bien5.jpg" alt="Bureau Yaoundé"
-                 onerror="this.src='../assets/images/placeholder.jpg'" />
-            <div class="badge-type">Bureau</div>
-          </div>
-          <div class="carte-corps">
-            <div class="carte-type">Bureau</div>
-            <h3 class="carte-titre">Plateau open space avec parking</h3>
-            <div class="carte-prix">300 000 <span>FCFA / mois</span></div>
-            <div class="carte-lieu">
-              <i class="fa-solid fa-location-dot"></i> Yaoundé, Centre
-            </div>
-            <div class="carte-actions">
-              <a href="../details/details.html?id=5" class="btn-voir-details">
-                <i class="fa-solid fa-eye"></i> Voir détails
-              </a>
-              <a href="https://wa.me/237656155803?text=Bonjour%20Kaza237%2C%20je%20suis%20intéressé(e)%20par%20le%20bureau%20à%20Yaoundé%20Centre."
-                 target="_blank" class="btn-whatsapp-carte">
-                <i class="fa-brands fa-whatsapp"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        <!-- Fin Carte 5 -->
-
-
-        <!-- CARTE EXEMPLE 6 -->
-        <div class="carte-bien">
-          <div class="carte-image">
-            <img src="../assets/images/bien6.jpg" alt="Appartement Bonamoussadi"
-                 onerror="this.src='../assets/images/placeholder.jpg'" />
-            <div class="badge-disponible">
-              <i class="fa-solid fa-circle-check"></i> Disponible
-            </div>
-            <div class="badge-type">Appartement meublé</div>
-          </div>
-          <div class="carte-corps">
-            <div class="carte-type">Appartement meublé</div>
-            <h3 class="carte-titre">Appartement moderne à Bonamoussadi</h3>
-            <div class="carte-prix">150 000 <span>FCFA / mois</span></div>
-            <div class="carte-lieu">
-              <i class="fa-solid fa-location-dot"></i> Douala, Bonamoussadi
-            </div>
-            <div class="carte-actions">
-              <a href="../details/details.html?id=6" class="btn-voir-details">
-                <i class="fa-solid fa-eye"></i> Voir détails
-              </a>
-              <a href="https://wa.me/237656155803?text=Bonjour%20Kaza237%2C%20je%20suis%20intéressé(e)%20par%20l'appartement%20à%20Bonamoussadi."
-                 target="_blank" class="btn-whatsapp-carte">
-                <i class="fa-brands fa-whatsapp"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        <!-- Fin Carte 6 -->
-
+        <!-- Les cartes seront insérées ici par JavaScript -->
       </div>
-      <!-- Fin biens-grille -->
-
 
       <!-- ============================================================
            MESSAGE "AUCUN RÉSULTAT" — affiché si la recherche ne trouve rien
@@ -566,12 +317,11 @@
         </button>
       </div>
 
-
       <!-- ============================================================
            BOUTON "VOIR PLUS" — charge 6 biens supplémentaires depuis Firebase
            Caché quand tous les biens sont affichés
            ============================================================ -->
-      <div class="voir-plus-wrap" id="voirPlusWrap">
+      <div class="voir-plus-wrap" id="voirPlusWrap" style="display: none;">
         <button class="btn-voir-plus" id="btnVoirPlus" onclick="chargerPlusDeBiens()">
           <i class="fa-solid fa-plus"></i> Voir plus de biens
         </button>
