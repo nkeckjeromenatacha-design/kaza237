@@ -222,7 +222,7 @@ function afficherBiens(biens, nombreAafficher) {
             ${capitaliser(bien.ville)}, ${bien.quartier}
           </div>
           <div class="carte-actions">
-            <a href="../detail.html?id=${bien.id}" class="btn-voir-details">
+            <a href="../details/details.html?id=${bien.id}" class="btn-voir-details">
               <i class="fa-solid fa-eye"></i> Voir détails
             </a>
             <a href="https://wa.me/237656155803?text=${msgWA}"
