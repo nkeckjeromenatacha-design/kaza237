@@ -18,7 +18,7 @@ const tousLesBiens = [
     ville: 'douala',
     villeAffiche: 'Douala',
     quartier: 'Bonapriso',
-    images: ['../assets/images/bien1.jpg', '../assets/images/bien2.jpg', '../assets/images/bien3.jpg'],
+    images: ['/assets/images/bien1.jpg', '/assets/images/bien2.jpg', '/assets/images/bien3.jpg'],
     description: 'Belle villa sécurisée avec piscine, grand jardin et parking.',
   },
   {
@@ -32,7 +32,7 @@ const tousLesBiens = [
     ville: 'yaounde',
     villeAffiche: 'Yaoundé',
     quartier: 'Bastos',
-    images: ['../assets/images/bien2.jpg', '../assets/images/bien3.jpg'],
+    images: ['/assets/images/bien2.jpg', '/assets/images/bien3.jpg'],
     description: 'Appartement moderne avec balcon, sécurité 24h et parking souterrain.',
   },
   {
@@ -46,7 +46,7 @@ const tousLesBiens = [
     ville: 'douala',
     villeAffiche: 'Douala',
     quartier: 'Akwa',
-    images: ['../assets/images/bien3.jpg', '../assets/images/bien4.jpg'],
+    images: ['/assets/images/bien3.jpg', '/assets/images/bien4.jpg'],
     description: 'Studio entièrement meublé, climatisé, internet inclus.',
   },
   {
@@ -60,7 +60,7 @@ const tousLesBiens = [
     ville: 'douala',
     villeAffiche: 'Kribi',
     quartier: 'Bord de mer',
-    images: ['../assets/images/bien4.jpg', '../assets/images/bien5.jpg'],
+    images: ['/assets/images/bien4.jpg', '/assets/images/bien5.jpg'],
     description: '600 m² avec titre foncier en règle, bord de mer.',
   },
   {
@@ -74,7 +74,7 @@ const tousLesBiens = [
     ville: 'yaounde',
     villeAffiche: 'Yaoundé',
     quartier: 'Centre-ville',
-    images: ['../assets/images/bien5.jpg', '../assets/images/bien6.jpg'],
+    images: ['/assets/images/bien5.jpg', '/assets/images/bien6.jpg'],
     description: '80 m² en plein centre ville, parking inclus.',
   },
   {
@@ -88,7 +88,7 @@ const tousLesBiens = [
     ville: 'douala',
     villeAffiche: 'Douala',
     quartier: 'Bonamoussadi',
-    images: ['../assets/images/bien6.jpg', '../assets/images/bien1.jpg'],
+    images: ['/assets/images/bien6.jpg', '/assets/images/bien1.jpg'],
     description: 'Appartement sécurisé avec parking, gardiennage 24h.',
   },
 ];
@@ -173,7 +173,7 @@ function mettreAJourSlider(images) {
       <div class="swiper-slide">
         <div class="detail-slide">
           <img src="${src}" alt="Photo ${index + 1}" 
-               onerror="this.src='../assets/images/placeholder.jpg'" />
+               onerror="this.src='/assets/images/placeholder.jpg'" />
         </div>
       </div>
     `;
@@ -208,7 +208,7 @@ function chargerSimilaires(idActuel, typeActuel) {
         <a href="./details.html?id=${bien.id}" class="carte-similaire">
           <div class="similaire-image">
             <img src="${bien.images[0]}" alt="${bien.titre}" 
-                 onerror="this.src='../assets/images/placeholder.jpg'" />
+                 onerror="this.src='/assets/images/placeholder.jpg'" />
             <div class="similaire-badge-type">${bien.typeAffiche}</div>
           </div>
           <div class="similaire-corps">
