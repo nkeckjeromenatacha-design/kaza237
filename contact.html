@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<!--
+  ================================================================
+  KAZA237 — Page Contact
+  "Ton chez-toi, sans stress."
+  ================================================================
+  PAGE DESTINÉE AU FORMULAIRE DE CONTACT, AUX INFORMATIONS DE CONTACT ET AUX LIENS VERS LES RESEAUX SOCIAUX DE KAZA237.
+  ================================================================
+-->
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Contact — Kaza237 — La plateforme immobilière du Cameroun</title>
+
+  <meta name="description"
+    content="Contactez Kaza237, la plateforme immobilière innovante qui révolutionne l'accès au logement au Cameroun." />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- CSS commun -->
+  <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <!-- ===========================================================
+       NAVIGATION
+       =========================================================== -->
+  <nav>
+ 
+    <!-- LOGO — REMPLACE src="assets/logo/logo.png" PAR TON VRAI LOGO -->
+    <a href="./index.html" class="nav-logo">
+      <img src="assets/logo/logo.png" alt="Logo Kaza237"
+           onerror="this.style.display='none'" />
+      <div class="nav-logo-texte">
+        <div class="marque">
+          <span class="bleu">Kaza</span><span class="orange">237</span>
+        </div>
+        <div class="slogan">Ton chez-toi, sans stress.</div>
+      </div>
+    </a>
+ 
+    <!-- LIENS DE NAVIGATION — modifie les href="..." pour chaque page -->
+    <ul class="nav-liens">
+      <li><a href="./index.html" class="actif">Accueil</a></li>
+      <li><a href="./annonces/index.html">Annonces</a></li>
+      <li><a href="./réservations/index.html">Réservations</a></li>
+      <li><a href="./apropos.html">À propos</a></li>
+      <li><a href="./contact.html">Contact</a></li>
+    </ul>
+ 
+    <!-- BOUTON "NOUS CONTACTER" — visible sur desktop uniquement -->
+    <!-- MODIFIE le numéro WhatsApp ici si besoin -->
+    <a href="https://wa.me/237656155803" target="_blank" class="btn-nav-contact btn-desktop">
+      <i class="fa-brands fa-whatsapp"></i> Nous Contacter
+    </a>
+ 
+    <!-- ============================================================
+         BOUTON HAMBURGER — visible sur mobile uniquement
+         Les 3 barres qui ouvrent le menu mobile
+         ============================================================ -->
+    <button class="btn-hamburger" id="btnHamburger" onclick="toggleMenu()"
+            aria-label="Ouvrir le menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+ 
+  </nav>
+ 
+  <!-- ===========================================================
+       MENU MOBILE — s'affiche quand on clique sur le hamburger
+       =========================================================== -->
+  <div class="menu-mobile" id="menuMobile">
+ 
+    <!-- Liens du menu mobile -->
+    <ul class="menu-mobile-liens">
+      <li><a href="./index.html" onclick="toggleMenu()">
+        <i class="fa-solid fa-house"></i> Accueil
+      </a></li>
+      <li><a href="./annonces/index.html" onclick="toggleMenu()">
+        <i class="fa-solid fa-building"></i> Annonces
+      </a></li>
+      <li><a href="./réservations/index.html" onclick="toggleMenu()">
+        <i class="fa-solid fa-couch"></i> Réservations
+      </a></li>
+      <li><a href="./apropos.html" onclick="toggleMenu()">
+        <i class="fa-solid fa-circle-info"></i> À propos
+      </a></li>
+      <li><a href="./contact.html" onclick="toggleMenu()">
+        <i class="fa-solid fa-envelope"></i> Contact
+      </a></li>
+    </ul>
+ 
+    <!-- Bouton WhatsApp dans le menu mobile -->
+    <a href="https://wa.me/237656155803" target="_blank" class="btn-whatsapp-mobile">
+      <i class="fa-brands fa-whatsapp"></i> Nous Contacter sur WhatsApp
+    </a>
+ 
+  </div>
+  <!-- Fin Menu Mobile -->
+  <!-- Fin Navigation -->
+
+  <!-- HERO CONTACT -->
+<section class="contact-hero">
+
+    <div class="hero-content">
+        <h1>Contactez Kaza237</h1>
+
+        <p>
+            Vous recherchez un bien immobilier à Douala ou Yaoundé ?
+            Notre équipe est à votre disposition pour vous accompagner.
+        </p>
+    </div>
+
+</section>
+
+<!-- SECTION CONTACT -->
+<section class="contact-section">
+
+    <!-- INFORMATIONS -->
+    <div class="contact-info">
+
+        <h2>Nos coordonnées</h2>
+
+        <div class="info-card">
+
+            <div class="info-item">
+                <span class="icon">📍</span>
+
+                <div>
+                    <h3>Adresse</h3>
+                    <p>Douala, Cameroun</p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <span class="icon">📞</span>
+
+                <div>
+                    <h3>Téléphone</h3>
+                    <p>+237 656 15 58 03</p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <span class="icon">✉️</span>
+
+                <div>
+                    <h3>Email</h3>
+                    <p>contact@kaza237.cm</p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <span class="icon">🕒</span>
+
+                <div>
+                    <h3>Horaires</h3>
+                    <p>Lundi - Samedi : 08h00 - 18h00</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FORMULAIRE -->
+    <div class="contact-form">
+
+        <h2>Envoyez-nous un message</h2>
+
+        <form id="contactForm">
+
+            <div class="form-group">
+                <label>Nom et prénom</label>
+                <input type="text" id="nom" required>
+            </div>
+
+            <div class="double-input">
+
+                <div class="form-group">
+                    <label>Pays de résidence</label>
+                    <input type="text" id="pays" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Ville</label>
+                    <input type="text" id="ville" required>
+                </div>
+
+            </div>
+
+            <div class="double-input">
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Téléphone</label>
+                    <input type="tel" id="telephone" required>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label>Sujet</label>
+                <input type="text" id="sujet" required>
+            </div>
+
+            <div class="form-group">
+                <label>Message</label>
+                <textarea id="message" rows="6" required></textarea>
+            </div>
+
+            <button type="submit" class="btn-whatsapp">
+                Envoyer via WhatsApp
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<!-- GOOGLE MAPS -->
+<section class="contact-map">
+
+    <h2>Notre localisation</h2>
+
+    <iframe
+        src="https://www.google.com/maps?q=Douala,Cameroon&output=embed"
+        allowfullscreen=""
+        loading="lazy">
+    </iframe>
+
+</section>
+
+<!-- ===========================================================
+       FOOTER
+       =========================================================== -->
+  <footer>
+    <div class="footer-grille">
+
+      <div class="footer-col">
+        <div class="footer-logo">
+          <span class="bleu">Kaza</span><span class="orange">237</span>
+        </div>
+        <div class="footer-slogan">Ton chez-toi, sans stress.</div>
+        <p class="footer-description">
+          La plateforme immobilière de référence au Cameroun.
+          Trouvez votre maison, appartement, terrain ou bureau
+          en toute simplicité et en toute confiance.
+        </p>
+        <div class="reseaux-sociaux">
+          <a href="https://facebook.com/kaza237" target="_blank"
+             class="btn-reseau" title="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="https://instagram.com/kaza237" target="_blank"
+             class="btn-reseau" title="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://tiktok.com/@kaza237" target="_blank"
+             class="btn-reseau" title="TikTok">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="annonces/index.html">Toutes les annonces</a></li>
+          <li><a href="réservations/index.html">Réservations</a></li>
+          <li><a href="apropos.html">À propos de nous</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Informations</h4>
+        <ul>
+          <li><a href="contact.html">Nous contacter</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="confidentialite.html">Politique de confidentialité</a></li>
+          <li><a href="cookies.html">Politique de cookies</a></li>
+          <li><a href="cgu.html">Conditions générales (CGU)</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="footer-contact-ligne">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Douala, Cameroun</span>
+        </div>
+        <div class="footer-contact-ligne">
+          <i class="fa-solid fa-phone"></i>
+          <span>+237 656 15 58 03</span>
+        </div>
+        <div class="footer-contact-ligne">
+          <i class="fa-solid fa-envelope"></i>
+          <span>contact@kaza237.cm</span>
+        </div>
+        <div class="footer-contact-ligne">
+          <i class="fa-solid fa-clock"></i>
+          <span>Lun – Sam : 8h – 18h</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-separateur"></div>
+
+    <div class="footer-bas">
+      <div class="footer-copyright">
+        © 2025 Kaza237 · Tous droits réservés · Douala, Cameroun 🇨🇲
+      </div>
+      <div class="footer-liens-legaux">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="confidentialite.html">Confidentialité</a>
+        <a href="cgu.html">CGU</a>
+        <a href="cookies.html">Cookies</a>
+      </div>
+    </div>
+  </footer>
+  <!-- Fin Footer -->
+
+
+  <!-- Scripts -->
+  <script type="module" src="js/app.js"></script>
+
+</body>
+</html>

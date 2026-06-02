@@ -1,0 +1,732 @@
+/* ================================================================
+   KAZA237 — Feuille de style principale
+   Fichier : css/style.css
+   "Ton chez-toi, sans stress."
+   ================================================================
+   COMMENT MODIFIER LES COULEURS :
+   Cherche la section ":root" tout en haut.
+   Exemple : changer --orange: #E87722; par une autre couleur
+   ================================================================ */
+
+/* ============================================================
+       VARIABLES DE COULEURS ET POLICES
+       Pour changer une couleur sur tout le site, modifie ici !
+       ============================================================ */
+    :root {
+      --bleu          : #1E4FAF;   /* Couleur bleue principale */
+      --bleu-fonce    : #0c2d6b;   /* Bleu très foncé (footer, stats) */
+      --bleu-clair    : #E6F1FB;   /* Bleu très clair (survol catégories) */
+      --orange        : #E87722;   /* Couleur orange (boutons, prix, accents) */
+      --orange-hover  : #c9621a;   /* Orange foncé au survol */
+      --blanc         : #ffffff;
+      --gris-fond     : #F5F6FA;   /* Fond de page gris très clair */
+      --gris-texte    : #444444;   /* Couleur du texte principal */
+      --gris-doux     : #888888;   /* Texte secondaire, labels */
+      --bordure       : #E5E7EB;   /* Couleur des bordures */
+      --radius        : 12px;      /* Arrondi des cartes et boutons */
+      --ombre         : 0 4px 20px rgba(0, 0, 0, 0.08);
+      --ombre-hover   : 0 8px 32px rgba(0, 0, 0, 0.15);
+      --transition    : all 0.25s ease;
+    }
+
+    /* ============================================================
+       RESET — Remise à zéro des styles par défaut du navigateur
+       ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth; /* Défilement fluide entre sections */
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background-color: var(--gris-fond);
+      color: var(--gris-texte);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* Liens — pas de soulignement par défaut */
+    a {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    /* Images — remplissent leur conteneur */
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ============================================================
+       BARRE DE NAVIGATION
+       ============================================================ */
+    nav {
+      background-color: var(--blanc);
+      border-bottom: 1px solid var(--bordure);
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+
+      /* Reste visible en haut même quand on défile */
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    /* --- Logo (côté gauche) --- */
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Image du logo — REMPLACE src="..." PAR LE CHEMIN DE TON LOGO */
+    .nav-logo img {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .nav-logo-texte {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .nav-logo-texte .marque {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+
+    /* "Kaza" en bleu, "237" en orange */
+    .nav-logo-texte .marque .bleu  { color: var(--bleu); }
+    .nav-logo-texte .marque .orange { color: var(--orange); }
+
+    .nav-logo-texte .slogan {
+      font-size: 15px;
+      color: var(--gris-doux);
+    }
+
+    /* --- Liens de navigation (centre) --- */
+    .nav-liens {
+      display: flex;
+      align-items: center;
+      gap: 45px;
+      list-style: none;
+    }
+
+    .nav-liens a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gris-texte);
+      position: relative;
+      transition: var(--transition);
+    }
+
+    /* Trait orange qui apparaît sous le lien au survol */
+    .nav-liens a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--orange);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    .nav-liens a:hover               { color: var(--bleu); }
+    .nav-liens a:hover::after        { width: 100%; }
+    .nav-liens a.actif               { color: var(--bleu); }
+    .nav-liens a.actif::after        { width: 100%; }
+
+    /* --- Bouton "Nous Contacter" (côté droit) --- */
+    .btn-nav-contact {
+      background-color: var(--orange);
+      color: var(--blanc);
+      border: none;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      /* LIEN WHATSAPP — modifie le numéro si besoin */
+      /* Ce bouton est dans le HTML plus bas */
+    }
+
+    .btn-nav-contact {
+  display: inline-flex;        /* 🔥 clé principale */
+  align-items: center;         /* centre verticalement */
+  gap: 8px;                    /* espace entre icône et texte */
+
+  background-color: var(--orange);
+  color: var(--blanc);
+  border: none;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+    .btn-nav-contact i {
+  font-size: 18px; /* icône plus grande */
+  display: flex;
+  align-items: center;
+}
+
+/* HERO */
+
+.contact-hero{
+    background: linear-gradient(
+        rgba(30,58,138,.85),
+        rgba(30,58,138,.85)
+    ),
+    url("../assets/images/contact-bg.jpg");
+
+    background-size: cover;
+    background-position: center;
+
+    padding: 100px 20px;
+    text-align: center;
+    color: #fff;
+}
+
+.contact-hero h1{
+    font-size: 52px;
+    margin-bottom: 15px;
+}
+
+.contact-hero p{
+    max-width: 700px;
+    margin: auto;
+    line-height: 1.8;
+}
+
+/* SECTION */
+
+.contact-section{
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 20px;
+
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 50px;
+}
+
+/* INFO */
+
+.contact-info h2{
+    color: #1E3A8A;
+    margin-bottom: 25px;
+}
+
+.info-card{
+    background: #1E3A8A;
+    color: white;
+    padding: 35px;
+    border-radius: 20px;
+}
+
+.info-item{
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.info-item:last-child{
+    margin-bottom: 0;
+}
+
+.icon{
+    font-size: 24px;
+}
+
+.info-item h3{
+    margin-bottom: 5px;
+}
+
+/* FORMULAIRE */
+
+.contact-form{
+    background: #fff;
+    padding: 35px;
+    border-radius: 20px;
+
+    box-shadow: 0 5px 25px rgba(0,0,0,.08);
+}
+
+.contact-form h2{
+    color: #1E3A8A;
+    margin-bottom: 25px;
+}
+
+.form-group{
+    margin-bottom: 20px;
+}
+
+.form-group label{
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea{
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+    outline: none;
+    border-color: #F97316;
+}
+
+.double-input{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.btn-whatsapp{
+    width: 100%;
+    padding: 16px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #F97316;
+    color: white;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+/* MAP */
+
+.contact-map{
+    max-width: 1200px;
+    margin: 0 auto 80px;
+    padding: 0 20px;
+}
+
+.contact-map h2{
+    text-align: center;
+    color: #1E3A8A;
+    margin-bottom: 25px;
+}
+
+.contact-map iframe{
+    width: 100%;
+    height: 450px;
+    border: none;
+    border-radius: 20px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 900px){
+
+    .contact-section{
+        grid-template-columns: 1fr;
+    }
+
+    .double-input{
+        grid-template-columns: 1fr;
+    }
+
+    .contact-hero h1{
+        font-size: 38px;
+    }
+
+}
+
+/* ============================================================
+       FOOTER (Pied de page)
+       ============================================================ */
+    footer {
+      background-color: #0c1f45; /* Bleu très foncé comme demandé */
+      color: rgba(255, 255, 255, 0.8);
+      padding: 3.5rem 2.5rem 1.5rem;
+    }
+
+    /* Grille du footer en 4 colonnes */
+    .footer-grille {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto 2.5rem;
+    }
+
+    /* --- Colonne 1 : Logo + description + réseaux sociaux --- */
+    .footer-logo {
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-logo .bleu   { color: var(--blanc); }
+    .footer-logo .orange { color: var(--orange); }
+
+    .footer-slogan {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 1rem;
+    }
+
+    .footer-description {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Icônes des réseaux sociaux */
+    .reseaux-sociaux {
+      display: flex;
+      gap: 10px;
+    }
+
+    /* ============================================================
+       RÉSEAUX SOCIAUX — MODIFIE LES LIENS href="..." ICI
+       ============================================================ */
+    .btn-reseau {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .btn-reseau:hover {
+      background-color: var(--orange);
+      border-color: var(--orange);
+      color: var(--blanc);
+      transform: translateY(-2px);
+    }
+
+    /* --- Colonnes 2, 3, 4 : Liens --- */
+    .footer-col h4 {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--blanc);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .footer-col ul li a {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.55);
+      transition: var(--transition);
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--orange);
+      padding-left: 5px;
+    }
+
+    /* Informations de contact dans le footer */
+    .footer-contact-ligne {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.55);
+      margin-bottom: 10px;
+    }
+
+    .footer-contact-ligne i {
+      color: var(--orange);
+      margin-top: 2px;
+      width: 14px;
+    }
+
+    /* Ligne de séparation */
+    .footer-separateur {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.08);
+      max-width: 1200px;
+      margin: 0 auto 1.5rem;
+    }
+
+    /* Bas du footer */
+    .footer-bas {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-copyright {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    /* Liens légaux */
+    .footer-liens-legaux {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-liens-legaux a {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.4);
+      transition: var(--transition);
+    }
+
+    .footer-liens-legaux a:hover { color: var(--orange); }
+
+    /* ============================================================
+       STYLES SWIPER (navigation des sliders)
+       ============================================================ */
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: var(--blanc) !important;
+      background: rgba(0,0,0,0.3);
+      width: 40px !important;
+      height: 40px !important;
+      border-radius: 50%;
+    }
+
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+      font-size: 16px !important;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: var(--orange) !important;
+    }
+
+    /* ============================================================
+       RESPONSIVE — TABLETTE (max 1024px)
+       ============================================================ */
+    @media (max-width: 1024px) {
+      .categories-grille { grid-template-columns: repeat(2, 1fr); }
+      .services-grille   { grid-template-columns: repeat(2, 1fr); }
+      .footer-grille     { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+
+    /* ============================================================
+       RESPONSIVE — MOBILE (max 768px)
+       ============================================================ */
+    @media (max-width: 768px) {
+      /* Nav : cacher les liens, garder le bouton */
+      nav { padding: 0 1.2rem; }
+      .nav-liens { display: none; }
+
+      /* Hero */
+      .hero { padding: 3rem 1.2rem 2.5rem; }
+      .hero h1 { font-size: 28px; }
+      .hero-sous-texte-1 { font-size: 15px; }
+
+      /* Recherche : 2 colonnes sur mobile */
+      .recherche-grille {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      /* Stats */
+      .stats-grille { grid-template-columns: 1fr; gap: 1rem; }
+
+      /* Catégories */
+      .categories-grille { grid-template-columns: repeat(2, 1fr); }
+
+      /* Comment ça marche */
+      .comment-grille { grid-template-columns: 1fr; }
+
+      /* Services */
+      .services-grille { grid-template-columns: 1fr; }
+
+      /* Footer */
+      .footer-grille { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bas    { flex-direction: column; text-align: center; }
+      .footer-liens-legaux { flex-wrap: wrap; justify-content: center; }
+
+      /* Sections */
+      .section-recents,
+      .section-categories,
+      .section-services { padding: 2rem 1.2rem; }
+    }
+
+    /* ============================================================
+       RESPONSIVE — PETIT MOBILE (max 480px)
+       ============================================================ */
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 24px; }
+      .recherche-grille { grid-template-columns: 1fr; }
+      .categories-grille { grid-template-columns: 1fr 1fr; }
+      .cta-titre { font-size: 22px; }
+    }
+
+/* ============================================================
+   BOUTON HAMBURGER (3 barres) — mobile uniquement
+   ============================================================ */
+.btn-hamburger {
+  display: none; /* Caché sur desktop */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1100;
+}
+
+/* Chaque barre du hamburger */
+.btn-hamburger span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--bleu);
+  border-radius: 3px;
+  transition: var(--transition);
+}
+
+/* Animation : barres → croix quand menu ouvert */
+.btn-hamburger.ouvert span:nth-child(1) {
+  transform: translateY(9.5px) rotate(45deg);
+}
+.btn-hamburger.ouvert span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.btn-hamburger.ouvert span:nth-child(3) {
+  transform: translateY(-9.5px) rotate(-45deg);
+}
+
+/* ============================================================
+   MENU MOBILE — panneau qui s'ouvre depuis le haut
+   ============================================================ */
+.menu-mobile {
+  display: none; /* Caché par défaut */
+  position: fixed;
+  top: 72px; /* Juste en dessous de la navbar */
+  left: 0;
+  right: 0;
+  background-color: var(--blanc);
+  border-bottom: 2px solid var(--bordure);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  z-index: 999;
+  padding: 1.5rem 1.5rem 2rem;
+  animation: slideDown 0.25s ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.menu-mobile.actif {
+  display: block;
+}
+
+/* Liens dans le menu mobile */
+.menu-mobile-liens {
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.menu-mobile-liens li {
+  border-bottom: 1px solid var(--bordure);
+}
+
+.menu-mobile-liens li:last-child {
+  border-bottom: none;
+}
+
+.menu-mobile-liens a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 4px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--gris-texte);
+  transition: var(--transition);
+}
+
+.menu-mobile-liens a i {
+  color: var(--bleu);
+  width: 18px;
+  text-align: center;
+}
+
+.menu-mobile-liens a:hover {
+  color: var(--bleu);
+  padding-left: 10px;
+}
+
+/* Bouton WhatsApp en bas du menu mobile */
+.btn-whatsapp-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #25D366;
+  color: var(--blanc);
+  padding: 13px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.btn-whatsapp-mobile:hover {
+  background-color: #1ebe5b;
+}
+
+/* Sur desktop : cacher le hamburger */
+.btn-desktop  { display: inline-flex; }
+.btn-hamburger { display: none; }
+
+/* ============================================================
+   RESPONSIVE — MOBILE (max 768px)
+   ============================================================ */
+@media (max-width: 768px) {
+  .nav-liens   { display: none; }   /* Liens desktop cachés */
+  .btn-desktop { display: none; }   /* Bouton contact desktop caché */
+  .btn-hamburger { display: flex; } /* Hamburger visible */
+  nav { padding: 0 1.2rem; }
+}
