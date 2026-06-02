@@ -15,7 +15,7 @@
 
 /* ========== SECTIONS ========== */
 .section-hero-apropos {
-  background: linear-gradient(135deg, var(--bleu) 0%, #005a9d 100%);
+  background: linear-gradient(135deg, var(--bleu) 0%, var(--bleu) 100%);
   color: var(--blanc);
   padding: 6rem 2rem;
   text-align: center;
