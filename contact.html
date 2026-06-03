@@ -6,7 +6,7 @@
   KAZA237 — Page Contact
   "Ton chez-toi, sans stress."
   ================================================================
-  PAGE DESTINÉE AU FORMULAIRE DE CONTACT, AUX INFORMATIONS DE CONTACT ET AUX LIENS VERS LES RESEAUX SOCIAUX DE KAZA237.
+  PAGE DE CONTACT — Formulaire + Infos de contact
   ================================================================
 -->
 
@@ -14,10 +14,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Contact — Kaza237 — La plateforme immobilière du Cameroun</title>
+  <title>Contact — Kaza237</title>
 
   <meta name="description"
-    content="Contactez Kaza237, la plateforme immobilière innovante qui révolutionne l'accès au logement au Cameroun." />
+    content="Contactez Kaza237 pour toute question, suggestion ou partenariat. Nous répondons dans les 24h." />
 
   <!-- Font Awesome -->
   <link rel="stylesheet"
@@ -25,16 +25,19 @@
 
   <!-- CSS commun -->
   <link rel="stylesheet" href="css/style.css" />
-  </head>
 
-  <body>
-    <!-- ===========================================================
+  <!-- CSS spécifique à la page Contact -->
+  <link rel="stylesheet" href="css/contact.css" />
+
+</head>
+
+<body>
+
+  <!-- ===========================================================
        NAVIGATION
        =========================================================== -->
   <nav>
- 
-    <!-- LOGO — REMPLACE src="assets/logo/logo.png" PAR TON VRAI LOGO -->
-    <a href="./index.html" class="nav-logo">
+    <a href="index.html" class="nav-logo">
       <img src="assets/logo/logo.png" alt="Logo Kaza237"
            onerror="this.style.display='none'" />
       <div class="nav-logo-texte">
@@ -44,206 +47,295 @@
         <div class="slogan">Ton chez-toi, sans stress.</div>
       </div>
     </a>
- 
-    <!-- LIENS DE NAVIGATION — modifie les href="..." pour chaque page -->
+
     <ul class="nav-liens">
-      <li><a href="./index.html" class="actif">Accueil</a></li>
-      <li><a href="./annonces/index.html">Annonces</a></li>
-      <li><a href="./réservations/index.html">Réservations</a></li>
-      <li><a href="./apropos.html">À propos</a></li>
-      <li><a href="./contact.html">Contact</a></li>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="annonces/index.html">Annonces</a></li>
+      <li><a href="réservations/index.html">Réservations</a></li>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="contact.html" class="actif">Contact</a></li>
     </ul>
- 
-    <!-- BOUTON "NOUS CONTACTER" — visible sur desktop uniquement -->
-    <!-- MODIFIE le numéro WhatsApp ici si besoin -->
-    <a href="https://wa.me/237656155803" target="_blank" class="btn-nav-contact btn-desktop">
+
+    <a href="https://wa.me/237656155803" target="_blank"
+       class="btn-nav-contact btn-desktop">
       <i class="fa-brands fa-whatsapp"></i> Nous Contacter
     </a>
- 
-    <!-- ============================================================
-         BOUTON HAMBURGER — visible sur mobile uniquement
-         Les 3 barres qui ouvrent le menu mobile
-         ============================================================ -->
-    <button class="btn-hamburger" id="btnHamburger" onclick="toggleMenu()"
-            aria-label="Ouvrir le menu">
+
+    <button class="btn-hamburger" id="btnHamburger"
+            onclick="toggleMenu()" aria-label="Ouvrir le menu">
       <span></span>
       <span></span>
       <span></span>
     </button>
- 
   </nav>
- 
-  <!-- ===========================================================
-       MENU MOBILE — s'affiche quand on clique sur le hamburger
-       =========================================================== -->
+
+  <!-- Menu mobile -->
   <div class="menu-mobile" id="menuMobile">
- 
-    <!-- Liens du menu mobile -->
     <ul class="menu-mobile-liens">
-      <li><a href="./index.html" onclick="toggleMenu()">
+      <li><a href="index.html" onclick="toggleMenu()">
         <i class="fa-solid fa-house"></i> Accueil
       </a></li>
-      <li><a href="./annonces/index.html" onclick="toggleMenu()">
+      <li><a href="annonces/index.html" onclick="toggleMenu()">
         <i class="fa-solid fa-building"></i> Annonces
       </a></li>
-      <li><a href="./réservations/index.html" onclick="toggleMenu()">
-        <i class="fa-solid fa-couch"></i> Réservations
+      <li><a href="réservations/index.html" onclick="toggleMenu()">
+        <i class="fa-solid fa-calendar-check"></i> Réservations
       </a></li>
-      <li><a href="./apropos.html" onclick="toggleMenu()">
+      <li><a href="apropos.html" onclick="toggleMenu()">
         <i class="fa-solid fa-circle-info"></i> À propos
       </a></li>
-      <li><a href="./contact.html" onclick="toggleMenu()">
+      <li><a href="contact.html" onclick="toggleMenu()">
         <i class="fa-solid fa-envelope"></i> Contact
       </a></li>
     </ul>
- 
-    <!-- Bouton WhatsApp dans le menu mobile -->
-    <a href="https://wa.me/237656155803" target="_blank" class="btn-whatsapp-mobile">
+    <a href="https://wa.me/237656155803" target="_blank"
+       class="btn-whatsapp-mobile">
       <i class="fa-brands fa-whatsapp"></i> Nous Contacter sur WhatsApp
     </a>
- 
   </div>
-  <!-- Fin Menu Mobile -->
   <!-- Fin Navigation -->
 
-  <!-- HERO CONTACT -->
-<section class="contact-hero">
 
-    <div class="hero-content">
-        <h1>Contactez Kaza237</h1>
+  <!-- ===========================================================
+       HERO - CONTACT
+       =========================================================== -->
+  <section class="section-hero-contact">
+    <div class="hero-contact-titre">
+      Nous Contacter
+    </div>
+    <p class="hero-contact-sous-titre">
+      Vous avez une question, une suggestion ou une opportunité de partenariat ? 
+      Nous serions ravi d'échanger avec vous. Réponse garantie sous 24h !
+    </p>
+  </section>
 
-        <p>
-            Vous recherchez un bien immobilier à Douala ou Yaoundé ?
-            Notre équipe est à votre disposition pour vous accompagner.
-        </p>
+
+  <!-- ===========================================================
+       CONTENU PRINCIPAL — 2 COLONNES
+       =========================================================== -->
+  <div class="contact-container">
+
+    <!-- ========== COLONNE GAUCHE : INFOS DE CONTACT ========== -->
+    <div class="contact-colonne-gauche">
+
+      <h2 class="contact-section-titre">
+        <i class="fa-solid fa-circle-info"></i> Informations de Contact
+      </h2>
+
+      <!-- INFO 1 : ADRESSE -->
+      <div class="contact-info-carte">
+        <div class="contact-info-icone">
+          <i class="fa-solid fa-location-dot"></i>
+        </div>
+        <div class="contact-info-contenu">
+          <h3 class="contact-info-titre">Adresse</h3>
+          <p class="contact-info-texte">Douala, Littoral, Cameroun 🇨🇲</p>
+        </div>
+      </div>
+
+      <!-- INFO 2 : TÉLÉPHONE -->
+      <div class="contact-info-carte">
+        <div class="contact-info-icone">
+          <i class="fa-solid fa-phone"></i>
+        </div>
+        <div class="contact-info-contenu">
+          <h3 class="contact-info-titre">Téléphone</h3>
+          <p class="contact-info-texte">
+            <a href="tel:+237656155803">+237 656 15 58 03</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- INFO 3 : EMAIL -->
+      <div class="contact-info-carte">
+        <div class="contact-info-icone">
+          <i class="fa-solid fa-envelope"></i>
+        </div>
+        <div class="contact-info-contenu">
+          <h3 class="contact-info-titre">Email</h3>
+          <p class="contact-info-texte">
+            <a href="mailto:contact@kaza237.cm">contact@kaza237.cm</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- INFO 4 : HORAIRES -->
+      <div class="contact-info-carte">
+        <div class="contact-info-icone">
+          <i class="fa-solid fa-clock"></i>
+        </div>
+        <div class="contact-info-contenu">
+          <h3 class="contact-info-titre">Horaires</h3>
+          <p class="contact-info-texte">
+            Lundi - Samedi : 8h - 18h<br>
+            <span style="font-size: 0.9rem; color: #999;">Dimanche : Fermé</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- RÉSEAUX SOCIAUX -->
+      <div class="contact-reseaux">
+        <h3 class="contact-reseaux-titre">Suivez-nous</h3>
+        <div class="contact-reseaux-liens">
+          <a href="https://facebook.com/kaza237" target="_blank" class="btn-reseau-contact" title="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="https://instagram.com/kaza237" target="_blank" class="btn-reseau-contact" title="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://tiktok.com/@kaza237" target="_blank" class="btn-reseau-contact" title="TikTok">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+          <a href="https://wa.me/237656155803" target="_blank" class="btn-reseau-contact" title="WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+
     </div>
 
-</section>
 
-<!-- SECTION CONTACT -->
-<section class="contact-section">
+    <!-- ========== COLONNE DROITE : FORMULAIRE ========== -->
+    <div class="contact-colonne-droite">
 
-    <!-- INFORMATIONS -->
-    <div class="contact-info">
+      <h2 class="contact-section-titre">
+        <i class="fa-solid fa-paper-plane"></i> Envoyez-nous un Message
+      </h2>
 
-        <h2>Nos coordonnées</h2>
+      <form class="contact-formulaire" id="formContact" onsubmit="envoyerContact(event)">
 
-        <div class="info-card">
-
-            <div class="info-item">
-                <span class="icon">📍</span>
-
-                <div>
-                    <h3>Adresse</h3>
-                    <p>Douala, Cameroun</p>
-                </div>
-            </div>
-
-            <div class="info-item">
-                <span class="icon">📞</span>
-
-                <div>
-                    <h3>Téléphone</h3>
-                    <p>+237 656 15 58 03</p>
-                </div>
-            </div>
-
-            <div class="info-item">
-                <span class="icon">✉️</span>
-
-                <div>
-                    <h3>Email</h3>
-                    <p>contact@kaza237.cm</p>
-                </div>
-            </div>
-
-            <div class="info-item">
-                <span class="icon">🕒</span>
-
-                <div>
-                    <h3>Horaires</h3>
-                    <p>Lundi - Samedi : 08h00 - 18h00</p>
-                </div>
-            </div>
-
+        <!-- PRÉNOM + NOM (2 colonnes) -->
+        <div class="contact-form-ligne">
+          <div class="contact-form-champ">
+            <label for="contact-prenom">
+              <i class="fa-solid fa-user"></i> Prénom *
+            </label>
+            <input type="text" id="contact-prenom" 
+                   placeholder="Ton prénom" required />
+          </div>
+          <div class="contact-form-champ">
+            <label for="contact-nom">
+              <i class="fa-solid fa-user"></i> Nom *
+            </label>
+            <input type="text" id="contact-nom" 
+                   placeholder="Ton nom" required />
+          </div>
         </div>
 
+        <!-- PAYS + VILLE (2 colonnes) -->
+        <div class="contact-form-ligne">
+          <div class="contact-form-champ">
+            <label for="contact-pays">
+              <i class="fa-solid fa-globe"></i> Pays *
+            </label>
+            <input type="text" id="contact-pays" 
+                   placeholder="Ex: Cameroun" required />
+          </div>
+          <div class="contact-form-champ">
+            <label for="contact-ville">
+              <i class="fa-solid fa-city"></i> Ville *
+            </label>
+            <select id="contact-ville" required>
+              <option value="">-- Sélectionner une ville --</option>
+              <option value="douala">Douala</option>
+              <option value="yaounde">Yaoundé</option>
+              <option value="buea">Buéa</option>
+              <option value="limbe">Limbé</option>
+              <option value="kumba">Kumba</option>
+              <option value="bamenda">Bamenda</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- EMAIL -->
+        <div class="contact-form-champ">
+          <label for="contact-email">
+            <i class="fa-solid fa-envelope"></i> Email *
+          </label>
+          <input type="email" id="contact-email" 
+                 placeholder="ton.email@exemple.com" required />
+        </div>
+
+        <!-- TÉLÉPHONE -->
+        <div class="contact-form-champ">
+          <label for="contact-telephone">
+            <i class="fa-solid fa-phone"></i> Téléphone *
+          </label>
+          <input type="tel" id="contact-telephone" 
+                 placeholder="+237 6XX XXX XXX" required />
+        </div>
+
+        <!-- SUJET -->
+        <div class="contact-form-champ">
+          <label for="contact-sujet">
+            <i class="fa-solid fa-heading"></i> Sujet *
+          </label>
+          <select id="contact-sujet" required>
+            <option value="">-- Sélectionner un sujet --</option>
+            <option value="question">Question générale</option>
+            <option value="annonce">Question sur une annonce</option>
+            <option value="reservation">Question sur une réservation</option>
+            <option value="partenariat">Partenariat / Collaboration</option>
+            <option value="bug">Signaler un problème</option>
+            <option value="autre">Autre</option>
+          </select>
+        </div>
+
+        <!-- MESSAGE -->
+        <div class="contact-form-champ">
+          <label for="contact-message">
+            <i class="fa-solid fa-comment"></i> Message *
+          </label>
+          <textarea id="contact-message" rows="5"
+                    placeholder="Décris-nous ton message..."
+                    required></textarea>
+        </div>
+
+        <!-- BOUTONS -->
+        <div class="contact-form-actions">
+          <button type="submit" class="btn-contact-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i> Envoyer sur WhatsApp
+          </button>
+          <button type="button" class="btn-contact-email" onclick="envoyerEmail()">
+            <i class="fa-solid fa-envelope"></i> Envoyer par Email
+          </button>
+        </div>
+
+        <p class="contact-form-note">
+          * Champs obligatoires. Réponse garantie sous 24h.
+        </p>
+
+      </form>
+
     </div>
 
-    <!-- FORMULAIRE -->
-    <div class="contact-form">
+  </div>
 
-        <h2>Envoyez-nous un message</h2>
 
-        <form id="contactForm">
-
-            <div class="form-group">
-                <label>Nom et prénom</label>
-                <input type="text" id="nom" required>
-            </div>
-
-            <div class="double-input">
-
-                <div class="form-group">
-                    <label>Pays de résidence</label>
-                    <input type="text" id="pays" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Ville</label>
-                    <input type="text" id="ville" required>
-                </div>
-
-            </div>
-
-            <div class="double-input">
-
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" id="email" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Téléphone</label>
-                    <input type="tel" id="telephone" required>
-                </div>
-
-            </div>
-
-            <div class="form-group">
-                <label>Sujet</label>
-                <input type="text" id="sujet" required>
-            </div>
-
-            <div class="form-group">
-                <label>Message</label>
-                <textarea id="message" rows="6" required></textarea>
-            </div>
-
-            <button type="submit" class="btn-whatsapp">
-                Envoyer via WhatsApp
-            </button>
-
-        </form>
-
+  <!-- ===========================================================
+       SECTION GOOGLE MAPS
+       =========================================================== -->
+  <section class="section-maps">
+    <div class="maps-container">
+      <h2 class="maps-titre">
+        <i class="fa-solid fa-map-location-dot"></i> Localisation
+      </h2>
+      <p class="maps-sous-titre">
+        Retrouvez Kaza237 sur la carte. Nous sommes basés à Douala, Cameroun.
+      </p>
+      
+      <!-- GOOGLE MAPS IFRAME -->
+      <div class="maps-wrapper">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.7374557726597!2d9.771919!3d4.0510701!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10651e4b3d3d3d3d%3A0x1234567890abcdef!2sDouala%2C%20Cameroon!5e0!3m2!1sen!2scm!4v1234567890" 
+                width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade" class="maps-iframe"></iframe>
+      </div>
     </div>
+  </section>
 
-</section>
 
-<!-- GOOGLE MAPS -->
-<section class="contact-map">
-
-    <h2>Notre localisation</h2>
-
-    <iframe
-        src="https://www.google.com/maps?q=Douala,Cameroon&output=embed"
-        allowfullscreen=""
-        loading="lazy">
-    </iframe>
-
-</section>
-
-<!-- ===========================================================
+  <!-- ===========================================================
        FOOTER
        =========================================================== -->
   <footer>
@@ -339,6 +431,64 @@
 
   <!-- Scripts -->
   <script type="module" src="js/app.js"></script>
+
+  <script>
+    /* ============================================================
+       FORMULAIRE CONTACT — ENVOI SUR WHATSAPP
+       ============================================================ */
+    function envoyerContact(event) {
+      event.preventDefault();
+
+      const prenom = document.getElementById('contact-prenom').value;
+      const nom = document.getElementById('contact-nom').value;
+      const pays = document.getElementById('contact-pays').value;
+      const ville = document.getElementById('contact-ville').value;
+      const email = document.getElementById('contact-email').value;
+      const telephone = document.getElementById('contact-telephone').value;
+      const sujet = document.getElementById('contact-sujet').value;
+      const message = document.getElementById('contact-message').value;
+
+      // Construire le message WhatsApp
+      let msgWA = 'Bonjour Kaza237 !\n\n';
+      msgWA += '📋 Sujet : ' + sujet + '\n\n';
+      msgWA += '👤 Nom : ' + prenom + ' ' + nom + '\n';
+      msgWA += '🌍 Localisation : ' + ville + ', ' + pays + '\n';
+      msgWA += '📧 Email : ' + email + '\n';
+      msgWA += '📞 Téléphone : ' + telephone + '\n\n';
+      msgWA += '💬 Message :\n' + message;
+
+      // Ouvrir WhatsApp
+      window.open('https://wa.me/237656155803?text=' + encodeURIComponent(msgWA), '_blank');
+    }
+
+    /* ============================================================
+       ENVOI PAR EMAIL
+       ============================================================ */
+    function envoyerEmail() {
+      const prenom = document.getElementById('contact-prenom').value;
+      const nom = document.getElementById('contact-nom').value;
+      const pays = document.getElementById('contact-pays').value;
+      const ville = document.getElementById('contact-ville').value;
+      const email = document.getElementById('contact-email').value;
+      const telephone = document.getElementById('contact-telephone').value;
+      const sujet = document.getElementById('contact-sujet').value;
+      const message = document.getElementById('contact-message').value;
+
+      // Construire l'email
+      const subject = encodeURIComponent('Nouveau message de contact - ' + sujet);
+      const body = encodeURIComponent(
+        'Nom : ' + prenom + ' ' + nom + '\n' +
+        'Localisation : ' + ville + ', ' + pays + '\n' +
+        'Email : ' + email + '\n' +
+        'Téléphone : ' + telephone + '\n' +
+        'Sujet : ' + sujet + '\n\n' +
+        'Message :\n' + message
+      );
+
+      // Ouvrir le client email
+      window.location.href = 'mailto:contact@kaza237.cm?subject=' + subject + '&body=' + body;
+    }
+  </script>
 
 </body>
 </html>
