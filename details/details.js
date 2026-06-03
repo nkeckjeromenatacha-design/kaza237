@@ -18,7 +18,7 @@ const tousLesBiens = [
     ville: 'douala',
     villeAffiche: 'Douala',
     quartier: 'Bonapriso',
-    images: ['/assets/images/bien1.jpg', '/assets/images/bien2.jpg', '/assets/images/bien3.jpg'],
+    images: ['/assets/images/bien1.png', '/assets/images/bien2.png', '/assets/images/bien3.jpg'],
     description: 'Belle villa sécurisée avec piscine, grand jardin et parking.',
   },
   {
@@ -32,7 +32,7 @@ const tousLesBiens = [
     ville: 'yaounde',
     villeAffiche: 'Yaoundé',
     quartier: 'Bastos',
-    images: ['/assets/images/bien2.jpg', '/assets/images/bien3.jpg'],
+    images: ['/assets/images/bien2.png', '/assets/images/bien3.jpg'],
     description: 'Appartement moderne avec balcon, sécurité 24h et parking souterrain.',
   },
   {
@@ -60,7 +60,7 @@ const tousLesBiens = [
     ville: 'douala',
     villeAffiche: 'Kribi',
     quartier: 'Bord de mer',
-    images: ['/assets/images/bien4.jpg', '/assets/images/bien5.jpg'],
+    images: ['/assets/images/bien4.jpg', '/assets/images/bien5.png'],
     description: '600 m² avec titre foncier en règle, bord de mer.',
   },
   {
@@ -74,7 +74,7 @@ const tousLesBiens = [
     ville: 'yaounde',
     villeAffiche: 'Yaoundé',
     quartier: 'Centre-ville',
-    images: ['/assets/images/bien5.jpg', '/assets/images/bien6.jpg'],
+    images: ['/assets/images/bien5.png', '/assets/images/bien6.jpg'],
     description: '80 m² en plein centre ville, parking inclus.',
   },
   {
@@ -88,7 +88,7 @@ const tousLesBiens = [
     ville: 'douala',
     villeAffiche: 'Douala',
     quartier: 'Bonamoussadi',
-    images: ['/assets/images/bien6.jpg', '/assets/images/bien1.jpg'],
+    images: ['/assets/images/bien6.jpg', '/assets/images/bien1.png'],
     description: 'Appartement sécurisé avec parking, gardiennage 24h.',
   },
 ];
@@ -171,7 +171,7 @@ function mettreAJourSlider(images) {
   images.forEach(function(src, index) {
     swiperWrapper.innerHTML += `
       <div class="swiper-slide">
-        <div class="detail-slide">
+        <div class="details-slide">
           <img src="${src}" alt="Photo ${index + 1}" 
                onerror="this.src='/assets/images/placeholder.jpg'" />
         </div>
