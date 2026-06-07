@@ -18,7 +18,7 @@ console.log('✅ details.js chargé');
 /* ============================================================
    EXTENSIONS DES IMAGES
    ============================================================ */
-const EXTENSIONS = ['png', 'png', 'png', 'jpg', 'png', 'jpg', 'png', 'jpg'];
+const EXTENSIONS = ['png', 'png', 'jpg', 'jpg', 'png', 'jpg', 'png', 'jpg'];
 
 function genererNomImage(index) {
   const ext = EXTENSIONS[index] || 'png';
@@ -196,7 +196,7 @@ async function chargerBiensSimilaires(type, idActuel, indexActuel, tousLesBiens)
 
   try {
     const similaires = tousLesBiens
-      .filter(b => b.type === type && b.id !== idActuel)
+      .filter(b => b.typeAffiche === typeAffiche && b.id !== idActuel)
       .slice(0, 3);
 
     console.log('📊 Biens similaires trouvés:', similaires.length);
