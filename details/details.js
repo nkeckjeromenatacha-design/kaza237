@@ -18,7 +18,7 @@ const tousLesBiens = [
     ville: 'douala',
     villeAffiche: 'Douala',
     quartier: 'Bonapriso',
-    images: ['/assets/images/bien1.png', '/assets/images/bien2.png', '/assets/images/bien3.png'],
+    images: ['/assets/images/bien1.png', '/assets/images/bien2.png', '/assets/images/bien3.jpg'],
     description: 'Belle villa sécurisée avec piscine, grand jardin et parking.',
   },
   {
@@ -32,7 +32,7 @@ const tousLesBiens = [
     ville: 'yaounde',
     villeAffiche: 'Yaoundé',
     quartier: 'Bastos',
-    images: ['/assets/images/bien2.png', '/assets/images/bien3.png'],
+    images: ['/assets/images/bien2.png', '/assets/images/bien3.jpg'],
     description: 'Appartement moderne avec balcon, sécurité 24h et parking souterrain.',
   },
   {
@@ -46,7 +46,7 @@ const tousLesBiens = [
     ville: 'douala',
     villeAffiche: 'Douala',
     quartier: 'Akwa',
-    images: ['/assets/images/bien3.png', '/assets/images/bien4.jpg'],
+    images: ['/assets/images/bien3.jpg', '/assets/images/bien4.jpg'],
     description: 'Studio entièrement meublé, climatisé, internet inclus.',
   },
   {
