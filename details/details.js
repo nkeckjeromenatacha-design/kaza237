@@ -46,7 +46,7 @@ const tousLesBiens = [
     ville: 'douala',
     villeAffiche: 'Douala',
     quartier: 'Akwa',
-    images: ['/assets/images/bien3.png', '/assets/images/bien4.png'],
+    images: ['/assets/images/bien3.png', '/assets/images/bien4.jpg'],
     description: 'Studio entièrement meublé, climatisé, internet inclus.',
   },
   {
@@ -60,7 +60,7 @@ const tousLesBiens = [
     ville: 'douala',
     villeAffiche: 'Kribi',
     quartier: 'Bord de mer',
-    images: ['/assets/images/bien4.png', '/assets/images/bien5.png'],
+    images: ['/assets/images/bien4.jpg', '/assets/images/bien5.png'],
     description: '600 m² avec titre foncier en règle, bord de mer.',
   },
   {
@@ -74,7 +74,7 @@ const tousLesBiens = [
     ville: 'yaounde',
     villeAffiche: 'Yaoundé',
     quartier: 'Centre-ville',
-    images: ['/assets/images/bien5.png', '/assets/images/bien6.png'],
+    images: ['/assets/images/bien5.png', '/assets/images/bien6.jpg'],
     description: '80 m² en plein centre ville, parking inclus.',
   },
   {
@@ -88,36 +88,8 @@ const tousLesBiens = [
     ville: 'douala',
     villeAffiche: 'Douala',
     quartier: 'Bonamoussadi',
-    images: ['/assets/images/bien6.png', '/assets/images/bien1.png'],
+    images: ['/assets/images/bien6.jpg', '/assets/images/bien1.png'],
     description: 'Appartement sécurisé avec parking, gardiennage 24h.',
-  },
-  {
-    id: '7',
-    titre: 'Chambre meublée en plein cœur de Douala',
-    type: 'chambre-meuble',
-    typeAffiche: 'Chambre meublée',
-    prix: 80000,
-    prixAffiche: '80 000',
-    unite: 'FCFA / mois',
-    ville: 'douala',
-    villeAffiche: 'Douala',
-    quartier: 'Ndokoti',
-    images: ['/assets/images/bien7.png', '/assets/images/bien2.png'],
-    description: 'Chambre meublée avec wifi, eau courante et électricité incluses.',
-  },
-  {
-    id: '8',
-    titre: 'Maison mitoyenne avec jardin à Yaoundé',
-    type: 'maison-villa',
-    typeAffiche: 'Maison',
-    prix: 250000,
-    prixAffiche: '250 000',
-    unite: 'FCFA / mois',
-    ville: 'yaounde',
-    villeAffiche: 'Yaoundé',
-    quartier: 'Melen',
-    images: ['/assets/images/bien8.png', '/assets/images/bien3.png'],
-    description: 'Maison mitoyenne confortable avec petit jardin et parking privé.',
   },
 ];
 
@@ -199,9 +171,9 @@ function mettreAJourSlider(images) {
   images.forEach(function(src, index) {
     swiperWrapper.innerHTML += `
       <div class="swiper-slide">
-        <div class="detail-slide">
+        <div class="details-slide">
           <img src="${src}" alt="Photo ${index + 1}" 
-               onerror="this.src='/assets/images/placeholder.png'" />
+               onerror="this.src='/assets/images/placeholder.jpg'" />
         </div>
       </div>
     `;
@@ -236,7 +208,7 @@ function chargerSimilaires(idActuel, typeActuel) {
         <a href="./details.html?id=${bien.id}" class="carte-similaire">
           <div class="similaire-image">
             <img src="${bien.images[0]}" alt="${bien.titre}" 
-                 onerror="this.src='/assets/images/placeholder.png'" />
+                 onerror="this.src='/assets/images/placeholder.jpg'" />
             <div class="similaire-badge-type">${bien.typeAffiche}</div>
           </div>
           <div class="similaire-corps">

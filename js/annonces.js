@@ -87,7 +87,7 @@ const biensDemoData = [
     ville: 'douala',
     quartier: 'Bonapriso',
     featured: true,
-    image: '../assets/images/bien1.jpg',
+    image: '../assets/images/bien1.png',
     whatsapp: 'Je suis intéressé(e) par la Villa 4 chambres avec piscine à Douala Bonapriso.',
   },
   {
@@ -100,7 +100,7 @@ const biensDemoData = [
     ville: 'yaounde',
     quartier: 'Bastos',
     featured: true,
-    image: '../assets/images/bien2.jpg',
+    image: '../assets/images/bien2.png',
     whatsapp: "Je suis intéressé(e) par l'Appartement 3 pièces à Yaoundé Bastos.",
   },
   {
@@ -113,7 +113,7 @@ const biensDemoData = [
     ville: 'douala',
     quartier: 'Akwa',
     featured: true,
-    image: '../assets/images/bien3.jpg',
+    image: '../assets/images/bien3.png',
     whatsapp: 'Je suis intéressé(e) par le Studio moderne à Douala Akwa.',
   },
   {
@@ -139,7 +139,7 @@ const biensDemoData = [
     ville: 'yaounde',
     quartier: 'Centre-ville',
     featured: false,
-    image: '../assets/images/bien5.jpg',
+    image: '../assets/images/bien5.png',
     whatsapp: 'Je suis intéressé(e) par le Bureau open space à Yaoundé Centre.',
   },
   {
